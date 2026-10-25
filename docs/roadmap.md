@@ -16,7 +16,7 @@ In this order:
 6. **Windows and Linux checks.** Test on more systems and write down what works.
 7. **More languages.** Docs and word-root matching for languages other than English.
 
-Also wanted, no order: **package install**, one command instead of downloading the files, and **a small local web page** to search and check your index. It is planned and not in 0.1.0.
+Also wanted, no order: **package install**, one command instead of downloading the files, and a **light-theme check and phone-sized layout** for the search page.
 
 ## Maybe
 

@@ -62,6 +62,7 @@ If you follow this policy, I won't take any action against you for your research
 - Any way to open a private (locked) result without being asked, including through the AI connector.
 - Any way to make the connector run anything other than its fixed search commands, or return text as instructions instead of note content.
 - Any way to use the server version (`mcp/serve.py`) without a login key, to get a key without the passphrase, to log in an app from an address that is not allowed, or to read a private note through it. See [docs/threat-model.md](docs/threat-model.md).
+- Any way to use the search page from another website, to make it open a file outside your notes or a secret file, or to make it write to a note.
 - Any way to use the server version from another website, or from another computer on your network when it is not meant to be reachable.
 - Any change that damages your data, or sends your notes to a service without you turning that on.
 

@@ -46,6 +46,7 @@
 - [How it works, in one picture](#how-it-works-in-one-picture)
 - [Words you'll see](#words-youll-see)
 - [What you get](#what-you-get)
+- [The search page](#the-search-page)
 - [How fast is it?](#how-fast-is-it)
 - [Choose how to run it](#choose-how-to-run-it)
 - [Install in one line](#install-in-one-line)
@@ -157,6 +158,14 @@ More in [docs/how-it-works.md](docs/how-it-works.md) and [docs/search-ranking.md
 - A health check. One command says if the index is fresh, if anything private slipped in, and if searches are slow.
 - A test you can run on your own notes. Write your own questions and score the search.
 - Optional note cards. An AI writes a card for each section once, using your own key. About $6 for 4,800 notes, then cents a month. See [docs/cards.md](docs/cards.md).
+
+## The search page
+
+Prefer a page to the terminal? Run `python3 engram.py page`. Your browser opens a small page on your own computer, with the same search your agent uses.
+
+<p align="center"><img src="docs/images/page.png" alt="The Phygital Engram search page. The question when is the cover due returns the Schedule note first, with its path in violet, the matched words highlighted, and links to open the note, show the full section, see what is around it and copy the path." width="760"></p>
+
+It is dark by default, and light when your computer is. Only this computer can reach it, it loads nothing from the internet, and it cannot change your notes. More in [docs/search-page.md](docs/search-page.md).
 
 ## How fast is it?
 
@@ -341,6 +350,7 @@ More in [docs/faq.md](docs/faq.md).
 | [Threat model](docs/threat-model.md) | You want to know what the server version defends against, and what it does not |
 | [Claude Desktop extension](docs/claude-desktop-extension.md) | You use Claude Desktop and want one click |
 | [The four tools](docs/tools.md) | You want to know what your agent can do with it |
+| [The search page](docs/search-page.md) | You want to search from a page in your browser |
 | [Things to ask](docs/examples.md) | You want ideas for what to ask your agent |
 | [The idea behind it](docs/the-idea.md) | You want to know why plain search works for notes |
 | [How it works](docs/how-it-works.md) | You want to know what happens inside |
@@ -402,6 +412,7 @@ Issues are public, so leave out passwords, keys and private notes.
 
 | Path | What is in it |
 |---|---|
+| `app/` | The search page for your own computer, in the Phygital Engram look |
 | `mcp/` | The connectors that let an AI app search your notes. `server.py` runs on your computer. `serve.py` is the server version. Same four read-only tools |
 | `engram.py`, `engram_lib/`, `config.json` | The search itself. It uses only what comes with Python, and `config.json` holds the default settings |
 | `Dockerfile`, `docker-compose.yml`, `Caddyfile`, `requirements-server.txt` | Run the server version on your own server, with HTTPS. The ready-made image is on the [Packages page](https://github.com/Phygital-Brain/phygital-engram/pkgs/container/phygital-engram) |

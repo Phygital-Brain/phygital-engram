@@ -1,0 +1,915 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>Phygital Engram</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Ccircle cx=%2732%27 cy=%2732%27 r=%2730%27 fill=%27%23FFD60A%27/%3E%3Cpath d=%27M37 19H49M37 41H49M37 52H44%27 fill=%27none%27 stroke=%27%230B0D12%27 stroke-opacity=%27.42%27 stroke-width=%273%27 stroke-linecap=%27round%27/%3E%3Cpath d=%27M12 42H20C27 42 27 30 35 30H52%27 fill=%27none%27 stroke=%27%230B0D12%27 stroke-width=%274.4%27 stroke-linecap=%27round%27/%3E%3Ccircle cx=%2712%27 cy=%2742%27 r=%273.4%27 fill=%27%239B8CFF%27/%3E%3Ccircle cx=%2752%27 cy=%2730%27 r=%273.4%27 fill=%27%239B8CFF%27/%3E%3C/svg%3E">
+<style>
+/* Phygital Engram colours. Dark is the default. Light follows the computer's appearance setting.
+   Yellow is for buttons, links and focus. Violet marks where an answer came from. */
+:root {
+  --bg: #0B0D12; --surface: #161A22; --sunken: #07080C; --ink: #F1EDE4; --ink-2: #D6D2C8; --muted: #A7A39A;
+  --line: #2A303C; --line-2: #3A4252;
+  --accent: #FFD60A; --accent-ink: #0B0D12; --accent-soft: #3A3000;
+  --source: #9B8CFF; --source-soft: #1E1A3D;
+  --good: #7fd494; --good-soft: #1b2e21; --warn: #f0c068; --warn-soft: #33290f; --bad: #ff9b9b; --bad-soft: #3a1f1f;
+  --mark: #3A3000; --mark-ink: #FFF1A8;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 20px -10px rgba(0, 0, 0, .5);
+  --raised: #202634;
+  --radius: 10px; --radius-s: 6px;
+  --mono: ui-monospace, "JetBrains Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #F4F6F9; --surface: #FFFFFF; --sunken: #E6EAF0; --ink: #0B0D12; --ink-2: #2A303C; --muted: #4A5160;
+    --line: #D5DAE3; --line-2: #BFC6D2;
+    --accent: #7A5C00; --accent-ink: #FFFFFF; --accent-soft: #FFF6CC;
+    --source: #5A45D4; --source-soft: #EAE6FF;
+    --good: #1c6b34; --good-soft: #e1f3e6; --warn: #8a5a00; --warn-soft: #fbefd0; --bad: #a32020; --bad-soft: #fbe3e3;
+    --mark: #FFF1A8; --mark-ink: #0B0D12;
+    --shadow: 0 1px 2px rgba(11, 13, 18, .08), 0 8px 20px -12px rgba(11, 13, 18, .25);
+    --raised: #FFFFFF;
+    color-scheme: light;
+  }
+}
+input[type="search"]::-webkit-search-cancel-button { -webkit-appearance: none; appearance: none; display: none; }
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); caret-color: var(--accent);
+  font: 16px/1.55 "Hanken Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, sans-serif; }
+::selection { background: var(--accent); color: var(--accent-ink); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+* { scrollbar-width: thin; scrollbar-color: var(--line-2) transparent; }
+.num { font-variant-numeric: tabular-nums; }
+button { font: inherit; color: inherit; }
+.wrap { max-width: 880px; margin: 0 auto; padding: 28px 16px 72px; }
+.wrap.wide { max-width: 1180px; }
+
+header { display: flex; align-items: baseline; justify-content: space-between; gap: 6px 16px; flex-wrap: wrap; }
+h1 .brand { display: inline-flex; align-items: center; gap: 10px; color: inherit; text-decoration: none; }
+h1 .mark { flex: none; }
+h1 { font-size: 22px; line-height: 1.2; margin: 0; letter-spacing: -0.02em; font-weight: 700; }
+#meta { color: var(--muted); font-size: 14px; }
+
+nav[role="tablist"] { display: inline-flex; gap: 2px; padding: 3px; margin: 18px 0 22px; background: var(--sunken);
+  border: 1px solid var(--line); border-radius: 10px; }
+nav[role="tablist"] button { border: 0; background: transparent; padding: 7px 14px; border-radius: 7px; font-size: 14px;
+  font-weight: 500; color: var(--ink-2); cursor: pointer; }
+nav[role="tablist"] button:hover { color: var(--ink); }
+nav[role="tablist"] button[aria-selected="true"] { background: var(--raised); color: var(--ink); box-shadow: var(--shadow); }
+
+/* search */
+.searchbox { position: relative; display: flex; align-items: center; background: var(--surface);
+  border: 1px solid var(--line-2); border-radius: var(--radius); box-shadow: var(--shadow);
+  transition: border-color .15s ease-out, box-shadow .15s ease-out; }
+.searchbox:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft), var(--shadow); }
+.searchbox svg { flex: none; margin-left: 16px; color: var(--muted); }
+#q { flex: 1; min-width: 0; border: 0; background: transparent; outline: none; color: var(--ink);
+  font: inherit; font-size: 18px; padding: 15px 12px; }
+#q::placeholder { color: var(--muted); }
+.kbd { flex: none; margin-right: 12px; font-size: 12px; color: var(--muted); border: 1px solid var(--line-2);
+  border-radius: 5px; padding: 1px 6px; }
+#clear { flex: none; margin-right: 8px; border: 0; background: transparent; color: var(--muted); cursor: pointer;
+  padding: 8px; border-radius: 8px; display: none; }
+#clear:hover { color: var(--ink); background: var(--sunken); }
+.has-q #clear { display: inline-flex; }
+.has-q .kbd { display: none; }
+
+.below { display: flex; justify-content: space-between; align-items: center; gap: 10px 20px; flex-wrap: wrap;
+  margin: 12px 2px 0; font-size: 14px; }
+#status { color: var(--muted); min-height: 21px; }
+.toggles { display: flex; gap: 16px; flex-wrap: wrap; }
+.toggle { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; color: var(--ink-2); user-select: none; }
+.toggle input { appearance: none; margin: 0; width: 30px; height: 18px; border-radius: 99px; background: var(--line-2);
+  position: relative; cursor: pointer; transition: background .15s ease-out; flex: none; }
+.toggle input::after { content: ""; position: absolute; top: 2px; left: 2px; width: 14px; height: 14px; border-radius: 50%;
+  background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.25); transition: transform .18s cubic-bezier(.2,.8,.2,1); }
+.toggle input:checked { background: var(--accent); }
+.toggle input:checked::after { transform: translateX(12px); }
+
+.try { margin-top: 26px; }
+.try h2, .section-title { font-size: 13px; font-weight: 600; color: var(--muted); margin: 0 0 10px; }
+.examples { display: flex; gap: 8px; flex-wrap: wrap; min-height: 34px; }
+.tryhead { display: flex; align-items: baseline; gap: 12px; }
+.tryhead .act { font-size: 13px; }
+.examples button { border: 1px solid var(--line); background: var(--surface); color: var(--ink-2);
+  border-radius: 99px; padding: 6px 13px; font-size: 14px; cursor: pointer; }
+.examples button:hover { border-color: var(--line-2); color: var(--ink); }
+details.how { margin-top: 26px; color: var(--ink-2); font-size: 14px; }
+details.how summary { cursor: pointer; color: var(--muted); font-weight: 500; width: max-content; }
+details.how summary:hover { color: var(--ink); }
+details.how ol { margin: 10px 0 0; padding-left: 20px; max-width: 68ch; }
+details.how li { margin: 4px 0; }
+
+/* results */
+.cols { margin-top: 22px; }
+.cols.two { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.coltitle { display: flex; align-items: baseline; gap: 8px; margin: 0 2px 10px; font-size: 14px; }
+.coltitle b { font-weight: 600; }
+.coltitle span { color: var(--muted); }
+.list { display: flex; flex-direction: column; gap: 10px; }
+.res { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px 12px;
+  animation: in .28s cubic-bezier(.16,1,.3,1) both; }
+.res:hover { border-color: var(--line-2); }
+@keyframes in { from { opacity: .001; transform: translateY(4px); } }
+.where { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; font-size: 13px; color: var(--source); font-family: var(--mono); min-width: 0; }
+.where .rank { color: var(--ink-2); font-weight: 600; margin-right: 2px; }
+.crumbs { overflow-wrap: anywhere; }
+.badge { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 500; padding: 1px 8px;
+  border-radius: 99px; background: var(--sunken); color: var(--ink-2); white-space: nowrap; }
+.badge.exact { background: var(--good-soft); color: var(--good); }
+.badge.chat { background: var(--accent-soft); color: var(--accent); }
+.badge.lock { background: var(--warn-soft); color: var(--warn); }
+.res h3 a { color: inherit; text-decoration: none; }
+.res h3 a:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.res h3 { font-size: 16.5px; line-height: 1.35; margin: 5px 0 4px; font-weight: 600; letter-spacing: -0.005em; }
+.snip { font-size: 14.5px; color: var(--ink-2); max-width: 75ch; overflow-wrap: anywhere; }
+.snip mark { background: var(--mark); color: var(--mark-ink); border-radius: 3px; padding: 0 2px; }
+.why { font-size: 12.5px; color: var(--muted); margin-top: 6px; }
+.actions { display: flex; gap: 4px 16px; flex-wrap: wrap; margin-top: 8px; }
+.act { border: 0; background: none; padding: 4px 0; font-size: 13.5px; font-weight: 500; color: var(--accent);
+  cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; }
+.act:hover { text-decoration: underline; text-underline-offset: 3px; }
+.act[aria-busy="true"] { opacity: .6; cursor: progress; }
+.panel { margin-top: 10px; background: var(--sunken); border: 1px solid var(--line); border-radius: var(--radius-s);
+  padding: 12px 14px; max-height: 360px; overflow: auto; font-size: 14px; color: var(--ink-2); }
+.panel pre { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; font: inherit; }
+.panel h4 { font-size: 12.5px; font-weight: 600; color: var(--muted); margin: 12px 0 4px; }
+.panel h4:first-child { margin-top: 0; }
+.panel ul { margin: 0; padding-left: 18px; }
+.res.private h3 { color: var(--ink-2); }
+.state { padding: 34px 18px; text-align: center; color: var(--muted); border: 1px dashed var(--line-2);
+  border-radius: var(--radius); }
+.state b { display: block; color: var(--ink); font-weight: 600; margin-bottom: 4px; }
+.skel { height: 96px; border-radius: var(--radius); background: linear-gradient(90deg, var(--surface), var(--sunken), var(--surface));
+  background-size: 200% 100%; animation: shimmer 1.1s linear infinite; border: 1px solid var(--line); }
+@keyframes shimmer { to { background-position: -200% 0; } }
+
+/* files */
+.files { display: grid; grid-template-columns: minmax(240px, 320px) 1fr; gap: 16px; align-items: start; }
+.tree, .viewer { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); min-width: 0; }
+.tree { max-height: calc(100vh - 170px); overflow: auto; padding: 6px 6px 10px; position: sticky; top: 16px; }
+.tree-head, .viewer-head { display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  padding: 10px 10px 10px 12px; border-bottom: 1px solid var(--line); }
+.tree-head { margin: -6px -6px 6px; }
+.tree-head b, .viewer-head b { font-size: 14px; font-weight: 600; }
+.tree ul { list-style: none; margin: 0; padding-left: 14px; }
+.tree > ul { padding-left: 0; }
+.node { display: flex; align-items: center; gap: 6px; width: 100%; border: 0; background: none; text-align: left;
+  padding: 5px 8px; border-radius: 7px; font-size: 14px; color: var(--ink-2); cursor: pointer; }
+.node:hover { background: var(--sunken); color: var(--ink); }
+.node.active { background: var(--accent-soft); color: var(--accent); font-weight: 500; }
+.node .caret { width: 10px; flex: none; color: var(--muted); transition: transform .15s ease-out; }
+.node[aria-expanded="true"] .caret { transform: rotate(90deg); }
+.node .ico { flex: none; color: var(--muted); }
+.node.dir .ico { color: #b08a3e; }
+.node span.nm { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.node .lk { flex: none; color: var(--warn); margin-left: auto; }
+.node.locked span.nm { color: var(--muted); }
+.viewer-head .crumbs { font-size: 13px; color: var(--muted); overflow-wrap: anywhere; }
+.viewer-body { padding: 18px 22px 26px; min-height: 300px; }
+.viewer-body .state { margin: 20px 0; }
+.md { max-width: 74ch; color: var(--ink); font-size: 15.5px; line-height: 1.6; overflow-wrap: anywhere; }
+.md h1, .md h2, .md h3, .md h4 { line-height: 1.3; margin: 1.5em 0 .5em; letter-spacing: -0.01em; }
+.md h1 { font-size: 24px; } .md h2 { font-size: 19px; } .md h3 { font-size: 16.5px; } .md h4 { font-size: 15px; }
+.md > :first-child { margin-top: 0; }
+.md p, .md ul, .md ol, .md table, .md pre, .md .callout, .md blockquote { margin: 0 0 .9em; }
+.md ul, .md ol { padding-left: 22px; }
+.md li { margin: 2px 0; }
+.md code { font: 13px/1.5 var(--mono); background: var(--sunken);
+  padding: 1px 5px; border-radius: 5px; }
+.md pre { background: var(--sunken); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; overflow: auto; }
+.md pre code { background: none; padding: 0; }
+.md blockquote { border-left: 1px solid var(--line-2); padding-left: 14px; color: var(--ink-2); }
+.md .callout { background: var(--sunken); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; }
+.md .callout .ct { font-weight: 600; font-size: 14px; margin-bottom: 4px; }
+.md .callout.important .ct, .md .callout.warning .ct { color: var(--warn); }
+.md .callout.tip .ct, .md .callout.success .ct { color: var(--good); }
+.md .callout.note .ct, .md .callout.info .ct, .md .callout.question .ct { color: var(--accent); }
+.md .callout.failure .ct { color: var(--bad); }
+.md table { border-collapse: collapse; display: block; overflow-x: auto; font-size: 14px; }
+.md th, .md td { border-bottom: 1px solid var(--line); padding: 6px 10px; text-align: left; white-space: normal; }
+.md th { color: var(--muted); font-weight: 600; }
+.md td:not(:first-child), .md th:not(:first-child) { text-align: left; }
+.md hr { border: 0; border-top: 1px solid var(--line); margin: 1.4em 0; }
+.md a { color: var(--accent); text-underline-offset: 3px; }
+.md a.wl { text-decoration: none; border-bottom: 1px dashed currentColor; cursor: pointer; }
+.md a.wl.missing { color: var(--muted); cursor: default; }
+.md mark { background: var(--mark); color: var(--mark-ink); border-radius: 3px; padding: 0 2px; }
+.md img { max-width: 100%; border-radius: 8px; }
+.md .tag { display: inline-block; font-size: .9em; color: var(--accent); background: var(--accent-soft); border-radius: 99px; padding: 0 7px; }
+.md details.callout summary { cursor: pointer; list-style: none; }
+.md details.callout summary::-webkit-details-marker { display: none; }
+.md details.callout summary .ct::after { content: " ▸"; color: var(--muted); }
+.md details.callout[open] summary .ct::after { content: " ▾"; }
+.md .callout > p:last-child, .md .callout > :last-child { margin-bottom: 0; }
+.md .callout .ct { display: block; }
+.md .embedded { border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; margin: 0 0 .9em; background: var(--bg); }
+.md .embedded .eh { font-size: 12.5px; margin-bottom: 6px; }
+.md .embedded .md { font-size: 14.5px; }
+.md input[type=checkbox] { margin-right: 6px; accent-color: var(--accent); }
+.md ul:has(> li > input[type=checkbox]) { list-style: none; padding-left: 4px; }
+.md del { color: var(--muted); }
+.fm { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 18px; }
+.fm span { font-size: 12.5px; background: var(--sunken); border-radius: 99px; padding: 2px 9px; color: var(--ink-2); }
+.fm b { font-weight: 600; color: var(--muted); margin-right: 4px; }
+.rawtext { white-space: pre-wrap; font: 13px/1.55 var(--mono); margin: 0; }
+@media (max-width: 760px) {
+  .files { grid-template-columns: 1fr; }
+  .tree { position: static; max-height: 42vh; }
+  .tree-head { padding: 6px 8px 6px 10px; }
+  .tree-head .btn { padding: 5px 10px; font-size: 13px; }
+  .viewer-body { padding: 14px 14px 20px; }
+}
+
+/* note mode (a note on its own tab) */
+.notemode nav[role="tablist"], .notemode .tree { display: none; }
+.notemode .files { grid-template-columns: 1fr; }
+.notemode .viewer { max-width: 920px; margin: 0 auto; width: 100%; }
+.notemode .viewer-body { padding: 26px 36px 40px; }
+.notemode header { max-width: 920px; margin: 0 auto 18px; }
+.notemode h1 a { color: inherit; text-decoration: none; }
+
+/* test + health */
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; }
+.card p { margin: 0 0 14px; max-width: 68ch; color: var(--ink-2); }
+.btn { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--line-2); background: var(--surface);
+  color: var(--ink); border-radius: 9px; padding: 8px 14px; font-size: 14px; font-weight: 500; cursor: pointer; }
+.btn:hover { border-color: var(--muted); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.btn.primary:hover { filter: brightness(1.06); }
+.btn:disabled { opacity: .55; cursor: progress; }
+.row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.note { font-size: 14px; color: var(--muted); margin-top: 12px; }
+.score { margin: 14px 0; }
+.score .lbl { display: flex; justify-content: space-between; gap: 12px; font-size: 14.5px; margin-bottom: 6px; }
+.meter { height: 8px; background: var(--sunken); border-radius: 99px; overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--accent); border-radius: 99px;
+  transition: width .6s cubic-bezier(.16,1,.3,1); }
+.scroll { overflow-x: auto; margin: 18px 0; }
+table { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+th, td { text-align: left; padding: 9px 8px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+th { color: var(--muted); font-weight: 500; font-size: 13px; }
+td:not(:first-child), th:not(:first-child) { text-align: right; font-variant-numeric: tabular-nums; }
+tr.hold td { font-weight: 600; }
+.misses { margin: 8px 0 0; padding: 0; list-style: none; }
+.misses li { padding: 9px 0; border-bottom: 1px solid var(--line); font-size: 14.5px; }
+.misses small { display: block; color: var(--muted); margin-top: 2px; overflow-wrap: anywhere; }
+.banner { display: flex; align-items: center; gap: 10px; font-size: 17px; font-weight: 600; padding: 12px 14px;
+  border-radius: 10px; margin-bottom: 8px; }
+.banner.ok { background: var(--good-soft); color: var(--good); }
+.banner.warn { background: var(--warn-soft); color: var(--warn); }
+.banner.bad { background: var(--bad-soft); color: var(--bad); }
+.check { display: flex; gap: 12px; padding: 11px 2px; border-bottom: 1px solid var(--line); font-size: 14.5px; }
+.check:last-child { border-bottom: 0; }
+.dot { width: 9px; height: 9px; border-radius: 50%; margin-top: 7px; flex: none; }
+.dot.OK { background: var(--good); } .dot.WARN { background: var(--warn); } .dot.FAIL { background: var(--bad); }
+.check b { font-weight: 600; }
+.check small { display: block; color: var(--muted); margin-top: 2px; }
+.facts { display: flex; flex-wrap: wrap; gap: 4px 22px; color: var(--muted); font-size: 14px; margin: 0 2px 14px; }
+.facts b { color: var(--ink); font-weight: 600; }
+.hide { display: none !important; }
+
+@media (max-width: 760px) {
+  .wrap { padding-top: 20px; }
+  .cols.two { grid-template-columns: 1fr; }
+  #q { font-size: 17px; padding: 14px 10px; }
+  .kbd { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+</style>
+</head>
+<body>
+<div class="wrap" id="wrap">
+  <header>
+    <h1><a href="/" class="brand" aria-label="Phygital Engram"><svg class="mark" width="30" height="30" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="#FFD60A"/><path d="M37 19H49M37 41H49M37 52H44" fill="none" stroke="#0B0D12" stroke-opacity=".42" stroke-width="3" stroke-linecap="round"/><path d="M12 42H20C27 42 27 30 35 30H52" fill="none" stroke="#0B0D12" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="42" r="3.4" fill="#9B8CFF"/><circle cx="52" cy="30" r="3.4" fill="#9B8CFF"/></svg><span>Phygital Engram</span></a></h1>
+    <div id="meta" class="num">Loading…</div>
+  </header>
+
+  <nav role="tablist" aria-label="Pages">
+    <button role="tab" data-tab="ask" aria-selected="true">Ask</button>
+    <button role="tab" data-tab="files" aria-selected="false">Files</button>
+    <button role="tab" data-tab="test" aria-selected="false">Test score</button>
+    <button role="tab" data-tab="health" aria-selected="false">Health</button>
+  </nav>
+
+  <!-- ASK -->
+  <section id="ask" role="tabpanel">
+    <div class="searchbox" id="box">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="q" type="search" placeholder="Ask your notes anything" autocomplete="off" spellcheck="false"
+             aria-label="Search your notes" autofocus>
+      <button id="clear" aria-label="Clear search" title="Clear (Esc)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+      <span class="kbd" aria-hidden="true">/</span>
+    </div>
+    <div class="below">
+      <div id="status" class="num" aria-live="polite"></div>
+      <div class="toggles">
+        <label class="toggle"><input type="checkbox" id="compare"> Compare with plain search</label>
+        <label class="toggle"><input type="checkbox" id="private" checked> Show locked private notes</label>
+      </div>
+    </div>
+
+    <div id="intro">
+      <div class="try">
+        <h2 class="tryhead">Try <button type="button" class="act" id="moreEx" title="Show other examples">More</button></h2>
+        <div class="examples" id="examples"></div>
+      </div>
+      <details class="how">
+        <summary>How the ranking works</summary>
+        <ol>
+          <li>Notes with your words come first. Rare words count more than common ones.</li>
+          <li>Versions, IDs, error text and "quoted words" also match letter for letter, and get a small boost.</li>
+          <li>Rule files (CLAUDE.md), Context and decisions never fade. Other notes fade slowly with age.</li>
+          <li>Archives sit on a back shelf and only fill in after your notes.</li>
+          <li>Locked private notes show where a match is, never the text, until you open them.</li>
+          <li>Saved AI conversations come after your notes and fade faster.</li>
+        </ol>
+      </details>
+    </div>
+
+    <div class="cols" id="cols" aria-live="polite">
+      <div id="colPlain"></div>
+      <div id="colSmart"></div>
+    </div>
+  </section>
+
+  <!-- FILES -->
+  <section id="files" role="tabpanel" class="hide">
+    <div class="files">
+      <nav class="tree" id="tree" aria-label="Notes folders">
+        <div class="tree-head"><b>Notes</b><button class="btn" id="treeRefresh" type="button">Refresh</button></div>
+        <ul id="treeRoot"></ul>
+      </nav>
+      <article class="viewer" id="viewer">
+        <div class="viewer-head"><span class="crumbs" id="viewPath">Read-only. Pick a note to read it.</span>
+          <span class="row" id="viewActions"></span></div>
+        <div class="viewer-body" id="viewBody">
+          <div class="state"><b>Your notes, folder by folder</b>Nothing here can be changed. Edit your notes in the app you use for them.
+            Locked items: private notes open after you confirm; secret files (keys, .env) are never shown.</div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- TEST -->
+  <section id="test" role="tabpanel" class="hide">
+    <div class="card">
+      <p>Asks 56 questions with known answers, checks where the right note lands, and compares plain search with
+        Engram. Then it checks 48 hidden questions that were never used to tune the search, for an honest score.</p>
+      <button class="btn primary" id="runTest">Run the test</button>
+      <div id="testOut"></div>
+          </div>
+  </section>
+
+  <!-- HEALTH -->
+  <section id="health" role="tabpanel" class="hide">
+    <div class="facts num" id="facts"></div>
+    <div class="card">
+      <div id="healthOut"></div>
+      <div class="row" style="margin-top:14px">
+        <button class="btn" id="runHealth">Check again</button>
+        <button class="btn" id="runIngest">Update index</button>
+        <span class="note" id="ingestOut" style="margin:0"></span>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script src="/marked.min.js"></script>
+<script>
+// A link with a broken %-code must not stop the whole note from rendering.
+const safeDecode = s => { try { return decodeURIComponent(s); } catch { return s; } };
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[c]));
+const ICON = {
+  lock: '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>',
+  ext: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>',
+  copy: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg>',
+};
+let VAULT = "", VAULT_PATH = "";
+
+// ---------- helpers ----------
+function ago(ts) {
+  if (!ts) return "never";
+  const h = (Date.now() / 1000 - ts) / 3600;
+  return h < 1 ? Math.max(1, Math.round(h * 60)) + " min ago" : h < 48 ? Math.round(h) + " h ago" : Math.round(h / 24) + " days ago";
+}
+// Snippets arrive with matching words between two invisible marks (\x02 ... \x03).
+// Markdown symbols are tidied so the text reads like the note, not like its source.
+function snippetHTML(s) {
+  let t = String(s ?? "")
+    .replace(/\[\[([^\]|]*\|)?([^\]]*)\]\]/g, "$2")          // [[note|shown]] -> shown
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")                  // [text](url) -> text
+    .replace(/\*\*|__|`|^#+\s*/gm, "")
+    .replace(/\s*\|\s*/g, " · ").replace(/(·\s*)+/g, "· ").replace(/^\s*·\s*|\s*·\s*$/g, "")
+    .replace(/-{3,}/g, "").replace(/\s+/g, " ").trim();
+  return esc(t).replace(/\x02/g, "<mark>").replace(/\x03/g, "</mark>");
+}
+const headOf = r => {
+  const parts = r.heading.split(" > ");
+  return parts.length > 1 ? parts.slice(1).join(" › ") : (r.path.split("/").pop() || "").replace(/\.md$/, "");
+};
+const lastHead = r => { const parts = r.heading.split(" > "); return parts.length > 1 ? parts[parts.length - 1] : ""; };
+const crumbsOf = path => esc(path.replace(/\.md$/, "").split("/").join(" / "));
+
+// ---------- tabs ----------
+document.querySelectorAll('[role="tab"]').forEach(b => b.onclick = () => {
+  document.querySelectorAll('[role="tab"]').forEach(x => x.setAttribute("aria-selected", x === b));
+  ["ask", "files", "test", "health"].forEach(t => $("#" + t).classList.toggle("hide", t !== b.dataset.tab));
+  if (b.dataset.tab === "files") { $("#wrap").classList.add("wide"); initFiles(); }
+  $("#wrap").classList.toggle("wide", b.dataset.tab === "ask" && $("#compare").checked);
+  if (b.dataset.tab === "health") { loadStats(); health(); }
+  if (b.dataset.tab === "ask") $("#q").focus();
+});
+
+// ---------- stats ----------
+async function loadStats() {
+  try {
+    const s = await (await fetch("/api/stats")).json();
+    VAULT = s.vault_name; VAULT_PATH = s.vault_path || "";
+    $("#meta").textContent = `${s.files.toLocaleString()} notes · updated ${ago(s.last)}`;
+    $("#facts").innerHTML = `<span><b>${s.files.toLocaleString()}</b> notes</span>` +
+      `<span><b>${s.chunks.toLocaleString()}</b> searchable sections</span>` +
+      (s.cards ? `<span><b>${s.cards.toLocaleString()}</b> with note cards</span>` : "") +
+      `<span>updated <b>${ago(s.last)}</b></span>`;
+  } catch { offline(); }
+}
+function offline() {
+  $("#meta").textContent = "Not running";
+  $("#cols").className = "cols";
+  $("#colPlain").innerHTML = "";
+  $("#colSmart").innerHTML = `<div class="state"><b>Engram isn't running</b>Double-click “Open Engram.command” in the engram-test folder, then reload this page.</div>`;
+}
+
+// ---------- search (as you type) ----------
+// Examples come from real notes, picked at random by the app each time (and checked to find their note).
+async function loadExamples() {
+  try {
+    const { examples } = await (await fetch("/api/examples")).json();
+    $("#examples").innerHTML = examples.length
+      ? examples.map(e => `<button type="button">${esc(e)}</button>`).join("")
+      : `<span class="note" style="margin:0">No examples yet. Update the index on the Health page.</span>`;
+  } catch { $("#examples").innerHTML = ""; }
+}
+$("#moreEx").onclick = loadExamples;
+loadExamples();
+$("#examples").onclick = e => { const b = e.target.closest("button"); if (b) { $("#q").value = b.textContent; onType(true); } };
+
+const cache = new Map();
+let timer, ctrl, seq = 0;
+function fetchSearch(q, smart, signal, log) {
+  const key = `${q}|${smart}|${$("#private").checked}`;
+  if (cache.has(key) && !log) return Promise.resolve(cache.get(key));
+  const src = $("#private").checked ? "" : "&showprivate=0";  // hides private notes only; chats stay
+  // Only a finished search (Enter, an example, or opening a result) counts for learning from use, never half-typed words.
+  return fetch(`/api/search?q=${encodeURIComponent(q)}&smart=${smart}${src}&log=${log && smart ? 1 : 0}`, { signal })
+    .then(r => r.json()).then(d => { cache.set(key, d); if (cache.size > 200) cache.delete(cache.keys().next().value); return d; });
+}
+
+function onType(now) {
+  const q = $("#q").value.trim();
+  $("#box").classList.toggle("has-q", !!$("#q").value);
+  clearTimeout(timer);
+  if (!q) { reset(); return; }
+  timer = setTimeout(() => run(now), now ? 0 : 160);
+}
+function reset() {
+  ctrl?.abort();
+  $("#intro").classList.remove("hide");
+  $("#colPlain").innerHTML = $("#colSmart").innerHTML = "";
+  $("#status").textContent = "";
+}
+
+let logged = "";
+async function run(final) {
+  const q = $("#q").value.trim();
+  if (!q) return reset();
+  const id = ++seq, compare = $("#compare").checked;
+  ctrl?.abort(); ctrl = new AbortController();
+  $("#intro").classList.add("hide");
+  const slow = setTimeout(() => { if (id === seq) skeleton(compare); }, 120);  // only show a placeholder if it takes a while
+  try {
+    const log = !!final && logged !== q;
+    if (log) logged = q;
+    const [plain, smart] = await Promise.all([compare ? fetchSearch(q, 0, ctrl.signal) : null, fetchSearch(q, 1, ctrl.signal, log)]);
+    if (id !== seq) return;
+    $("#cols").className = compare ? "cols two" : "cols";
+    $("#wrap").classList.toggle("wide", compare);
+    $("#colPlain").innerHTML = compare ? column(plain, "Plain search", "words only") : "";
+    $("#colSmart").innerHTML = column(smart, compare ? "Engram" : "", compare ? "words, age and folders" : "");
+    const n = smart.rows.length;
+    $("#status").textContent = n ? `${n} result${n > 1 ? "s" : ""} · ${smart.ms} ms` : "";
+  } catch (e) {
+    if (e.name !== "AbortError" && id === seq) offline();
+  } finally { clearTimeout(slow); }
+}
+function skeleton(compare) {
+  const col = `<div class="list">${'<div class="skel"></div>'.repeat(3)}</div>`;
+  $("#cols").className = compare ? "cols two" : "cols";
+  $("#colPlain").innerHTML = compare ? col : "";
+  $("#colSmart").innerHTML = col;
+}
+
+function column(d, title, hint) {
+  const head = title ? `<div class="coltitle"><b>${esc(title)}</b><span>${esc(hint)} · ${d.ms} ms</span></div>` : "";
+  if (!d.rows.length) return head + `<div class="state"><b>Nothing found</b>Try fewer or different words, or a name or version exactly as written.</div>`;
+  return head + `<div class="list">${d.rows.map((r, i) => card(r, i)).join("")}</div>`;
+}
+
+function card(r, i) {
+  const rank = `<span class="rank num">${i + 1}</span>`;
+  if (r.private) {
+    return `<article class="res private">
+      <div class="where">${rank}<span class="badge lock">${ICON.lock} Locked</span><span class="crumbs">${crumbsOf(r.path)}</span></div>
+      <h3><a href="#" class="opennote" data-open="${esc(r.path)}" data-h="${esc(lastHead(r))}" data-lock="private">${esc(headOf(r))}</a></h3>
+      <div class="snip">A private note matches here. Its text stays hidden until you open it.</div>
+      <div class="actions"><button class="act" data-open="${esc(r.path)}" data-h="${esc(lastHead(r))}" data-lock="private">Open note</button>
+        <button class="act" data-full="${esc(r.id)}" data-private="1" aria-expanded="false">Open private section</button></div>
+    </article>`;
+  }
+  const isChat = r.source === "chat", isSession = r.source === "session";
+  const badges = (r.exact ? '<span class="badge exact">Exact match</span>' : "") +
+    (isChat ? '<span class="badge chat">AI conversation</span>' : "") + (isSession ? '<span class="badge chat">Saved session</span>' : "");
+  const where = isSession ? "Saved session" : crumbsOf(r.path);
+  const copy = isSession ? "" :
+    `<button class="act" data-copy="${esc(VAULT_PATH ? VAULT_PATH + "/" + r.path : r.path)}" title="Copy the note's full path">${ICON.copy} Copy path</button>`;
+  return `<article class="res">
+    <div class="where">${rank}${badges}<span class="crumbs">${where}</span></div>
+    <h3>${isSession ? esc(headOf(r)) : `<a href="#" class="opennote" data-open="${esc(r.path)}" data-h="${esc(lastHead(r))}" data-id="${esc(r.id)}">${esc(headOf(r))}</a>`}</h3>
+    <div class="snip">${snippetHTML(r.snippet)}</div>
+    ${r.why ? `<div class="why" title="Why this result came back">${esc(r.why)}</div>` : ""}
+    <div class="actions">
+      ${isSession ? "" : `<button class="act" data-open="${esc(r.path)}" data-h="${esc(lastHead(r))}" data-id="${esc(r.id)}">Open note</button>`}
+      <button class="act" data-full="${esc(r.id)}" aria-expanded="false">Show full section</button>
+      <button class="act" data-around="${esc(r.id)}" aria-expanded="false">What's around it</button>
+      ${copy}
+    </div>
+  </article>`;
+}
+
+// ---------- copy path ----------
+document.addEventListener("click", async e => {
+  const b = e.target.closest("[data-copy]");
+  if (!b) return;
+  const text = b.dataset.copy;
+  try { await navigator.clipboard.writeText(text); }
+  catch {  // older fallback
+    const t = Object.assign(document.createElement("textarea"), { value: text });
+    document.body.append(t); t.select(); document.execCommand("copy"); t.remove();
+  }
+  const label = b.innerHTML;
+  b.textContent = "Copied";
+  setTimeout(() => { b.innerHTML = label; }, 1400);
+});
+
+// ---------- full section and surroundings ----------
+document.addEventListener("click", async e => {
+  const b = e.target.closest("[data-full],[data-around]");
+  if (!b) return;
+  const art = b.closest("article");
+  const kind = b.dataset.full ? "full" : "around";
+  const existing = art.querySelector(".panel");
+  const wasThis = existing?.dataset.kind === kind;
+  existing?.remove();
+  art.querySelectorAll("[aria-expanded]").forEach(x => { x.setAttribute("aria-expanded", "false"); x.textContent = x.dataset.label || x.textContent; });
+  if (wasThis) return;
+  const isPrivate = b.dataset.private === "1";
+  const qNow = $("#q").value.trim();
+  if (qNow && logged !== qNow) { logged = qNow; fetchSearch(qNow, 1, undefined, true).catch(() => {}); }  // opening a result finishes the search
+  if (isPrivate && !confirm("This is a private note. Show its text on screen?")) return;
+  b.dataset.label = b.dataset.label || b.textContent;
+  b.setAttribute("aria-busy", "true");
+  try {
+    let html;
+    if (kind === "full") {
+      const r = await (await fetch(`/api/get?id=${encodeURIComponent(b.dataset.full)}${isPrivate ? "&private=1" : ""}&log=1`)).json();
+      html = r.error ? esc(r.error) : (r.whole_note ? "<h4>Whole note</h4>" : "") + `<pre>${esc(r.text)}</pre>`;
+    } else {
+      const r = await (await fetch(`/api/around?id=${encodeURIComponent(b.dataset.around)}`)).json();
+      if (r.error) html = esc(r.error);
+      else {
+        const part = (t, xs) => xs.map(x => `<h4>${t}: ${esc(x.heading.split(" > ").pop())}</h4><pre>${esc(x.text)}</pre>`).join("");
+        html = (part("Before", r.before) + part("After", r.after)) || "<h4>No other sections in this note</h4>";
+        html += `<h4>Other notes from ${esc(r.day)}</h4>` +
+          (r.same_day.length ? `<ul>${r.same_day.map(x => `<li>${crumbsOf(x.path)}</li>`).join("")}</ul>` : "<pre>None.</pre>");
+      }
+    }
+    art.insertAdjacentHTML("beforeend", `<div class="panel" data-kind="${kind}">${html}</div>`);
+    b.setAttribute("aria-expanded", "true");
+    b.textContent = "Hide";
+  } catch { offline(); } finally { b.removeAttribute("aria-busy"); }
+});
+
+// ---------- keyboard ----------
+$("#q").addEventListener("input", () => onType(false));
+$("#q").addEventListener("keydown", e => {
+  if (e.key === "Enter") { e.preventDefault(); onType(true); }
+  if (e.key === "Escape") { $("#q").value = ""; onType(); }
+});
+$("#clear").onclick = () => { $("#q").value = ""; onType(); $("#q").focus(); };
+document.addEventListener("keydown", e => {
+  if (e.key === "/" && document.activeElement !== $("#q") && !/INPUT|TEXTAREA/.test(document.activeElement.tagName)) {
+    e.preventDefault(); $('[data-tab="ask"]').click(); $("#q").focus();
+  }
+});
+$("#compare").onchange = () => { $("#wrap").classList.toggle("wide", $("#compare").checked); if ($("#q").value.trim()) run(); };
+$("#private").onchange = () => { if ($("#q").value.trim()) run(); };
+
+// ---------- test ----------
+$("#runTest").onclick = async () => {
+  const b = $("#runTest"); b.disabled = true; b.textContent = "Running 85 questions…";
+  $("#testOut").innerHTML = "";
+  try {
+    const r = await (await fetch("/api/test", { method: "POST" })).json();
+    if (r.error) { $("#testOut").innerHTML = `<p class="note">${esc(r.error)}</p>`; return; }
+    const names = Object.keys(r.main), best = r.main[r.best_mode];
+    const label = n => n === "plain" ? "Plain search" : n === "smart" ? "Phygital Engram" : n === "smart + cards" ? "Phygital Engram with note cards" : n;
+    const bars = names.map(n => `
+      <div class="score"><div class="lbl"><span>${esc(label(n))}</span><b class="num">${r.main[n].hit5} of ${r.main[n].total} in the top 5</b></div>
+      <div class="meter"><i style="width:0" data-w="${Math.round(r.main[n].hit5 / Math.max(1, r.main[n].total) * 100)}"></i></div></div>`).join("");
+    const rowOf = (n, s, cls = "") => `<tr class="${cls}"><td>${esc(n)}</td><td>${s.hit1}/${s.total}</td><td>${s.hit5}/${s.total}</td><td>${s.hit10}/${s.total}</td><td>${s.mrr.toFixed(2)}</td></tr>`;
+    const table = `<div class="scroll"><table><tr><th></th><th>Right note first</th><th>In top 5</th><th>In top 10</th><th>Score (0 to 1)</th></tr>` +
+      names.map(n => rowOf(label(n), r.main[n])).join("") +
+      (r.holdout ? rowOf("Hidden questions", r.holdout[r.best_mode], "hold") : "") + `</table></div>`;
+    const kinds = `<p class="note">By type of question, in the top 5: ${Object.entries(best.kinds).map(([k, v]) => `${esc(k)} ${v}`).join(" · ")}</p>`;
+    const misses = best.misses.length
+      ? `<h2 class="section-title" style="margin-top:22px">Not in the top 5</h2><ul class="misses">` +
+        best.misses.map(m => `<li>${esc(m.q)}<small>${esc(m.kind)} · wanted ${esc(m.want)} · got ${esc(m.got)}${m.rank ? ` · it was number ${m.rank}` : ""}</small></li>`).join("") + "</ul>"
+      : `<p class="note">Every question found the right note in the top 5.</p>`;
+    $("#testOut").innerHTML = `<div style="margin-top:18px">${bars}</div>` + table + kinds + misses;
+    requestAnimationFrame(() => document.querySelectorAll(".meter i").forEach(i => i.style.width = i.dataset.w + "%"));
+  } catch { $("#testOut").innerHTML = `<p class="note">Engram isn't running. Double-click “Open Engram.command”, then try again.</p>`; }
+  finally { b.disabled = false; b.textContent = "Run the test again"; }
+};
+
+// ---------- health ----------
+async function health() {
+  const b = $("#runHealth"); b.disabled = true;
+  $("#healthOut").innerHTML = `<div class="note" style="margin:0">Checking…</div>`;
+  try {
+    const r = await (await fetch("/api/health")).json();
+    if (r.error) { $("#healthOut").innerHTML = `<div class="banner bad">${esc(r.error)}</div>`; return; }
+    const warn = r.checks.some(c => c.status === "WARN");
+    const [cls, text] = !r.ok ? ["bad", "Needs attention"] : warn ? ["warn", "Working, with a warning"] : ["ok", "All good"];
+    $("#healthOut").innerHTML = `<div class="banner ${cls}">${text}</div>` + r.checks.map(c =>
+      `<div class="check"><span class="dot ${c.status}" aria-label="${c.status}"></span><div><b>${esc(c.area)}</b>: ${esc(c.detail)}${c.fix ? `<small>Fix: ${esc(c.fix)}</small>` : ""}</div></div>`).join("");
+  } catch { $("#healthOut").innerHTML = `<div class="banner bad">Engram isn't running</div>`; }
+  finally { b.disabled = false; }
+}
+$("#runHealth").onclick = health;
+$("#runIngest").onclick = async () => {
+  const b = $("#runIngest"); b.disabled = true; $("#ingestOut").textContent = "Updating…";
+  try {
+    const r = await (await fetch("/api/ingest", { method: "POST" })).json();
+    $("#ingestOut").textContent = r.error ? r.error :
+      `Done in ${r.seconds} s: ${r.indexed} changed, ${r.removed} removed.` + (r.errors.length ? " Warning: " + r.errors[0] : "");
+    cache.clear(); loadStats(); health();
+  } catch { $("#ingestOut").textContent = "Engram isn't running."; }
+  finally { b.disabled = false; }
+};
+
+// ---------- files (read-only vault browser) ----------
+const FOLDER_ICO = '<svg class="ico" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 6.5A1.5 1.5 0 0 1 4.5 5h5l2 2h8A1.5 1.5 0 0 1 21 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17.5z"/></svg>';
+const FILE_ICO = '<svg class="ico" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/></svg>';
+const CARET = '<svg class="caret" width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5l10 7-10 7z"/></svg>';
+let filesReady = false, activeFile = "", noteIndex = null;
+const openDirs = (() => { try { return new Set(JSON.parse(localStorage.getItem("engram-open-dirs") || "[]")); } catch { return new Set(); } })();
+const saveOpen = () => { try { localStorage.setItem("engram-open-dirs", JSON.stringify([...openDirs])); } catch {} };
+
+async function listDir(path) {
+  const r = await fetch(`/api/files/list?path=${encodeURIComponent(path)}`);
+  return (await r.json()).entries || [];
+}
+function nodeHTML(e) {
+  const label = e.dir ? e.name : e.name.replace(/\.md$/i, "");
+  const dir = e.dir && e.lock !== "secret";
+  const tip = e.lock === "secret" ? "Secret: never shown" : e.lock === "private" ? "Private: opens after you confirm" : e.path;
+  return `<li data-path="${esc(e.path)}">
+    <button type="button" class="node ${dir ? "dir" : "file"} ${e.lock ? "locked" : ""}" data-path="${esc(e.path)}"
+      data-dir="${dir ? 1 : 0}" data-lock="${e.lock || ""}" ${dir ? 'aria-expanded="false"' : ""} title="${esc(tip)}">${dir ? CARET : '<span class="caret"></span>'}${e.dir ? FOLDER_ICO : FILE_ICO}<span class="nm">${esc(label)}</span>${e.lock ? `<span class="lk">${ICON.lock}</span>` : ""}</button>
+  </li>`;
+}
+async function fillDir(ul, path) {
+  const entries = await listDir(path);
+  ul.innerHTML = entries.length ? entries.map(nodeHTML).join("") : '<li class="note" style="margin:4px 8px">Empty</li>';
+  for (const li of ul.querySelectorAll(":scope > li[data-path]")) {
+    const btn = li.querySelector(".node");
+    if (btn.dataset.dir === "1" && openDirs.has(btn.dataset.path)) await toggleDir(btn, true);
+  }
+}
+async function toggleDir(btn, open) {
+  const li = btn.closest("li");
+  let ul = li.querySelector(":scope > ul");
+  const willOpen = open ?? btn.getAttribute("aria-expanded") !== "true";
+  btn.setAttribute("aria-expanded", willOpen);
+  if (willOpen) {
+    openDirs.add(btn.dataset.path);
+    if (!ul) { ul = document.createElement("ul"); li.append(ul); await fillDir(ul, btn.dataset.path); }
+    ul.classList.remove("hide");
+  } else {
+    openDirs.delete(btn.dataset.path);
+    ul?.classList.add("hide");
+  }
+  saveOpen();
+}
+let filesLoading = null;
+function initFiles(force) {
+  if (filesLoading && !force) return filesLoading;
+  filesReady = true;
+  filesLoading = fillDir($("#treeRoot"), "").catch(() => { $("#treeRoot").innerHTML = '<li class="note">Engram isn\'t running.</li>'; });
+  return filesLoading;
+}
+$("#treeRefresh").onclick = () => { noteIndex = null; initFiles(true); if (activeFile) openFile(activeFile); };
+$("#tree").addEventListener("click", e => {
+  const b = e.target.closest(".node");
+  if (!b) return;
+  if (b.dataset.dir === "1") toggleDir(b); else openFile(b.dataset.path, b.dataset.lock);
+});
+
+async function openFile(path, lock, heading) {
+  if (lock === "private" && !confirm("This is a private note. Show its text on screen?")) return;
+  if (lock === "private-ok") lock = "private";  // already confirmed on the search result
+  activeFile = path;
+  document.querySelectorAll(".node.active").forEach(x => x.classList.remove("active"));
+  document.querySelector(`.node[data-path="${CSS.escape(path)}"]`)?.classList.add("active");
+  $("#viewPath").textContent = path.replace(/\.md$/i, "").split("/").join(" / ");
+  $("#viewBody").innerHTML = '<div class="skel"></div>';
+  try {
+    const r = await (await fetch(`/api/files/read?path=${encodeURIComponent(path)}${lock === "private" ? "&private=1" : ""}`)).json();
+    if (r.error) { $("#viewBody").innerHTML = `<div class="state"><b>Not available</b>${esc(r.error)}</div>`; return; }
+    $("#viewActions").innerHTML = (NOTE_MODE ? "" : `<a class="btn" href="${esc(noteURL(path, "", lock === "private" ? "private" : ""))}" target="_blank" rel="noopener" title="Open this note in its own tab">${ICON.ext} New tab</a>`) +
+      `<button class="btn" type="button" data-copy="${esc(r.full_path)}">${ICON.copy} Copy path</button>`;
+    if (NOTE_MODE) { document.title = path.split("/").pop().replace(/\.md$/i, "") + " · Engram"; history.replaceState(null, "", noteURL(path, heading || "", lock === "private" ? "private" : "")); }
+    const updated = new Date(r.mtime * 1000).toLocaleString();
+    if (r.kind === "locked") $("#viewBody").innerHTML = `<div class="state"><b>${ICON.lock} Locked</b>${esc(r.note)}</div>`;
+    else if (r.kind === "md") { $("#viewBody").innerHTML = renderMarkdown(r.text); fillEmbeds($("#viewBody")); }
+    else if (r.kind === "text") $("#viewBody").innerHTML = `<pre class="rawtext">${esc(r.text)}</pre>`;
+    else if (r.kind === "image") $("#viewBody").innerHTML = `<img alt="${esc(path)}" style="max-width:100%;border-radius:8px" src="/api/files/raw?path=${encodeURIComponent(path)}">`;
+    else $("#viewBody").innerHTML = `<div class="state"><b>No preview for this file type</b>Use Copy path to open it elsewhere.</div>`;
+    $("#viewBody").insertAdjacentHTML("beforeend", `<p class="note">Last changed ${esc(updated)} · read-only</p>`);
+    if (heading) document.getElementById("h-" + slug(heading))?.scrollIntoView({ block: "start" });
+  } catch { $("#viewBody").innerHTML = '<div class="state"><b>Engram isn\'t running</b></div>'; }
+}
+
+// Markdown notes rendered with marked, plus [[links]] and callouts:
+// [[links]], [[note#heading|alias]], ![[embeds]] (images and notes), callouts (also foldable), ==highlights==,
+// #tags, %%comments%%, task lists, tables, properties. Raw HTML inside a note is shown as text, never run,
+// and links only open web addresses, so a note can never run code in this page.
+const slug = t => String(t).toLowerCase().replace(/<[^>]+>/g, "").replace(/[^\p{L}\p{N}\s-]/gu, "").trim().replace(/\s+/g, "-");
+if (window.marked) {
+  marked.use({
+    gfm: true, breaks: true, mangle: false, headerIds: false,
+    extensions: [
+      { name: "embed", level: "inline", start: src => src.indexOf("![["),
+        tokenizer(src) { const m = /^!\[\[([^\]]+)\]\]/.exec(src); if (m) return { type: "embed", raw: m[0], target: m[1] }; },
+        renderer: t => { const [name, size] = t.target.split("|"); return `<span class="embed" data-embed="${esc(name.trim())}" data-size="${esc((size || "").trim())}"></span>`; } },
+      { name: "wikilink", level: "inline", start: src => src.indexOf("[["),
+        tokenizer(src) { const m = /^\[\[([^\]]+)\]\]/.exec(src); if (m) return { type: "wikilink", raw: m[0], target: m[1] }; },
+        renderer: t => { const [full, alias] = t.target.split("|"); const [name, head] = full.split("#");
+          return `<a href="#" class="wl" data-wl="${esc(name.trim())}" data-h="${esc((head || "").trim())}">${esc((alias || full).trim())}</a>`; } },
+      { name: "highlight", level: "inline", start: src => src.indexOf("=="),
+        tokenizer(src) { const m = /^==([^=\n]+)==/.exec(src); if (m) return { type: "highlight", raw: m[0], tokens: this.lexer.inlineTokens(m[1]) }; },
+        renderer(t) { return `<mark>${this.parser.parseInline(t.tokens)}</mark>`; } },
+      { name: "comment", level: "inline", start: src => src.indexOf("%%"),
+        tokenizer(src) { const m = /^%%[\s\S]*?%%/.exec(src); if (m) return { type: "comment", raw: m[0] }; },
+        renderer: () => "" },
+      { name: "tag", level: "inline", start: src => { const m = /(^|\s)#[\p{L}_][\p{L}\p{N}_/-]*/u.exec(src); return m ? m.index + m[1].length : undefined; },
+        tokenizer(src) { const m = /^#([\p{L}_][\p{L}\p{N}_/-]*)/u.exec(src); if (m) return { type: "tag", raw: m[0], tag: m[1] }; },
+        renderer: t => `<span class="tag">#${esc(t.tag)}</span>` },
+    ],
+    renderer: {
+      html: raw => esc(raw),
+      heading(text, level) { return `<h${level} id="h-${slug(text)}">${text}</h${level}>`; },
+      link(href, title, text) {
+        if (/^(https?:|mailto:)/i.test(href || "")) return `<a href="${esc(href)}" target="_blank" rel="noopener noreferrer">${text}</a>`;
+        if (/^#/.test(href || "")) return `<a href="${esc(href)}">${text}</a>`;
+        return `<a href="#" class="wl" data-wl="${esc(safeDecode(href || "").replace(/\.md$/i, ""))}" data-h="">${text}</a>`;
+      },
+      image(href, title, text) {
+        if (/^https?:/i.test(href || "")) return `<img src="${esc(href)}" alt="${esc(text)}" loading="lazy">`;
+        return `<span class="embed" data-embed="${esc(safeDecode(href || ""))}" data-size=""></span>`;
+      },
+      blockquote(quote) {
+        const m = /^<p>\[!(\w+)\]([+-]?)[ \t]*([^\n<]*)(?:<br>|\n)?([\s\S]*)$/.exec(quote.trim());
+        if (!m) return `<blockquote>${quote}</blockquote>`;
+        const [, type, fold, title, rest] = m, t = type.toLowerCase();
+        const head = `<span class="ct">${title || type[0].toUpperCase() + type.slice(1)}</span>`;
+        const body = ("<p>" + rest).replace(/^<p>\s*<\/p>/, "").replace(/^<p>(\s*<\/p>)?$/, "");
+        return fold ? `<details class="callout ${t}" ${fold === "+" ? "open" : ""}><summary>${head}</summary>${body}</details>`
+                    : `<div class="callout ${t}">${head}${body}</div>`;
+      },
+    },
+  });
+}
+function properties(text) {
+  const m = text.match(/^---\n([\s\S]*?)\n---\n?/);
+  if (!m) return ["", text];
+  const rows = m[1].split("\n").filter(l => /^[\w-]+:/.test(l)).map(l => {
+    const i = l.indexOf(":"); return `<span><b>${esc(l.slice(0, i))}</b>${esc(l.slice(i + 1).trim().replace(/^\[|\]$/g, ""))}</span>`;
+  });
+  return [rows.length ? `<div class="fm">${rows.join("")}</div>` : "", text.slice(m[0].length)];
+}
+function renderMarkdown(src) {
+  const [fm, body] = properties(String(src).replace(/\r\n/g, "\n"));
+  const html = window.marked ? marked.parse(body) : `<pre class="rawtext">${esc(body)}</pre>`;
+  return fm + `<div class="md">${html}</div>`;
+}
+// After a note is shown: fill in ![[embeds]] (images, or the embedded note itself, one level deep)
+async function fillEmbeds(scope, depth = 0) {
+  for (const el of scope.querySelectorAll(".embed:not([data-done])")) {
+    el.dataset.done = 1;
+    const name = el.dataset.embed, path = await resolveLink(name.split("#")[0]);
+    if (!path) { el.outerHTML = `<span class="tag" title="Not found, or private">${esc(name)}</span>`; continue; }
+    if (/\.(png|jpe?g|gif|webp|svg)$/i.test(path)) {
+      const w = /^\d+$/.test(el.dataset.size) ? ` width="${el.dataset.size}"` : "";
+      el.outerHTML = `<img src="/api/files/raw?path=${encodeURIComponent(path)}" alt="${esc(name)}"${w} loading="lazy">`;
+      continue;
+    }
+    if (depth > 0) { el.outerHTML = `<a href="#" class="wl" data-wl="${esc(name)}" data-h="">${esc(name)}</a>`; continue; }
+    try {
+      const r = await (await fetch(`/api/files/read?path=${encodeURIComponent(path)}`)).json();
+      if (r.kind !== "md") { el.outerHTML = `<a href="#" class="wl" data-wl="${esc(name)}" data-h="">${ICON.lock} ${esc(name)}</a>`; continue; }
+      const box = document.createElement("div");
+      box.className = "embedded";
+      box.innerHTML = `<div class="eh"><a href="#" class="wl" data-wl="${esc(name)}" data-h="">${esc(path.replace(/\.md$/i, ""))}</a></div>` +
+        renderMarkdown(r.text).replace(/^<div class="fm">[\s\S]*?<\/div>/, "");
+      el.replaceWith(box);
+      fillEmbeds(box, depth + 1);
+    } catch {}
+  }
+}
+
+async function resolveLink(name) {
+  if (!noteIndex) noteIndex = (await (await fetch("/api/files/index")).json()).paths || [];
+  const want = name.toLowerCase().replace(/\.md$/, "");
+  const here = activeFile.split("/").slice(0, -1).join("/");
+  const hits = noteIndex.filter(p => p.toLowerCase().replace(/\.md$/, "").endsWith("/" + want) || p.toLowerCase().replace(/\.md$/, "") === want);
+  return hits.find(p => p.startsWith(here + "/")) || hits[0];
+}
+async function revealAndOpen(target, lock, heading) {
+  await initFiles();
+  const parts = target.split("/");
+  for (let k = 1; k < parts.length; k++) {  // open the folders on the way, so the tree shows where the note is
+    const p = parts.slice(0, k).join("/");
+    const btn = document.querySelector(`.node[data-path="${CSS.escape(p)}"]`);
+    if (btn && btn.getAttribute("aria-expanded") !== "true") await toggleDir(btn, true);
+  }
+  const node = document.querySelector(`.node[data-path="${CSS.escape(target)}"]`);
+  await openFile(target, lock ?? node?.dataset.lock, heading);
+  node?.scrollIntoView({ block: "nearest" });
+}
+$("#viewBody").addEventListener("click", async e => {
+  const a = e.target.closest("a.wl");
+  if (!a) return;
+  e.preventDefault();
+  const target = await resolveLink(a.dataset.wl);
+  if (!target) { a.classList.add("missing"); a.title = "Not found, or private"; return; }
+  revealAndOpen(target, undefined, a.dataset.h);
+});
+
+// ---------- from a search result straight into the note ----------
+document.addEventListener("click", e => {
+  const b = e.target.closest("#ask [data-open]");
+  if (!b) return;
+  e.preventDefault();
+  if (b.dataset.id) {  // opening a result is a real use: finish the search and count the open
+    const qNow = $("#q").value.trim();
+    if (qNow && logged !== qNow) { logged = qNow; fetchSearch(qNow, 1, undefined, true).catch(() => {}); }
+    fetch(`/api/get?id=${encodeURIComponent(b.dataset.id)}&log=1`).catch(() => {});
+  }
+  window.open(noteURL(b.dataset.open, b.dataset.h, b.dataset.lock), "_blank", "noopener");
+});
+const noteURL = (path, h, lock) => `/?note=${encodeURIComponent(path)}${h ? "&h=" + encodeURIComponent(h) : ""}${lock === "private" ? "&lock=private" : ""}`;
+
+// ---------- note mode: /?note=path opens one note on its own page (from search results) ----------
+const NOTE_PARAMS = new URLSearchParams(location.search);
+const NOTE_MODE = NOTE_PARAMS.has("note");
+if (NOTE_MODE) {
+  document.body.classList.add("notemode");
+  ["ask", "test", "health"].forEach(t => $("#" + t).classList.add("hide"));
+  $("#files").classList.remove("hide");
+  $("#wrap").classList.add("wide");
+  const lock = NOTE_PARAMS.get("lock") === "private" ? "private" : undefined;
+  revealAndOpen(NOTE_PARAMS.get("note"), lock, NOTE_PARAMS.get("h") || "");
+}
+
+// /?q=words opens the page with that question already asked
+const START_Q = new URLSearchParams(location.search).get("q");
+if (START_Q && !NOTE_MODE) { $("#q").value = START_Q.slice(0, 500); onType(true); }
+
+loadStats();
+</script>
+
+</body>
+</html>

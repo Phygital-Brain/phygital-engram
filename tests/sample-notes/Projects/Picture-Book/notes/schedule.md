@@ -8,4 +8,4 @@ tags: [picture-book, schedule]
 
 ## Schedule
 
-Marta moved the cover to the 15th of November. Print files follow a week later. The printer is Nordic Print and they need the files as PDF.
+The cover is due on the 15th of November. Marta moved the cover to the 15th of November. Print files follow a week later. The printer is Nordic Print and they need the files as PDF.

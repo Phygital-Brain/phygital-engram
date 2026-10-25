@@ -33,7 +33,7 @@ Phygital Engram has four pieces.
 
 Phygital Engram finds notes. It does not answer for you. Your agent writes the answer. The result is short, so your agent reads a few lines instead of dozens of notes.
 
-You can use it from the command line (typed commands). A small local web page is planned, but it is not in version 0.1.1. An AI connector (MCP, a plug for AI apps) is in the repository too. It runs this command line for every call and gives your AI app four read-only tools. It worked in Claude Code and has not been tried in other apps yet. A server version (`mcp/serve.py`) gives the same tools over HTTPS behind a login, for your phone and the web: see [Setup on your own server](setup-own-server.md). See [Tools](tools.md).
+You can use it from the command line (typed commands), or from a small search page on your own computer (`python3 engram.py page`, see [The search page](search-page.md)). An AI connector (MCP, a plug for AI apps) is in the repository too. It runs this command line for every call and gives your AI app four read-only tools. It worked in Claude Code and has not been tried in other apps yet. A server version (`mcp/serve.py`) gives the same tools over HTTPS behind a login, for your phone and the web: see [Setup on your own server](setup-own-server.md). See [Tools](tools.md).
 
 ## Two rules it never breaks
 

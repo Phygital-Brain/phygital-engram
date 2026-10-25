@@ -63,6 +63,13 @@ If you change only a few, look at these seven.
 | `vault` | `~/Notes` | The notes folder. Overridden by `ENGRAM_VAULT` |
 | `db` | `data/engram.sqlite` | The index file. Moves with `ENGRAM_DATA` |
 
+## The search page
+
+| Name | Default | Effect |
+|---|---|---|
+| `ENGRAM_PAGE_PORT` | `8787` | The port the page listens on. It always listens on `127.0.0.1`, so only this computer can reach it |
+| `ENGRAM_NO_BROWSER` | not set | Set it to `1` and `python3 engram.py page` will not open your browser by itself |
+
 ## What gets read
 
 | Name | Default | Effect |

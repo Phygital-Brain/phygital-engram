@@ -66,7 +66,7 @@ Measured on 2026-10-25 with the working version, on a Mac, without note cards.
 
 | Set | Questions | Right note first | In the top 5 | In the top 10 |
 |---|---|---|---|---|
-| Tuning | 16 | 14 | 15 | 15 |
+| Tuning | 16 | 15 | 15 | 15 |
 | Hidden | 10 | 10 | 10 | 10 |
 
 Each search took under 1 millisecond on these 22 notes. Health check: every line `OK`, 1 note hidden, 1 skipped on purpose, 1 private note findable as "where only".
@@ -74,7 +74,7 @@ Each search took under 1 millisecond on these 22 notes. Health check: every line
 One question was missed, and we left it in: *which printer did we choose* came back with the schedule note first, because it also mentions the printer. The decision note it should find was not in the top 10.
 
 > [!IMPORTANT]
-> This small sample is not the same as the numbers on the benchmark picture. Those come from one person's own notes (about 4,800 of them), which are private and cannot be shared. With only 22 notes, plain word matching scores almost the same as the full ranking (a word-only run got 14 first and 15 in the top 5 too). The extra signals, like folder, age and status, start to matter when you have hundreds or thousands of notes. See [docs/benchmarks.md](../docs/benchmarks.md).
+> This small sample is not the same as the numbers on the benchmark picture. Those come from one person's own notes (about 4,800 of them), which are private and cannot be shared. With only 22 notes, plain word matching scores the same as the full ranking (a word-only run got 15 first and 15 in the top 5 too). The extra signals, like folder, age and status, start to matter when you have hundreds or thousands of notes. See [docs/benchmarks.md](../docs/benchmarks.md).
 
 ## Add your own questions
 

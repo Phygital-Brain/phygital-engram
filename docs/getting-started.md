@@ -75,6 +75,16 @@ python3 engram.py health
 
 You should see a list of checks, each marked OK. A problem is written in plain words with what to do. See [Troubleshooting](troubleshooting.md) if one is not OK.
 
+## Or use the search page
+
+Prefer a page to the terminal? Run this and your browser opens a small page on your own computer, with the same search, a look at your notes, and the health check:
+
+```bash
+python3 engram.py page
+```
+
+See [The search page](search-page.md).
+
 ## What next
 
 - Learn what to ask in [Examples](examples.md).

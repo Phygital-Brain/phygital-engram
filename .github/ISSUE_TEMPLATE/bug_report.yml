@@ -36,7 +36,7 @@ body:
       label: How do you run it?
       options:
         - On my computer, from the command line
-        - On my computer, with the local page
+        - On my computer, with the search page
         - Something else
     validations:
       required: true

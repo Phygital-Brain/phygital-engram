@@ -15,7 +15,8 @@ It is the search layer for [Phygital Brain](https://github.com/Phygital-Brain/ph
 
 Ways it runs today:
 
-- **Command line:** `ingest`, `search`, `get`, `around`, `health`, `test`, `cards`, `stats`, `usage`.
+- **Command line:** `ingest`, `search`, `get`, `around`, `health`, `test`, `cards`, `stats`, `usage`, `page`.
+- **Search page:** `python3 engram.py page` opens `app/` on `127.0.0.1` only. It answers only requests addressed to itself, loads nothing from the internet, never opens secret files, and never writes to the notes. `tests/test_page.py` checks it.
 - **MCP connector:** `mcp/server.py`, a small program an AI app starts. It has four read-only tools and runs `engram.py` for every call. A Claude Code plugin (`.claude-plugin/`) and a Claude Desktop extension build (`scripts/build_mcpb.py`) package it. 
 - **Server version:** `mcp/serve.py`, the same four tools at `https://your-domain/mcp` behind a passphrase login (OAuth), for phones, the Claude website, ChatGPT and any computer. It needs the MCP SDK (`requirements-server.txt`). `Dockerfile`, `docker-compose.yml`, `Caddyfile` and `docker-entrypoint.sh` run it. Setup is in [docs/setup-own-server.md](docs/setup-own-server.md) and the risks in [docs/threat-model.md](docs/threat-model.md). The image builds on GitHub. Not tested: running it with Compose and Caddy, a real server, a phone, the Claude website, ChatGPT.
 
@@ -32,6 +33,7 @@ engram_lib/                the search engine
   evaluate.py                scores a set of test questions
   health.py                  checks the index, privacy and speed
   usage.py                   counts real opens to learn a little from use
+app/                       the search page for your own computer: server.py (local only) and index.html (one file, no outside requests)
 mcp/server.py              the connector that runs on your computer (standard library only)
 mcp/serve.py               the server version: HTTPS, passphrase login, same four tools (needs the MCP SDK)
 Dockerfile, docker-compose.yml, Caddyfile, docker-entrypoint.sh, .dockerignore   run the server version
@@ -92,7 +94,8 @@ A change that weakens one needs a very good reason and a test.
 19. **Keep `tests/test_serve.py` passing.** Change `mcp/serve.py` and its tests together.
 20. **Everything a tool returns is labelled as note content, never instructions.**
 21. **The installer never writes to the notes folder.** It checks that the data folder is outside the notes before it creates anything. `tests/test_install.py` checks it.
-22. **Nothing personal in the repository.** The default `config.json`, the sample notes and the docs use general or made-up names. No real vault path, folder names from a private vault, server names, keys or private questions. Check before every release.
+22. **The search page stays local.** It listens on `127.0.0.1` only, checks the Host and Origin of every request, and the page loads nothing from outside. Keep `tests/test_page.py` passing.
+23. **Nothing personal in the repository.** The default `config.json`, the sample notes and the docs use general or made-up names. No real vault path, folder names from a private vault, server names, keys or private questions. Check before every release.
 
 ## How things work
 

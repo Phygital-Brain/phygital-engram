@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- The search page: `python3 engram.py page` opens a small page on your own computer, in the Phygital Engram look (dark, and light that follows your system), with search, a read-only view of your notes, the health check and the test score. It listens on `127.0.0.1` only and loads nothing from the internet. A link like `/?q=your+question` opens it with a question already asked.
+
 ## 0.1.1 (2026-10-25)
 
 - One-line install. `install.sh` (Mac and Linux) downloads the program, builds the index and connects Claude Code. The Claude Code plugin now asks for your notes folder when you install it.

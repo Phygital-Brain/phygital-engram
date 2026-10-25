@@ -11,6 +11,7 @@
   python3 engram.py test                     score tests/questions.json and tests/holdout.json
   python3 engram.py health                   per-source check; exit code 1 means a problem
   python3 engram.py stats                    what is in the index
+  python3 engram.py page                     open the search page in your browser (only on this computer)
 """
 import argparse, json, sys, time
 
@@ -33,7 +34,7 @@ def main():
     p.add_argument("--estimate", action="store_true")
     p.add_argument("--import", dest="import_file", metavar="FILE", help="load cards from a cards file")
     p = sub.add_parser("around"); p.add_argument("id")
-    sub.add_parser("test"); sub.add_parser("health"); sub.add_parser("stats"); sub.add_parser("usage")
+    sub.add_parser("test"); sub.add_parser("health"); sub.add_parser("stats"); sub.add_parser("usage"); sub.add_parser("page")
     a = ap.parse_args()
     cfg = config.load()
 
@@ -65,6 +66,9 @@ def main():
     elif a.cmd == "around":
         r = around(cfg, a.id)
         print(json.dumps(r, indent=2, ensure_ascii=False) if r else "not found (private results have no surroundings)")
+    elif a.cmd == "page":
+        import os, runpy
+        runpy.run_path(os.path.join(os.path.dirname(os.path.abspath(__file__)), "app", "server.py"), run_name="__main__")
     elif a.cmd == "usage":
         u = usage.status(cfg, connect(cfg["db"]))
         print(f"{u['notes']} notes seen, {u['opens']} opens counted; learning from use is "
