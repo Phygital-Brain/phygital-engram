@@ -9,7 +9,7 @@ def load(path=None):
     """ENGRAM_VAULT points at the notes folder and ENGRAM_DATA at the folder for the index (outside the notes)."""
     cfg = json.loads((path or ROOT / "config.json").read_text())
     cfg["vault"] = Path(os.environ.get("ENGRAM_VAULT") or cfg["vault"]).expanduser()
-    data = Path(os.environ["ENGRAM_DATA"]) if os.environ.get("ENGRAM_DATA") else ROOT
+    data = Path(os.environ["ENGRAM_DATA"]).expanduser() if os.environ.get("ENGRAM_DATA") else ROOT
     at = lambda rel: (data / (rel[len("data/"):] if os.environ.get("ENGRAM_DATA") and rel.startswith("data/") else rel)).resolve()
     cfg["db"] = at(cfg["db"])
     cfg["private"]["db"] = at(cfg["private"]["db"])

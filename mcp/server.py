@@ -10,6 +10,7 @@ Four tools, all read-only. A private (locked) result can be found but never open
 
 Settings, all optional:
   PHYGITAL_ENGRAM_CLI   path to engram.py (default: the engram.py next to this folder)
+  PHYGITAL_ENGRAM_REFRESH_MINUTES   how often to update the index while this runs (default 10, 0 = only once at start)
   ENGRAM_VAULT          the folder of notes (read by engram.py)
   ENGRAM_DATA           the folder for the index (read by engram.py)
 """
@@ -18,6 +19,8 @@ import os
 import re
 import subprocess
 import sys
+import threading
+import time
 from pathlib import Path
 
 VERSION = "0.1.0"
@@ -58,17 +61,40 @@ TOOLS = [
 ]
 
 
+READY = threading.Event()   # set once the first index update has ended
+INGEST_NOTE = ""            # why the last index update failed, if it did
+
+
+def refresh_loop(minutes):
+    """Build the index when the connector starts, then keep it fresh. Only reads the notes."""
+    global INGEST_NOTE
+    while True:
+        try:
+            p = subprocess.run([sys.executable, str(CLI), "ingest"], capture_output=True, text=True, timeout=1800, cwd=str(CLI.parent))
+            out = ((p.stdout or "") + (p.stderr or "")).strip().splitlines()
+            INGEST_NOTE = out[-1][:300] if p.returncode != 0 and out else ""
+        except Exception as e:  # a failed update must never stop the connector
+            INGEST_NOTE = f"The index update failed: {type(e).__name__}"
+        READY.set()
+        if minutes <= 0:
+            return
+        time.sleep(minutes * 60)
+
+
 def run_cli(*args):
     """Run engram.py with a fixed list of arguments (no shell). Returns (ok, text)."""
     if not CLI.exists():
         return False, f"Phygital Engram is not installed here: {CLI} was not found. See docs/setup-computer.md."
+    if READY.is_set() is False and THREAD_STARTED:
+        READY.wait(timeout=90)   # the first index is still being built
     try:
         p = subprocess.run([sys.executable, str(CLI), *args], capture_output=True, text=True, timeout=TIMEOUT, cwd=str(CLI.parent))
     except subprocess.TimeoutExpired:
         return False, "The search took too long and was stopped."
     out = (p.stdout or "").strip()
     if p.returncode != 0 and not out:
-        return False, "Phygital Engram reported a problem: " + (p.stderr or "no details").strip().splitlines()[-1][:300]
+        hint = f" The last index update said: {INGEST_NOTE}" if INGEST_NOTE else ""
+        return False, "Phygital Engram reported a problem: " + (p.stderr or "no details").strip().splitlines()[-1][:300] + hint
     return True, out[:MAX_OUT]
 
 
@@ -130,7 +156,15 @@ def handle(msg):
     raise KeyError(method)
 
 
+THREAD_STARTED = False
+
+
 def main():
+    global THREAD_STARTED
+    if CLI.exists():
+        minutes = int(os.environ.get("PHYGITAL_ENGRAM_REFRESH_MINUTES", "10") or 0)
+        threading.Thread(target=refresh_loop, args=(minutes,), daemon=True).start()
+        THREAD_STARTED = True
     for line in sys.stdin:
         line = line.strip()
         if not line:

@@ -3,6 +3,9 @@ import json
 import sys
 
 a = sys.argv[1:]
+import os
+if os.environ.get("FAKE_ENGRAM_LOG"):
+    open(os.environ["FAKE_ENGRAM_LOG"], "a").write(a[0] + "\n")
 if a[:1] == ["search"]:
     if "nothing" in a[1]:
         print("[]")
@@ -14,6 +17,8 @@ elif a[:1] == ["get"]:
     print("PRIVATE OPENED" if "--private" in a else json.dumps({"id": a[1], "text": "full section"}))
 elif a[:1] == ["around"]:
     print(json.dumps({"id": a[1], "before": [], "after": []}))
+elif a[:1] == ["ingest"]:
+    print("indexed 3 | total 3 files")
 elif a[:1] == ["health"]:
     print("OK    Index: last update 0 min ago")
 else:

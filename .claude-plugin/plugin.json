@@ -2,15 +2,44 @@
   "name": "phygital-engram",
   "version": "0.1.0",
   "description": "Your notes, found in milliseconds. Phygital Engram is a fast, private, read-only search for your second brain, or any folder of Markdown notes, for your AI agent.",
-  "author": { "name": "Phygital-Brain", "url": "https://github.com/Phygital-Brain" },
+  "author": {
+    "name": "Phygital-Brain",
+    "url": "https://github.com/Phygital-Brain"
+  },
   "homepage": "https://github.com/Phygital-Brain/phygital-engram",
   "repository": "https://github.com/Phygital-Brain/phygital-engram",
   "license": "Apache-2.0",
-  "keywords": ["search", "markdown", "notes", "second-brain", "mcp"],
+  "keywords": [
+    "search",
+    "markdown",
+    "notes",
+    "second-brain",
+    "mcp"
+  ],
   "mcpServers": {
     "phygital-engram": {
       "command": "python3",
-      "args": ["${CLAUDE_PLUGIN_ROOT}/mcp/server.py"]
+      "args": [
+        "${CLAUDE_PLUGIN_ROOT}/mcp/server.py"
+      ],
+      "env": {
+        "ENGRAM_VAULT": "${user_config.notes_folder}",
+        "ENGRAM_DATA": "${user_config.data_folder}"
+      }
+    }
+  },
+  "userConfig": {
+    "notes_folder": {
+      "type": "directory",
+      "title": "Your notes folder",
+      "description": "The folder of Markdown notes to search. Phygital Engram only reads it, and it needs a file named CLAUDE.md at the top (it can be empty).",
+      "required": true
+    },
+    "data_folder": {
+      "type": "directory",
+      "title": "Folder for the index",
+      "description": "Where Phygital Engram keeps its own files. It must be outside your notes folder. You can delete it at any time.",
+      "default": "~/.phygital-engram"
     }
   }
 }

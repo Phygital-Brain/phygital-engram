@@ -28,6 +28,7 @@
 <p align="center">
 <a href="#what-it-is">What it is</a> ·
 <a href="#how-fast-is-it">How fast</a> ·
+<a href="#install-in-one-line">Install in one line</a> ·
 <a href="#quick-start-about-5-minutes">Quick start</a> ·
 <a href="docs/connect-your-ai.md">Connect your AI app</a> ·
 <a href="#safety-and-privacy">Safety and privacy</a> ·
@@ -47,6 +48,7 @@
 - [What you get](#what-you-get)
 - [How fast is it?](#how-fast-is-it)
 - [Choose how to run it](#choose-how-to-run-it)
+- [Install in one line](#install-in-one-line)
 - [What you need](#what-you-need)
 - [Quick start (about 5 minutes)](#quick-start-about-5-minutes)
 - [Works with Phygital Brain](#works-with-phygital-brain)
@@ -183,6 +185,30 @@ These are the author's numbers on one set of private notes, so you cannot rerun 
 > [!TIP]
 > Not sure? Start with **1**. It is free, and nothing leaves your computer. Using an AI coding agent like Claude Code, Codex or Cursor? Ask it to set this up for you: [AGENTS.md](AGENTS.md) explains the project to it.
 
+## Install in one line
+
+You need a folder of Markdown notes with a file named `CLAUDE.md` at the top (it can be empty), and Python 3.11 or newer. The full list is in [What you need](#what-you-need).
+
+**Claude Code, from your terminal.** Change `$HOME/Notes` to your notes folder:
+
+```bash
+claude plugin marketplace add Phygital-Brain/phygital-engram && claude plugin install phygital-engram@phygital-engram --config notes_folder="$HOME/Notes"
+```
+
+Or, inside Claude Code, type this and answer the question about your notes folder:
+
+```
+/plugin install phygital-engram --marketplace Phygital-Brain/phygital-engram
+```
+
+**Any AI app, on a Mac or Linux.** This downloads the program, builds the index and connects Claude Code if you have it:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/Phygital-Brain/phygital-engram/main/install.sh | sh -s -- "$HOME/Notes"
+```
+
+Then ask your agent: *"Search my notes for the Picture-Book schedule and tell me where you found it."* The index builds itself when your agent starts, and it never writes to your notes. For your phone, see [setup-own-server.md](docs/setup-own-server.md). More ways: [docs/connect-your-ai.md](docs/connect-your-ai.md).
+
 ## What you need
 
 Here is everything Phygital Engram needs, and nothing more.
@@ -192,7 +218,7 @@ Here is everything Phygital Engram needs, and nothing more.
 | **A folder of Markdown notes** (`.md` files) | That is what it searches. Obsidian, Baalda and Phygital Brain folders all work | Everything |
 | **A file named `CLAUDE.md` at the top of that folder.** It can be empty | The search checks it before it indexes, so it never builds an index from a half-copied folder. [Phygital Brain](docs/with-phygital-brain.md) makes this file for you. Without it, indexing stops and nothing changes | Everything |
 | **A second folder for the index, outside your notes** | It keeps its own files there, and refuses to run if that folder is inside your notes | Everything |
-| **Python 3.14 or newer** | The search uses only what comes with Python, so nothing else to install. Tried on Python 3.14 and 3.15 | Everything |
+| **Python 3.11 or newer** | The search uses only what comes with Python, so nothing else to install. Tried on Python 3.11, 3.13 and 3.15 | Everything |
 | **An AI app that uses MCP** (Claude Code, Claude Desktop, Codex and others) | So your agent can search for you. You can also use it from the terminal without one | The AI connector |
 | **The MCP SDK** (`pip install -r requirements-server.txt`) | Only the server version needs it. The computer version does not | The server version |
 | **A server, a domain and your notes on that server** | For your phone, the Claude website and ChatGPT. Caddy makes the HTTPS certificate. See [setup-own-server.md](docs/setup-own-server.md) | The server version |

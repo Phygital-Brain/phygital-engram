@@ -38,15 +38,27 @@ You need:
 
 ## Claude Code
 
-The plugin route. Inside Claude Code, type:
+The plugin route is one line from your terminal. Change `$HOME/Notes` to your notes folder:
+
+```bash
+claude plugin marketplace add Phygital-Brain/phygital-engram && claude plugin install phygital-engram@phygital-engram --config notes_folder="$HOME/Notes"
+```
+
+Or inside Claude Code, type this, and Claude Code asks you for the notes folder:
 
 ```
 /plugin install phygital-engram --marketplace Phygital-Brain/phygital-engram
 ```
 
-The plugin starts the connector. It reads `ENGRAM_VAULT` and `ENGRAM_DATA` from your environment, so set them in your shell profile before you start Claude Code. Loading the plugin from a folder worked in our test (`claude --plugin-dir`). The install from the marketplace was not tested yet.
+The plugin starts the connector. The connector builds the index when it starts and updates it every 10 minutes. The index goes in `~/.phygital-engram` unless you pass `--config data_folder=...`, and it must be outside your notes. To change the notes folder later, run `/plugin configure phygital-engram@phygital-engram` in Claude Code. We tested the install from a local copy and a search through Claude Code. The install straight from GitHub has not been tried.
 
-The manual route:
+The terminal installer does the same for Claude Code, and prints the lines for other apps if it does not find Claude Code. On a Mac or Linux:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/Phygital-Brain/phygital-engram/main/install.sh | sh -s -- "$HOME/Notes"
+```
+
+The manual route, if you downloaded the files yourself:
 
 ```bash
 claude mcp add phygital-engram --env ENGRAM_VAULT=/path/to/notes --env ENGRAM_DATA=/path/to/index -- python3 /path/to/phygital-engram/mcp/server.py

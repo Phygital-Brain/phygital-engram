@@ -20,7 +20,7 @@ Each form asks for what's needed to help you, such as how you run it and which A
 ## Changing the code
 
 1. Read [AGENTS.md](AGENTS.md). It explains the code and the rules that must never break.
-2. Get Python 3.14 or newer. The search itself needs nothing else.
+2. Get Python 3.11 or newer. The search itself needs nothing else.
 
 3. Make your change, with a test in `tests/`. Tests use the made-up sample notes only. Never use real notes, real names or a real secret in a test.
 4. Run the tests and the docs check. Everything must pass:

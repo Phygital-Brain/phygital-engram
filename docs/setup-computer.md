@@ -3,20 +3,20 @@
 Try Phygital Engram on your own notes, free, with nothing sent anywhere. It takes about 10 minutes, and you end up searching your notes from the terminal.
 
 > [!NOTE]
-> These steps match version 0.1.0, the first release. The search program (`engram.py`) is in this repository.
+> These steps match version 0.1.0, the first release. The search program (`engram.py`) is in this repository. Want it in one line instead? See [Install in one line](../README.md#install-in-one-line).
 
 ## Before you start
 
 - **A folder of Markdown notes** on your computer. A copy is fine, and safer for a first try.
 - **A file named `CLAUDE.md` at the top of that folder.** It can be empty. The search checks for it before it indexes, so it never builds an index from a half-copied folder. Phygital Brain makes this file for you. If your folder has none, create an empty one. Without it, indexing stops and nothing changes.
 - **A second folder for the index, outside your notes.** It refuses to run if that folder is inside your notes.
-- **Python.** It runs on Python 3.14 (a Linux server) and was tried on Python 3.15 (a Mac). Older versions are not tested. Check yours:
+- **Python.** It needs Python 3.11 or newer. The sample test gives the same result on Python 3.11, 3.13 and 3.15. The Mac that ships with Python 3.9 is too old: install a newer one from python.org. Check yours:
 
 ```bash
 python3 --version
 ```
 
-You should see `Python 3.14` or newer. If the command is not found, install Python from python.org and open a new terminal window.
+You should see `Python 3.11` or newer. If the command is not found, install Python from python.org and open a new terminal window.
 
 - **Free space.** The index is small. For about 5,000 notes it was a few tens of megabytes.
 - **Nothing else to install.** The search uses only what comes with Python, including the SQLite database.

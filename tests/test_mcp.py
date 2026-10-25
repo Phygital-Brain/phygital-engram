@@ -77,6 +77,19 @@ class Connector(unittest.TestCase):
         self.assertEqual(out[0]["error"]["code"], -32601)
 
 
+class IndexOnStart(unittest.TestCase):
+    def test_index_is_built_before_the_first_search(self):
+        import tempfile
+        log = Path(tempfile.mkdtemp()) / "calls.log"
+        env = dict(os.environ, PHYGITAL_ENGRAM_CLI=str(FAKE), FAKE_ENGRAM_LOG=str(log), PHYGITAL_ENGRAM_REFRESH_MINUTES="0")
+        msg = {"jsonrpc": "2.0", "id": 1, "method": "tools/call", "params": {"name": "search_notes", "arguments": {"query": "cover"}}}
+        subprocess.run([sys.executable, str(SERVER)], input=json.dumps(msg) + "\n", capture_output=True, text=True, timeout=60, env=env)
+        calls = log.read_text().split()
+        self.assertEqual(calls[0], "ingest")
+        self.assertIn("search", calls)
+        self.assertLess(calls.index("ingest"), calls.index("search"))
+
+
 class DocsStayTrue(unittest.TestCase):
     def test_every_tool_is_in_tools_md(self):
         docs = (ROOT / "docs" / "tools.md").read_text()

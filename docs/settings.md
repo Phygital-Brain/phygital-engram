@@ -212,7 +212,7 @@ The server version (`mcp/serve.py`, see [setup-own-server.md](setup-own-server.m
 | `LOGIN_PASSPHRASE` | None | Your passphrase in plain text, 8 or more characters. Use it only if you cannot use `LOGIN_HASH`. One of the two is required |
 | `HOST` | `127.0.0.1` | The address the server listens on |
 | `PORT` | `8765` | The port the server listens on |
-| `PHYGITAL_ENGRAM_REFRESH_MINUTES` | `10` | How often the index is updated. `0` means never |
+| `PHYGITAL_ENGRAM_REFRESH_MINUTES` | `10` | How often the index is updated while the connector or the server runs. `0` means once at start, then never |
 | `PHYGITAL_ENGRAM_TRUST_PROXY` | Off | Set to `1` when a proxy like Caddy sits in front, so the visitor's address is read from it. Needed for the 5-wrong-passphrases pause to count the right address |
 | `ALLOWED_REDIRECT_HOSTS` | `claude.ai,claude.com,chatgpt.com,openai.com,vscode.dev` | The AI apps allowed to log in. Others are refused |
 | `NOTES_DIR` | None. Required in Compose | The folder of notes on the server, mounted read-only |

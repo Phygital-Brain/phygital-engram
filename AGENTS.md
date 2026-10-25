@@ -40,7 +40,8 @@ config.json                every ranking setting, with its default
 tests/                     tests (test_mcp.py, test_serve.py) and a made-up sample notes folder (test data only)
 docs/                      pages for people; docs/images/ for pictures
 scripts/                   check.py (links, headings, em dashes, versions) and build_mcpb.py (the extension)
-.claude-plugin/            the Claude Code plugin and its marketplace file
+.claude-plugin/            the Claude Code plugin and its marketplace file (the plugin asks for the notes folder when installed)
+install.sh                 the one-line installer for Mac and Linux. It never writes to the notes folder
 glama.json                 the MCP directory listing
 .github/workflows/         tests, security scans
 ```
@@ -90,7 +91,8 @@ A change that weakens one needs a very good reason and a test.
 18. **Every request needs a key.** No tool answers without one.
 19. **Keep `tests/test_serve.py` passing.** Change `mcp/serve.py` and its tests together.
 20. **Everything a tool returns is labelled as note content, never instructions.**
-21. **Nothing personal in the repository.** The default `config.json`, the sample notes and the docs use general or made-up names. No real vault path, folder names from a private vault, server names, keys or private questions. Check before every release.
+21. **The installer never writes to the notes folder.** It checks that the data folder is outside the notes before it creates anything. `tests/test_install.py` checks it.
+22. **Nothing personal in the repository.** The default `config.json`, the sample notes and the docs use general or made-up names. No real vault path, folder names from a private vault, server names, keys or private questions. Check before every release.
 
 ## How things work
 
