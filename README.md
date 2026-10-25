@@ -216,7 +216,30 @@ Or, inside Claude Code, type this and answer the question about your notes folde
 curl -fsSL https://raw.githubusercontent.com/Phygital-Brain/phygital-engram/main/install.sh | sh -s -- "$HOME/Notes"
 ```
 
-**With npm.** If you have Node.js, this connects Claude Code straight from npm. Change the two folders: the index folder must be outside your notes.
+**With npm, in any AI app.** If you have Node.js, install it once:
+
+```bash
+npm install -g @phygital-brain/engram
+```
+
+Then add this to your AI app's list of MCP servers (the settings file is usually called `mcp.json` or `claude_desktop_config.json`). Change the two folders: the index folder must be outside your notes.
+
+```json
+{
+  "mcpServers": {
+    "phygital-engram": {
+      "command": "npx",
+      "args": ["-y", "@phygital-brain/engram"],
+      "env": {
+        "ENGRAM_VAULT": "/path/to/your/notes",
+        "ENGRAM_DATA": "/path/to/index/folder"
+      }
+    }
+  }
+}
+```
+
+For Claude Code, the same thing in one line:
 
 ```bash
 claude mcp add phygital-engram --env ENGRAM_VAULT="$HOME/Notes" --env ENGRAM_DATA="$HOME/.phygital-engram/data" -- npx -y @phygital-brain/engram
