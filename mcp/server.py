@@ -48,7 +48,7 @@ TOOLS = [
          "limit": {"type": "integer", "minimum": 1, "maximum": 20, "description": "How many results (default 8)"}},
          "required": ["query"], "additionalProperties": False}, "annotations": READ_ONLY},
     {"name": "open_result", "title": "Open a result",
-     "description": "Open one result from search_notes by its id and return the full section of the note, or the whole note if it is short. Read-only. Use it after search_notes, when a snippet is not enough to answer. An id that no longer exists returns "not found": search again. A LOCKED private note is refused, and the person must open it themselves.",
+     "description": "Open one result from search_notes by its id and return the full section of the note, or the whole note if it is short. Read-only. Use it after search_notes, when a snippet is not enough to answer. An id that no longer exists returns a not-found message: search again. A LOCKED private note is refused, and the person must open it themselves.",
      "inputSchema": {"type": "object", "properties": {"id": {"type": "string", "description": "A result id from search_notes"}},
                      "required": ["id"], "additionalProperties": False}, "annotations": READ_ONLY},
     {"name": "around_result", "title": "See what is around a result",
