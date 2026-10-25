@@ -3,7 +3,7 @@
 For when Phygital Engram works in your terminal and you want your AI app to search your notes for you. You will leave with one app connected and a first question answered.
 
 > [!IMPORTANT]
-> Pre-release. The connector is built and tested over stdio against the sample notes. It has not been tested inside any AI app yet, and there is no release to download. The steps below are written from each app's documentation. If one fails, please [open an issue](https://github.com/Phygital-Brain/phygital-engram/issues/new?template=bug_report.yml).
+> Pre-release. The connector worked in Claude Code, loaded from a config file. Every other app and install route below is untested, and there is no release to download. Those steps are written from each app's documentation. If one fails, please [open an issue](https://github.com/Phygital-Brain/phygital-engram/issues/new?template=bug_report.yml).
 
 <details>
 <summary><b>Table of contents</b></summary>
@@ -80,11 +80,11 @@ To set it up by hand, open **Settings, Developer, Edit Config** and add this to 
 
 ## Claude website and phone app
 
-Not supported yet. These apps can only reach a connector that runs on a server over HTTPS. This one runs on your computer. A server version is on the [roadmap](roadmap.md).
+These apps reach a connector over the internet, so Phygital Engram has to run on a server you own, over HTTPS, behind a login. Then it works on your phone too. The author runs the working version this way. That server version is not in this repository yet, and the connector here runs on your computer only. It is next on the [roadmap](roadmap.md).
 
 ## ChatGPT
 
-Not supported yet, for the same reason.
+Same as above: it works once Phygital Engram runs on a server you own. Not in this repository yet.
 
 ## Codex
 
@@ -112,4 +112,6 @@ You should see it call `search_notes`, and then answer with a note name and a da
 |---|---|
 | The four tools, run over stdio against the real search on the 24-note sample, 2026-10-25 | Worked. A private result was found and refused when asked to open |
 | 10 automated tests of the connector, with a stand-in search | Pass |
-| Claude Code, Claude Desktop, Codex, Cursor, VS Code, Gemini CLI | Not tested |
+| Claude Code 2.1.310, loaded from a config file, asked to find the Picture-Book schedule, 2026-10-25 | Worked. It started the connector, called `search_notes` and `open_result`, and answered with the note and the right dates |
+| The Claude Code plugin and the `claude mcp add` route | Not tested |
+| Claude Desktop, Codex, Cursor, VS Code, Gemini CLI | Not tested |

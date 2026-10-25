@@ -112,7 +112,7 @@ This is a simple first version. It is not in the working release yet. See the [r
 - Other languages. All the test notes are in English.
 - Phones, Windows and Linux. The tests ran on one Mac.
 - A big comparison with other tools. Only the small one above.
-- The AI connector (MCP). It was only run over stdio against the sample notes, not inside AI apps.
+- The AI connector (MCP) in most apps. It worked in Claude Code on the sample notes. It was not tried in Claude Desktop, Codex, Cursor, VS Code or Gemini CLI.
 - Long-term use: what happens after months of "learning from use".
 - Security audits. None has been done: see [safety](safety.md).
 

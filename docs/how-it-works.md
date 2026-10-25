@@ -33,7 +33,7 @@ Phygital Engram has four pieces.
 
 Phygital Engram finds notes. It does not answer for you. Your agent writes the answer. The result is short, so your agent reads a few lines instead of dozens of notes.
 
-You can use it from the command line (typed commands) and from a small page on your own computer. An AI connector (MCP, a plug for AI apps) is in the repository too. It runs this command line for every call and gives your AI app four read-only tools. It has not been tried inside AI apps yet. See [Tools](tools.md).
+You can use it from the command line (typed commands) and from a small page on your own computer. An AI connector (MCP, a plug for AI apps) is in the repository too. It runs this command line for every call and gives your AI app four read-only tools. It worked in Claude Code and has not been tried in other apps yet. See [Tools](tools.md).
 
 ## Two rules it never breaks
 

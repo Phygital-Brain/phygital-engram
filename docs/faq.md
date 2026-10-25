@@ -106,7 +106,7 @@ No. There is no account, no telemetry and no tracking. The local web page loads 
 
 <details><summary><b>Which AI apps work with it?</b></summary>
 
-The repository has an MCP connector (`mcp/server.py`) with four read-only tools. We ran it over stdio against the sample notes, but we have not tested it inside Claude Code, Claude Desktop, Codex, Cursor, VS Code or Gemini CLI, so none is listed as working yet. ChatGPT and the Claude website and phone app are not supported, because they need a version that runs on a server. See [Connect your AI](connect-your-ai.md) and [Tools](tools.md). You can also run it in the terminal or on the local web page.
+The repository has an MCP connector (`mcp/server.py`) with four read-only tools. It worked in Claude Code on the sample notes. We have not tested it in Claude Desktop, Codex, Cursor, VS Code or Gemini CLI, so those are not listed as working yet. ChatGPT and the Claude website and phone app are not supported, because they need a version that runs on a server. See [Connect your AI](connect-your-ai.md) and [Tools](tools.md). You can also run it in the terminal or on the local web page.
 
 </details>
 
@@ -148,7 +148,7 @@ The docs are in English only for now. Search matches words in any language. Only
 
 <details><summary><b>Can I use it from my phone?</b></summary>
 
-Not by itself, because it runs on a computer. The connector we built runs on your computer, so phone apps cannot reach it. A phone needs a version that runs on a server over HTTPS. That is not built. See the [roadmap](roadmap.md).
+Yes, once it runs on a server you own. Phone apps reach a connector over HTTPS, and the connector in this repository runs on your computer, so it does not reach your phone yet. The server version, with a login, is next on the roadmap. The author already uses the working version from a phone through a server. See the [roadmap](roadmap.md).
 
 </details>
 

@@ -270,7 +270,7 @@ For a small folder you can. For thousands of notes, reading everything is slow a
 <details>
 <summary><b>Can I use it from my phone?</b></summary>
 
-Not yet. The connector runs on your computer, and phone apps can only reach one that runs on a server. A server version is on the [roadmap](docs/roadmap.md).
+Yes, once it runs on a server you own. Phone apps can only reach a connector over HTTPS, so the version in this repository, which runs on your computer, does not reach your phone. The server version is next on the [roadmap](docs/roadmap.md). The author already uses the working version from a phone through a server.
 </details>
 
 More in [docs/faq.md](docs/faq.md).
@@ -313,8 +313,8 @@ More in [docs/faq.md](docs/faq.md).
 
 ## Not supported yet
 
-- **The Claude website and phone app, and ChatGPT.** They need a connector that runs on a server over HTTPS. This one runs on your computer.
-- **Tested inside AI apps.** The connector was tested by running its four tools against the sample notes. It has not been tested inside Claude Code, Claude Desktop, Codex, Cursor, VS Code or Gemini CLI yet.
+- **The server version, for your phone, the Claude website and ChatGPT.** They work once Phygital Engram runs on a server you own, over HTTPS, behind a login. That version is not in this repository yet. The one here runs on your computer.
+- **Tested in more AI apps.** The connector worked in Claude Code (loaded from a config file). It has not been tested in Claude Desktop, Codex, Cursor, VS Code or Gemini CLI, and the plugin and `claude mcp add` routes are untried.
 - **Meaning search.** Matching by meaning needs an AI model at search time. In our test it made searches about 45 times slower for a small gain.
 - **Other languages.** Word roots are tuned for English. Other languages work for plain word matches only.
 - **Windows and Linux checks.** It was tested on macOS only so far.

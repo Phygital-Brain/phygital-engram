@@ -11,7 +11,7 @@ For when you want to know what Phygital Engram cannot do, or does only to a poin
 | Markdown only | Only `.md` files are read | Export other files to Markdown first. PDFs, images and Word files are not searched |
 | English-tuned word roots | "dashes" finds "dash" in English. Other languages match whole words and exact strings, but roots are not tuned | Use exact words in other languages, or add cards |
 | No sync, no phone app | It runs on one computer against one folder | Keep your notes in a cloud drive. A server version for phones is wanted: see the [roadmap](roadmap.md) |
-| The AI connector is untested in AI apps | It was only run over stdio against the sample notes. It runs on your computer, so ChatGPT and the Claude website and phone app cannot use it | Use the command line and the local page, or try the connector and report what happens: see [Connect your AI](connect-your-ai.md) |
+| The AI connector is tested in Claude Code only | It worked in Claude Code on the sample notes. It runs on your computer, so ChatGPT and the Claude website and phone app cannot use it until the server version exists | Use the command line and the local page, or try the connector and report what happens: see [Connect your AI](connect-your-ai.md) |
 | Reads only | It never edits notes | You or your agent change notes with your usual tools |
 
 ## Size and speed
