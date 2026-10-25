@@ -8,6 +8,8 @@ For anyone with a folder of Markdown notes who wants an AI agent to search it fa
 ## What you need
 
 - **A folder of Markdown notes.** Plain `.md` files, in subfolders if you like. Obsidian vaults, Baalda folders and [Phygital Brain](with-phygital-brain.md) brains all work.
+- **A file named `CLAUDE.md` at the top of that folder.** It can be empty. The search checks for it before it indexes, so it never builds an index from a half-copied folder. Phygital Brain makes this file for you. If your folder has none, create an empty one. Without it, indexing stops and nothing changes.
+- **A second folder for the index**, outside your notes. It keeps its own files there.
 - **Python** on your computer. [Set up on your computer](setup-computer.md) shows how to install it.
 - **About 5 minutes of patience** the first time, while the index is built. After that it is quick.
 

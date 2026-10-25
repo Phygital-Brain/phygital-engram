@@ -8,6 +8,8 @@ For when you want to try Phygital Engram on your own notes, free, with nothing s
 ## Before you start
 
 - **A folder of Markdown notes** on your computer. A copy is fine, and safer for a first try.
+- **A file named `CLAUDE.md` at the top of that folder.** It can be empty. The search checks for it before it indexes, so it never builds an index from a half-copied folder. Phygital Brain makes this file for you. If your folder has none, create an empty one. Without it, indexing stops and nothing changes.
+- **A second folder for the index, outside your notes.** It refuses to run if that folder is inside your notes.
 - **Python.** The working version runs on Python 3.14 (the server) and was tried on Python 3.15 (a Mac). Older versions are not tested. Check yours:
 
 ```bash

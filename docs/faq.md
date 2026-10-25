@@ -118,7 +118,7 @@ It is short for Model Context Protocol. Think of it as a plug that lets AI apps 
 
 <details><summary><b>Which notes can it read?</b></summary>
 
-Markdown files ending in `.md`, in any subfolder. It does not read PDFs, images, Word files or spreadsheets. It skips files over 2 MB and hidden folders such as `.obsidian` and `.git`.
+Markdown files ending in `.md`, in any subfolder. It does not read PDFs, images, Word files or spreadsheets. It skips files over 2 MB and hidden folders such as `.obsidian` and `.git`. The folder needs a file named `CLAUDE.md` at the top (it can be empty), which Phygital Brain makes for you.
 
 </details>
 

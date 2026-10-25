@@ -47,6 +47,7 @@
 - [What you get](#what-you-get)
 - [How fast is it?](#how-fast-is-it)
 - [Choose how to run it](#choose-how-to-run-it)
+- [What you need](#what-you-need)
 - [Quick start (about 5 minutes)](#quick-start-about-5-minutes)
 - [Works with Phygital Brain](#works-with-phygital-brain)
 - [What it does not do](#what-it-does-not-do)
@@ -182,6 +183,24 @@ These are the author's numbers on one set of private notes, so you cannot rerun 
 > [!TIP]
 > Not sure? Start with **1**. It is free, and nothing leaves your computer. Using an AI coding agent like Claude Code, Codex or Cursor? Ask it to set this up for you: [AGENTS.md](AGENTS.md) explains the project to it.
 
+## What you need
+
+Here is everything Phygital Engram needs, and nothing more.
+
+| You need | Why | For |
+|---|---|---|
+| **A folder of Markdown notes** (`.md` files) | That is what it searches. Obsidian, Baalda and Phygital Brain folders all work | Everything |
+| **A file named `CLAUDE.md` at the top of that folder.** It can be empty | The search checks it before it indexes, so it never builds an index from a half-copied folder. [Phygital Brain](docs/with-phygital-brain.md) makes this file for you. Without it, indexing stops and nothing changes | Everything |
+| **A second folder for the index, outside your notes** | It keeps its own files there, and refuses to run if that folder is inside your notes | Everything |
+| **Python 3.14 or newer** | The search uses only what comes with Python, so nothing else to install. Tried on Python 3.14 and 3.15 | Everything |
+| **An AI app that uses MCP** (Claude Code, Claude Desktop, Codex and others) | So your agent can search for you. You can also use it from the terminal without one | The AI connector |
+| **The MCP SDK** (`pip install -r requirements-server.txt`) | Only the server version needs it. The computer version does not | The server version |
+| **A server, a domain and your notes on that server** | For your phone, the Claude website and ChatGPT. Caddy makes the HTTPS certificate. See [setup-own-server.md](docs/setup-own-server.md) | The server version |
+| **A passphrase of 8 or more characters** | You type it once on your own server's login page | The server version |
+| **Your own AI key** | Only if you turn on [note cards](docs/cards.md). Search works without it | Optional |
+
+You don't need an account with us. There is none.
+
 ## Quick start (about 5 minutes)
 
 > [!IMPORTANT]
@@ -315,7 +334,7 @@ More in [docs/faq.md](docs/faq.md).
 
 ## Not supported yet
 
-- **Proof that the server version works everywhere.** The server version (`mcp/serve.py`) is built. 11 automated tests pass, and Claude Code connected to it over HTTP. Docker, Compose, Caddy, a real server, the login in a browser, a phone, the Claude website and ChatGPT are not tested with this repository. Nothing has been audited. See [setup-own-server.md](docs/setup-own-server.md).
+- **Proof that the server version works everywhere.** The server version (`mcp/serve.py`) is built. 11 automated tests pass, and Claude Code connected to it over HTTP. The login page worked in a browser, on a desktop and a phone-sized screen. Docker, Compose, Caddy, a real server, a real phone, the Claude website and ChatGPT are not tested with this repository. Nothing has been audited. See [setup-own-server.md](docs/setup-own-server.md).
 - **Tested in more AI apps.** The connector worked in Claude Code (loaded from a config file). It has not been tested in Claude Desktop, Codex, Cursor, VS Code or Gemini CLI, and the plugin and `claude mcp add` routes are untried.
 - **Meaning search.** Matching by meaning needs an AI model at search time. In our test it made searches about 45 times slower for a small gain.
 - **Other languages.** Word roots are tuned for English. Other languages work for plain word matches only.

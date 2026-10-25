@@ -38,17 +38,13 @@ You need:
 
 ## Claude Code
 
-The plugin route, once the repository is public:
+The plugin route, once the repository is public. Inside Claude Code, type:
 
-```bash
-claude plugin marketplace add Phygital-Brain/phygital-engram
+```
+/plugin install phygital-engram --marketplace Phygital-Brain/phygital-engram
 ```
 
-```bash
-claude plugin install phygital-engram@phygital-engram
-```
-
-The plugin starts the connector. It reads `ENGRAM_VAULT` and `ENGRAM_DATA` from your environment, so set them in your shell profile.
+The plugin starts the connector. It reads `ENGRAM_VAULT` and `ENGRAM_DATA` from your environment, so set them in your shell profile before you start Claude Code. Loading the plugin from a folder worked in our test (`claude --plugin-dir`). The install from the marketplace was not tested, because the repository is private.
 
 The manual route works today:
 
@@ -135,6 +131,8 @@ You should see it call `search_notes`, and then answer with a note name and a da
 | Claude Code 2.1.310, loaded from a config file, asked to find the Picture-Book schedule, 2026-10-25 | Worked. It started the connector, called `search_notes` and `open_result`, and answered with the note and the right dates |
 | Claude Code connected to the server version over HTTP, with a key from the login flow, on the sample notes, 2026-10-25 | Worked. It called `search_notes` and answered correctly |
 | 11 automated tests of the server version | Pass |
-| The Claude Code plugin, the `claude mcp add` route, and the login in a real browser | Not tested |
+| The Claude Code plugin loaded from a folder (`claude --plugin-dir`), 2026-10-25; `claude plugin validate` passes | Worked. Claude Code started the connector and `search_notes` found the schedule |
+| The login page in a real browser, on a desktop and a phone-sized screen, 2026-10-25 | Worked. A wrong passphrase showed "That passphrase is not right", the right one sent the browser back to the app, and the page fits a phone screen |
+| The plugin installed from the marketplace, and the `claude mcp add` route | Not tested |
 | Your phone, the Claude website and ChatGPT with this repository's server | Not tested |
 | Claude Desktop, Codex, Cursor, VS Code, Gemini CLI | Not tested |

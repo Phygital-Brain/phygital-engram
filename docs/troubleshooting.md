@@ -35,8 +35,8 @@ You should see a list of checks. Each one that is not marked OK says what to do.
 ### "Vault not found or not synced"
 
 **What you see:** `Vault not found or not synced. Nothing changed.`
-**Why:** the notes folder does not exist, or it has no `CLAUDE.md` file at the top. The working version uses that file to check that the folder is your notes and fully copied.
-**Fix:** check the path in `ENGRAM_VAULT`. If your folder has no `CLAUDE.md`, add an empty one at the top. This check may change before 0.1.0.
+**Why:** the notes folder does not exist, or it has no `CLAUDE.md` file at the top. The search needs that file: it checks that the folder is your notes and fully copied. Phygital Brain folders have one.
+**Fix:** check the path in `ENGRAM_VAULT`. If your folder has no `CLAUDE.md`, create an empty one at the top, then build the index again.
 
 ## The index
 

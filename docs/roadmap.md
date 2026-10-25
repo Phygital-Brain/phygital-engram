@@ -8,7 +8,7 @@ This page shows where Phygital Engram may go. At the end you know what is wanted
 
 In this order:
 
-1. **Test the server version.** It is built (`mcp/serve.py`, see [Setup on your own server](setup-own-server.md)) and its 11 automated tests pass. Claude Code connected to it over HTTP. It is not tested in Docker, with Compose and Caddy, on a real server, in the login page in a browser, on a phone, in the Claude website or in ChatGPT. Writing down what works comes first, before anything new.
+1. **Test the server version.** It is built (`mcp/serve.py`, see [Setup on your own server](setup-own-server.md)) and its 11 automated tests pass. Claude Code connected to it over HTTP. The login page also worked in a browser, on a desktop and a phone-sized screen. It is not tested in Docker, with Compose and Caddy, on a real server, on a real phone, in the Claude website or in ChatGPT. Writing down what works comes first, before anything new.
 2. **Test the connector in more AI apps.** The connector is built (see [Tools](tools.md)) and worked in Claude Code on the sample notes. Next is the Claude Code plugin route, Claude Desktop, Codex, Cursor, VS Code and Gemini CLI, and writing down what works.
 3. **Publish the extension with release 0.1.0.** The Claude Desktop extension build exists (see [Claude Desktop extension](claude-desktop-extension.md)). It ships with the search code, which is not in the repository yet. There is no release or download yet.
 4. **Sourced facts.** Return the single line that answers, with its note, heading and date, instead of a whole section. In a small test on the author's notes it cut the reading from about 3,100 to about 1,000 characters per question. It matches words only and needs more work.

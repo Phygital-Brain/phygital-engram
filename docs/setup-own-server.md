@@ -154,7 +154,9 @@ Stop: `docker compose down`. Remove everything, including the index and keys: `d
 |---|---|
 | 11 automated tests of the server: login, wrong passphrase, lockout, key renewal, the four tools, a private result refused, unsafe starts refused. Python 3.14, MCP SDK 2.3.0, a stand-in search, 2026-10-25 | Pass |
 | Claude Code 2.1.310 connected to the server over HTTP with a login key, on the sample notes, 2026-10-25 | Worked. It called `search_notes` and answered correctly |
-| The login page in a browser, from a phone, from the Claude website or from ChatGPT | Not tested with this repository |
+| The login page in a real browser, on a desktop and a phone-sized screen, 2026-10-25 | Worked. A wrong passphrase showed an error, the right one sent the browser back to the app, and the page fits a phone screen |
+| The server building its own index when it starts on an empty data folder, 2026-10-25 | Worked. The index was there within seconds |
+| A real phone, the Claude website or ChatGPT connecting to this repository's server | Not tested |
 | Docker, Docker Compose, Caddy and the certificate | Not tested: Docker was not available where this was written |
 | A real server on the internet | Not tested |
 
