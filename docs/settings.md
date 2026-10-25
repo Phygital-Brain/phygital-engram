@@ -3,7 +3,7 @@
 Where each setting lives, what it does, and the few you are likely to change.
 
 > [!NOTE]
-> Every default on this page comes from `config.json` in version 0.1.1. The defaults are general. They are a starting point, so check them against your own folders.
+> Every default on this page comes from `config.json` in version 0.2.0. The defaults are general. They are a starting point, so check them against your own folders.
 
 <details>
 <summary><b>Table of contents</b></summary>

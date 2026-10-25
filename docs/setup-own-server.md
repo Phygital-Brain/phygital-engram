@@ -3,7 +3,7 @@
 Put Phygital Engram on a server you own, so your phone, the Claude website and other AI apps can search your notes from anywhere. You end up with an address like `https://notes.example.com/mcp`, and you type a passphrase once.
 
 > [!IMPORTANT]
-> Version 0.1.1. The server version is written and tested on a computer, but it has not been run on a real server or from a phone with this repository. A Docker image is published with the release at `ghcr.io/phygital-brain/phygital-engram` (the Packages page). It builds on GitHub for amd64 and arm64. The Compose file below builds the image from this repository. Read [What we tested](#what-we-tested) before you rely on it.
+> Version 0.2.0. The server version is written and tested on a computer, but it has not been run on a real server or from a phone with this repository. A Docker image is published with the release at `ghcr.io/phygital-brain/phygital-engram` (the Packages page). It builds on GitHub for amd64 and arm64. The Compose file below builds the image from this repository. Read [What we tested](#what-we-tested) before you rely on it.
 
 <details>
 <summary><b>Table of contents</b></summary>

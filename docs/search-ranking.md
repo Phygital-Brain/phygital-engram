@@ -91,7 +91,7 @@ A question is cut to 500 characters and 20 words. At most 50 results come back. 
 
 ## Folder levels
 
-These are the levels in the `config.json` that ships with version 0.1.1. They are general. If your folders have other names, set your own in `path_weights` and `evergreen_paths`. See [settings](settings.md). Capital letters do not matter in these rules.
+These are the levels in the `config.json` that ships with version 0.2.0. They are general. If your folders have other names, set your own in `path_weights` and `evergreen_paths`. See [settings](settings.md). Capital letters do not matter in these rules.
 
 | Level | Folders | Weight | Fades with age? |
 |---|---|---|---|

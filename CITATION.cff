@@ -6,7 +6,7 @@ authors:
   - name: "Phygital-Brain"
 repository-code: "https://github.com/Phygital-Brain/phygital-engram"
 license: Apache-2.0
-version: 0.1.1
+version: 0.2.0
 date-released: "2026-10-25"
 abstract: "Phygital Engram is a fast, private search for a second brain, or any folder of Markdown notes. Your agent finds the right note and the exact line, with the note, heading and date as the source. Read-only, local, no telemetry."
 keywords: [search, markdown, notes, second-brain, sqlite, local-first]

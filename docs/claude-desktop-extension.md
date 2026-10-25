@@ -3,7 +3,7 @@
 Install Phygital Engram in Claude Desktop with one click and no config file.
 
 > [!IMPORTANT]
-> Version 0.1.1. The extension is built by a script and checked by a workflow when a release is published, and the file `phygital-engram.mcpb` is on the release. Nothing here has been tested inside Claude Desktop yet.
+> Version 0.2.0. The extension is built by a script and checked by a workflow when a release is published, and the file `phygital-engram.mcpb` is on the release. Nothing here has been tested inside Claude Desktop yet.
 
 ## What you need
 

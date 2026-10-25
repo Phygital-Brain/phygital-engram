@@ -3,7 +3,7 @@
 Once Phygital Engram works in your terminal, connect it to the AI app you use, so the app can search your notes for you.
 
 > [!IMPORTANT]
-> Version 0.1.1. The computer version worked in Claude Code, loaded from a config file, and Claude Code also worked with the server version over HTTP. Every other app and install route below is untested. Those steps are written from each app's documentation. If one fails, please [open an issue](https://github.com/Phygital-Brain/phygital-engram/issues/new?template=bug_report.yml).
+> Version 0.2.0. The computer version worked in Claude Code, loaded from a config file, and Claude Code also worked with the server version over HTTP. Every other app and install route below is untested. Those steps are written from each app's documentation. If one fails, please [open an issue](https://github.com/Phygital-Brain/phygital-engram/issues/new?template=bug_report.yml).
 
 <details>
 <summary><b>Table of contents</b></summary>

@@ -112,7 +112,7 @@ If you add an AI key, Phygital Engram can write one short card for every section
 
 ## The code
 
-It is written in Python, and the search itself uses only the standard library. The AI connector (`mcp/server.py`, Python, standard library only) is in this repository, and so is the server version (`mcp/serve.py`, which needs the MCP SDK). The search is in this repository too, as of version 0.1.1, the first release.
+It is written in Python, and the search itself uses only the standard library. The AI connector (`mcp/server.py`, Python, standard library only) is in this repository, and so is the server version (`mcp/serve.py`, which needs the MCP SDK). The search is in this repository too, as of version 0.2.0, the first release.
 
 | Path | What it holds |
 |---|---|
