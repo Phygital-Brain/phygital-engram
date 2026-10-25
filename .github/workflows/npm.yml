@@ -1,0 +1,58 @@
+# Keeps the npm package in step with GitHub. When a push to main raises the version
+# in package.json and that version is not on npm yet, it runs the checks and publishes it.
+# npm trusts this workflow through trusted publishing, so no token is stored anywhere.
+name: npm
+
+on:
+  push:
+    branches: [main]
+    paths: [package.json]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: npm
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: github.repository == 'Phygital-Brain/phygital-engram'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      id-token: write # npm trusted publishing
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09   # v5, pinned
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444   # v5, pinned
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+
+      - name: Use the newest npm (trusted publishing needs 11.5.1 or newer)
+        run: npm install -g npm@12.2.0  # zizmor: ignore[adhoc-packages] npm itself, pinned
+
+      - name: Is this version already on npm?
+        id: v
+        run: |
+          name="$(node -p "require('./package.json').name")"
+          version="$(node -p "require('./package.json').version")"
+          if npm view "$name@$version" version >/dev/null 2>&1; then
+            echo "$name@$version is already on npm. Nothing to do."
+            echo "new=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "new=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Run the checks
+        if: steps.v.outputs.new == 'true'
+        run: python3 scripts/check.py && python3 -m unittest discover -s tests
+
+      - name: Publish
+        if: steps.v.outputs.new == 'true'
+        run: npm publish --provenance --access public
