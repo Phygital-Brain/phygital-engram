@@ -1,0 +1,33 @@
+# Your own server. Gives you https://<PHYGITAL_ENGRAM_DOMAIN> with a free certificate, for your phone and computer.
+#   1. Point a domain (for example notes.example.com) at your server's IP address.
+#   2. cp .env.example .env   and fill in PHYGITAL_ENGRAM_DOMAIN, NOTES_DIR and your passphrase.
+#   3. docker compose up -d
+# Full guide: docs/setup-own-server.md
+services:
+  app:
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      PUBLIC_URL: https://${PHYGITAL_ENGRAM_DOMAIN:?set PHYGITAL_ENGRAM_DOMAIN in .env}
+    volumes:
+      - ${NOTES_DIR:?set NOTES_DIR in .env}:/notes:ro   # your notes, read-only
+      - app-data:/data                                  # the index and the login keys
+
+  caddy:
+    image: caddy:2.10
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      PHYGITAL_ENGRAM_DOMAIN: ${PHYGITAL_ENGRAM_DOMAIN}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+    depends_on:
+      - app
+
+volumes:
+  app-data:
+  caddy-data:

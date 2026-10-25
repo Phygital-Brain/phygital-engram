@@ -50,6 +50,12 @@ Every word of your question must match, and at most two results are shown. This 
 
 Delete the index folder (`ENGRAM_DATA`). That removes everything Phygital Engram stored, and your notes stay as they are. You can rebuild it afterwards. See [Privacy](privacy.md#deleting-everything).
 
+## The server version
+
+If you run the server version (`mcp/serve.py`), the notes sit on a server you run, and your AI apps reach it over HTTPS. Every request needs a login key, which you get by typing your passphrase on a page of your own server. The server stores only `oauth.json` (the apps that logged in, and fingerprints of their keys) and the index. It never opens a private result, the same as the computer version. It is not tested on a real server and nobody has audited it.
+
+The full list of what it defends against, and what it does not, is in the [threat model](threat-model.md). Setup is in [setup-own-server.md](setup-own-server.md).
+
 ## Found a security problem?
 
 Please don't open a public issue. Use the private report. The steps are in [SECURITY.md](../SECURITY.md).

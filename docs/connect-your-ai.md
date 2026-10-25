@@ -3,7 +3,7 @@
 For when Phygital Engram works in your terminal and you want your AI app to search your notes for you. You will leave with one app connected and a first question answered.
 
 > [!IMPORTANT]
-> Pre-release. The connector worked in Claude Code, loaded from a config file. Every other app and install route below is untested, and there is no release to download. Those steps are written from each app's documentation. If one fails, please [open an issue](https://github.com/Phygital-Brain/phygital-engram/issues/new?template=bug_report.yml).
+> Pre-release. The computer version worked in Claude Code, loaded from a config file, and Claude Code also worked with the server version over HTTP. Every other app and install route below is untested, and there is no release to download. Those steps are written from each app's documentation. If one fails, please [open an issue](https://github.com/Phygital-Brain/phygital-engram/issues/new?template=bug_report.yml).
 
 <details>
 <summary><b>Table of contents</b></summary>
@@ -23,7 +23,12 @@ For when Phygital Engram works in your terminal and you want your AI app to sear
 
 ## Before you start
 
-MCP is a plug for AI apps. Phygital Engram includes one small connector, `mcp/server.py`. Your app starts it when needed. It runs on your computer and talks to the app directly. Nothing goes through the internet.
+MCP is a plug for AI apps. Phygital Engram has two ways to plug in:
+
+- **On your computer** (`mcp/server.py`). Your app starts it when needed. It talks to the app directly and nothing goes through the internet. Use this for Claude Code, Claude Desktop, Codex and other apps on the same computer as your notes.
+- **On a server** (`mcp/serve.py`). It runs all day at an address like `https://notes.example.com/mcp`, behind a passphrase login. Use this for your phone, the Claude website and ChatGPT, and from any computer. See [setup-own-server.md](setup-own-server.md).
+
+Both give your AI the same four read-only tools.
 
 You need:
 
@@ -57,9 +62,17 @@ You should see `phygital-engram` when you run:
 claude mcp list
 ```
 
+To use your own server instead, from any computer:
+
+```bash
+claude mcp add --transport http phygital-engram https://notes.example.com/mcp
+```
+
+Then run `/mcp` inside Claude Code to log in with your passphrase.
+
 ## Claude Desktop
 
-The one-click extension is the easy way: [claude-desktop-extension.md](claude-desktop-extension.md).
+The one-click extension is the easy way: [claude-desktop-extension.md](claude-desktop-extension.md). To use your own server instead, add it as a custom connector under **Settings, Connectors**, as in the Claude website steps below.
 
 To set it up by hand, open **Settings, Developer, Edit Config** and add this to `claude_desktop_config.json`, then restart the app:
 
@@ -80,11 +93,18 @@ To set it up by hand, open **Settings, Developer, Edit Config** and add this to 
 
 ## Claude website and phone app
 
-These apps reach a connector over the internet, so Phygital Engram has to run on a server you own, over HTTPS, behind a login. Then it works on your phone too. The author runs the working version this way. That server version is not in this repository yet, and the connector here runs on your computer only. It is next on the [roadmap](roadmap.md).
+These apps reach your notes through the server version, so Phygital Engram has to run on a server you own: see [setup-own-server.md](setup-own-server.md). Then:
+
+1. Open the Claude website, go to **Settings, Connectors, Add custom connector**.
+2. Give it a name, like Phygital Engram, and paste your address: `https://notes.example.com/mcp`.
+3. Claude opens a page on your server. Type your passphrase and tap **Allow**.
+4. Start a chat and switch the connector on. Connectors you add on the website also appear in the phone app.
+
+You should see Claude call `search_notes` when you ask about your notes. Not tested with this repository's server. The author's own setup, which is separate, works this way from a phone.
 
 ## ChatGPT
 
-Same as above: it works once Phygital Engram runs on a server you own. Not in this repository yet.
+ChatGPT can use remote MCP servers, so it also needs the server version: [setup-own-server.md](setup-own-server.md). Add your address `https://notes.example.com/mcp` as a custom connector in ChatGPT's connector settings and log in with your passphrase when it asks. The menu names change often, so follow ChatGPT's current help for custom MCP connectors. Not tested.
 
 ## Codex
 
@@ -113,5 +133,8 @@ You should see it call `search_notes`, and then answer with a note name and a da
 | The four tools, run over stdio against the real search on the 24-note sample, 2026-10-25 | Worked. A private result was found and refused when asked to open |
 | 10 automated tests of the connector, with a stand-in search | Pass |
 | Claude Code 2.1.310, loaded from a config file, asked to find the Picture-Book schedule, 2026-10-25 | Worked. It started the connector, called `search_notes` and `open_result`, and answered with the note and the right dates |
-| The Claude Code plugin and the `claude mcp add` route | Not tested |
+| Claude Code connected to the server version over HTTP, with a key from the login flow, on the sample notes, 2026-10-25 | Worked. It called `search_notes` and answered correctly |
+| 11 automated tests of the server version | Pass |
+| The Claude Code plugin, the `claude mcp add` route, and the login in a real browser | Not tested |
+| Your phone, the Claude website and ChatGPT with this repository's server | Not tested |
 | Claude Desktop, Codex, Cursor, VS Code, Gemini CLI | Not tested |

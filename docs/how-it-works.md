@@ -33,7 +33,7 @@ Phygital Engram has four pieces.
 
 Phygital Engram finds notes. It does not answer for you. Your agent writes the answer. The result is short, so your agent reads a few lines instead of dozens of notes.
 
-You can use it from the command line (typed commands) and from a small page on your own computer. An AI connector (MCP, a plug for AI apps) is in the repository too. It runs this command line for every call and gives your AI app four read-only tools. It worked in Claude Code and has not been tried in other apps yet. See [Tools](tools.md).
+You can use it from the command line (typed commands) and from a small page on your own computer. An AI connector (MCP, a plug for AI apps) is in the repository too. It runs this command line for every call and gives your AI app four read-only tools. It worked in Claude Code and has not been tried in other apps yet. A server version (`mcp/serve.py`) gives the same tools over HTTPS behind a login, for your phone and the web: see [Setup on your own server](setup-own-server.md). See [Tools](tools.md).
 
 ## Two rules it never breaks
 
@@ -112,4 +112,4 @@ If you add an AI key, Phygital Engram can write one short card for every section
 
 ## The code
 
-It is written in Python, and the search itself uses only the standard library. The AI connector (`mcp/server.py`, Python, standard library only) is in this repository. The search code (`engram.py`) is not yet. It is being tuned first and arrives with release 0.1.0. This is a pre-release, and there is no download yet. See the [roadmap](roadmap.md). When the search code lands, a folder map goes here and in `AGENTS.md`.
+It is written in Python, and the search itself uses only the standard library. The AI connector (`mcp/server.py`, Python, standard library only) is in this repository, and so is the server version (`mcp/serve.py`, which needs the MCP SDK). The search code (`engram.py`) is not yet. It is being tuned first and arrives with release 0.1.0. This is a pre-release, and there is no download yet. See the [roadmap](roadmap.md). When the search code lands, a folder map goes here and in `AGENTS.md`.

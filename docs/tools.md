@@ -4,6 +4,8 @@ For anyone who wants to know what an AI app can do with Phygital Engram. You wil
 
 ## The 4 tools
 
+The tools are the same in both versions: the one on your computer (`mcp/server.py`) and the server version (`mcp/serve.py`, see [setup-own-server.md](setup-own-server.md)). The server version adds a login. It does not add or change a tool.
+
 | Tool | What it does | Changes anything? |
 |---|---|---|
 | `search_notes` | Searches your notes and returns a short ranked list | No |

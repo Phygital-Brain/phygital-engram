@@ -19,6 +19,17 @@ jobs:
       - run: python3 scripts/check.py
       - run: python3 -m unittest discover -s tests -p "test_*.py"
 
+  server:
+    name: server version
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1   # v7.0.1, pinned
+        with:
+          persist-credentials: false
+      - run: python3 -m venv .venv
+      - run: .venv/bin/pip install -r requirements-server.txt
+      - run: .venv/bin/python -m unittest discover -s tests -p "test_*.py"
+
   workflows:
     name: workflows (zizmor)
     runs-on: ubuntu-latest

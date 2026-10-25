@@ -1,0 +1,13 @@
+.git
+.github
+__pycache__
+.env
+dist
+docs
+tests
+brand
+notes
+*.md
+!README.md
+!LICENSE
+!NOTICE

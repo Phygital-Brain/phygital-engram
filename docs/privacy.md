@@ -33,6 +33,12 @@ Phygital Engram does not control your AI app. It returns a short list of results
 
 Check your AI app's own privacy settings. See also [Safety](safety.md#what-you-should-do).
 
+## The server version
+
+If you run the server version (`mcp/serve.py`), the notes sit on a server you run, and your AI apps reach it over HTTPS. What travels: search results, from your server to your AI app, over HTTPS. What is stored on the server: `oauth.json` in `ENGRAM_DATA` (client information and key fingerprints, never a usable key) and the index. Your notes are mounted read-only. Nothing is sent to us.
+
+The full list of what it defends against, and what it does not, is in the [threat model](threat-model.md). Setup is in [setup-own-server.md](setup-own-server.md).
+
 ## Logs
 
 The program prints to your terminal and writes no log file. The health check reports problems in the terminal. If you run it as a scheduled task, your system's own log may keep what it printed.

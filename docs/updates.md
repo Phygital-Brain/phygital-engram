@@ -33,6 +33,10 @@ python3 engram.py health
 
 Not built yet. An automatic updater is on the [roadmap](roadmap.md). Until then, check the releases page when you like.
 
+## The server version
+
+If you run the server version, update it as described in [Update, stop or remove it](setup-own-server.md#update-stop-or-remove-it).
+
 ## Staying on one version
 
 You don't have to update. An old version keeps working. Update if a release says it fixes a security problem. See [SECURITY.md](../SECURITY.md) for how problems are handled.

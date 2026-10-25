@@ -106,7 +106,7 @@ No. There is no account, no telemetry and no tracking. The local web page loads 
 
 <details><summary><b>Which AI apps work with it?</b></summary>
 
-The repository has an MCP connector (`mcp/server.py`) with four read-only tools. It worked in Claude Code on the sample notes. We have not tested it in Claude Desktop, Codex, Cursor, VS Code or Gemini CLI, so those are not listed as working yet. ChatGPT and the Claude website and phone app are not supported, because they need a version that runs on a server. See [Connect your AI](connect-your-ai.md) and [Tools](tools.md). You can also run it in the terminal or on the local web page.
+The repository has an MCP connector (`mcp/server.py`) with four read-only tools. It worked in Claude Code on the sample notes. We have not tested it in Claude Desktop, Codex, Cursor, VS Code or Gemini CLI, so those are not listed as working yet. ChatGPT and the Claude website and phone app are supported through the server version (`mcp/serve.py`), set up with [Setup on your own server](setup-own-server.md). It is not tested on those apps with this repository yet. See [Connect your AI](connect-your-ai.md) and [Tools](tools.md). You can also run it in the terminal or on the local web page.
 
 </details>
 
@@ -148,7 +148,7 @@ The docs are in English only for now. Search matches words in any language. Only
 
 <details><summary><b>Can I use it from my phone?</b></summary>
 
-Yes, once it runs on a server you own. Phone apps reach a connector over HTTPS, and the connector in this repository runs on your computer, so it does not reach your phone yet. The server version, with a login, is next on the roadmap. The author already uses the working version from a phone through a server. See the [roadmap](roadmap.md).
+Yes, through the server version. Phone apps reach a connector over HTTPS, so the computer version does not reach your phone. The server version runs on a server you own, behind a passphrase login. Set it up with [Setup on your own server](setup-own-server.md). It is not tested on a phone with this repository yet. The author uses the working version from a phone through their own server. See the [roadmap](roadmap.md).
 
 </details>
 

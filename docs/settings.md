@@ -23,6 +23,7 @@ This page is for anyone who wants to change how Phygital Engram finds and ranks 
 - [Speed and housekeeping](#speed-and-housekeeping)
 - [Files in your data folder](#files-in-your-data-folder)
 - [The connector](#the-connector)
+- [The server version](#the-server-version)
 
 </details>
 
@@ -204,3 +205,22 @@ The connector for AI apps (`mcp/server.py`, see [tools.md](tools.md)) has one se
 | Name | Default | What it does |
 |---|---|---|
 | `PHYGITAL_ENGRAM_CLI` | The `engram.py` next to the `mcp` folder | The path to the search program the connector runs. Change it only if you keep the program somewhere else |
+
+## The server version
+
+The server version (`mcp/serve.py`, see [setup-own-server.md](setup-own-server.md)) is set with environment variables, usually in a `.env` file next to `docker-compose.yml`. It also passes `ENGRAM_VAULT` and `ENGRAM_DATA` on to the search.
+
+| Name | Default | What it does |
+|---|---|---|
+| `PUBLIC_URL` | None. Required | Where the server is reached, like `https://notes.example.com`. It must start with `https://`, or the server refuses to start |
+| `LOGIN_HASH` | None | The fingerprint of your passphrase. Make it with `python3 mcp/serve.py hash`. Use this one |
+| `LOGIN_PASSPHRASE` | None | Your passphrase in plain text, 8 or more characters. Use it only if you cannot use `LOGIN_HASH`. One of the two is required |
+| `HOST` | `127.0.0.1` | The address the server listens on |
+| `PORT` | `8765` | The port the server listens on |
+| `PHYGITAL_ENGRAM_REFRESH_MINUTES` | `10` | How often the index is updated. `0` means never |
+| `PHYGITAL_ENGRAM_TRUST_PROXY` | Off | Set to `1` when a proxy like Caddy sits in front, so the visitor's address is read from it. Needed for the 5-wrong-passphrases pause to count the right address |
+| `ALLOWED_REDIRECT_HOSTS` | `claude.ai,claude.com,chatgpt.com,openai.com,vscode.dev` | The AI apps allowed to log in. Others are refused |
+| `NOTES_DIR` | None. Required in Compose | The folder of notes on the server, mounted read-only |
+| `PHYGITAL_ENGRAM_DOMAIN` | None. Required in Compose | Your domain. Compose builds `PUBLIC_URL` from it and Caddy gets the certificate for it |
+
+The server refuses to start without a passphrase of 8 or more characters, or without an https `PUBLIC_URL`. It pauses a login for 15 minutes after 5 wrong passphrases from one address.

@@ -29,7 +29,7 @@ Add one line to your brain's main rules file (`CLAUDE.md`):
 The second sentence matters. If Phygital Engram is not installed, is down, or finds nothing, your agent reads files as it always did. Nothing breaks.
 
 > [!NOTE]
-> The repository has a connector that lets your AI app use Phygital Engram directly, and it worked in Claude Code. It has not been tried in other apps yet. See [Connect your AI](connect-your-ai.md). In an app without it, the rule only helps an agent that can run terminal commands.
+> The repository has a connector that lets your AI app use Phygital Engram directly, and it worked in Claude Code. It has not been tried in other apps yet. For a phone or the web there is a server version: see [Setup on your own server](setup-own-server.md). See [Connect your AI](connect-your-ai.md). In an app without it, the rule only helps an agent that can run terminal commands.
 
 ## The Brain Keeper does not depend on it
 

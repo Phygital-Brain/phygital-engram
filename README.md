@@ -150,7 +150,7 @@ More in [docs/how-it-works.md](docs/how-it-works.md) and [docs/search-ranking.md
 - **Folder hints.** Say "decisions" or "daily" in your question and that folder counts double. It is a boost, never a filter.
 - **A reason with every result.** A short line says why it came back: "exact match", "decision", "3 months old".
 - **Open and look around.** Open one section, or the sections before and after it.
-- **A connector for AI apps.** Four read-only tools (`search_notes`, `open_result`, `around_result`, `check_index`) let your agent do all of this itself. A locked private note can be found but never opened by the agent.
+- **A connector for AI apps.** Four read-only tools (`search_notes`, `open_result`, `around_result`, `check_index`) let your agent do all of this itself, from your computer or from your own server. A locked private note can be found but never opened by the agent.
 - **A health check.** One command says if the index is fresh, if anything private slipped in, and if searches are slow.
 - **A test you can run on your own notes.** Write your own questions and score the search.
 - **Optional note cards.** An AI writes a card for each section once, using your own key. About $6 for 4,800 notes, then cents a month. See [docs/cards.md](docs/cards.md).
@@ -177,7 +177,7 @@ These are the author's numbers on one set of private notes, so you cannot rerun 
 | **1. Your computer, from the command line** | Mac, Windows or Linux with Python | Free | [setup-computer.md](docs/setup-computer.md) |
 | **2. Your AI app, through the MCP connector** | Your computer, in Claude Code, Claude Desktop, Codex and others | Free | [connect-your-ai.md](docs/connect-your-ai.md) |
 | Claude Desktop extension | Your computer, one click, no config file | Free | [claude-desktop-extension.md](docs/claude-desktop-extension.md) |
-| On your own server | A server you run | A few dollars a month | Not written yet |
+| **3. Your own server** | A server you run, for your phone, the Claude website and ChatGPT | A few dollars a month | [setup-own-server.md](docs/setup-own-server.md) |
 
 > [!TIP]
 > Not sure? Start with **1**. It is free, and nothing leaves your computer. Using an AI coding agent like Claude Code, Codex or Cursor? Ask it to set this up for you: [AGENTS.md](AGENTS.md) explains the project to it.
@@ -270,7 +270,7 @@ For a small folder you can. For thousands of notes, reading everything is slow a
 <details>
 <summary><b>Can I use it from my phone?</b></summary>
 
-Yes, once it runs on a server you own. Phone apps can only reach a connector over HTTPS, so the version in this repository, which runs on your computer, does not reach your phone. The server version is next on the [roadmap](docs/roadmap.md). The author already uses the working version from a phone through a server.
+Yes, through the server version. Phone apps can only reach a connector over HTTPS, so the computer version does not reach your phone. The server version (`mcp/serve.py`) runs on a server you own, behind a passphrase login. Set it up with [setup-own-server.md](docs/setup-own-server.md). It is not tested on a phone with this repository yet. The author uses the working version from a phone through their own server.
 </details>
 
 More in [docs/faq.md](docs/faq.md).
@@ -282,6 +282,8 @@ More in [docs/faq.md](docs/faq.md).
 | [Getting started](docs/getting-started.md) | You want the shortest path to your first search |
 | [Setup on your computer](docs/setup-computer.md) | You want to install and run it, free |
 | [Connect your AI app](docs/connect-your-ai.md) | You want your agent to search your notes |
+| [Setup on your own server](docs/setup-own-server.md) | You want your phone, the Claude website or ChatGPT to search your notes |
+| [Threat model](docs/threat-model.md) | You want to know what the server version defends against, and what it does not |
 | [Claude Desktop extension](docs/claude-desktop-extension.md) | You use Claude Desktop and want one click |
 | [The four tools](docs/tools.md) | You want to know what your agent can do with it |
 | [Things to ask](docs/examples.md) | You want ideas for what to ask your agent |
@@ -313,7 +315,7 @@ More in [docs/faq.md](docs/faq.md).
 
 ## Not supported yet
 
-- **The server version, for your phone, the Claude website and ChatGPT.** They work once Phygital Engram runs on a server you own, over HTTPS, behind a login. That version is not in this repository yet. The one here runs on your computer.
+- **Proof that the server version works everywhere.** The server version (`mcp/serve.py`) is built. 11 automated tests pass, and Claude Code connected to it over HTTP. Docker, Compose, Caddy, a real server, the login in a browser, a phone, the Claude website and ChatGPT are not tested with this repository. Nothing has been audited. See [setup-own-server.md](docs/setup-own-server.md).
 - **Tested in more AI apps.** The connector worked in Claude Code (loaded from a config file). It has not been tested in Claude Desktop, Codex, Cursor, VS Code or Gemini CLI, and the plugin and `claude mcp add` routes are untried.
 - **Meaning search.** Matching by meaning needs an AI model at search time. In our test it made searches about 45 times slower for a small gain.
 - **Other languages.** Word roots are tuned for English. Other languages work for plain word matches only.
@@ -335,7 +337,8 @@ Issues are public, so leave out passwords, keys and private notes.
 
 | Path | What is in it |
 |---|---|
-| `mcp/` | The connector that lets an AI app search your notes. Four read-only tools |
+| `mcp/` | The connectors that let an AI app search your notes. `server.py` runs on your computer. `serve.py` is the server version. Same four read-only tools |
+| `Dockerfile`, `docker-compose.yml`, `Caddyfile`, `requirements-server.txt` | Run the server version on your own server, with HTTPS |
 | `.claude-plugin/`, `glama.json` | The Claude Code plugin and the MCP directory listing |
 | `docs/` | Every guide, and the images they use |
 | `tests/` | A made-up sample of 24 notes and 26 questions, so you can run the benchmark yourself |
@@ -344,7 +347,7 @@ Issues are public, so leave out passwords, keys and private notes.
 | `AGENTS.md` | A guide for AI coding agents that change this repository |
 | `NOTICE`, `LICENSE`, `TRADEMARKS.md` | The license, the credits and the name and logo rules |
 
-The search code (`engram.py` and `engram_lib/`) arrives with version 0.1.0, after tuning.
+The search code (`engram.py` and `engram_lib/`) arrives with version 0.1.0, after tuning. The Docker build needs it.
 
 ## Contributors
 

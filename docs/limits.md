@@ -10,8 +10,8 @@ For when you want to know what Phygital Engram cannot do, or does only to a poin
 | No search by meaning | It matches words, word roots, exact strings and signals like folder and date. Different words for the same idea can be missed | Turn on [cards](cards.md), or ask in two ways. A try with meaning search was too slow: see [benchmarks](benchmarks.md) |
 | Markdown only | Only `.md` files are read | Export other files to Markdown first. PDFs, images and Word files are not searched |
 | English-tuned word roots | "dashes" finds "dash" in English. Other languages match whole words and exact strings, but roots are not tuned | Use exact words in other languages, or add cards |
-| No sync, no phone app | It runs on one computer against one folder | Keep your notes in a cloud drive. A server version for phones is wanted: see the [roadmap](roadmap.md) |
-| The AI connector is tested in Claude Code only | It worked in Claude Code on the sample notes. It runs on your computer, so ChatGPT and the Claude website and phone app cannot use it until the server version exists | Use the command line and the local page, or try the connector and report what happens: see [Connect your AI](connect-your-ai.md) |
+| No sync, no phone app of its own | It runs against one folder | Keep your notes in a cloud drive. For a phone, use the server version: see [Setup on your own server](setup-own-server.md). It brings your own sync, and it is not tested on a phone with this repository |
+| The AI connector is tested in Claude Code only | The computer version worked in Claude Code on the sample notes. The server version connected to Claude Code over HTTP. ChatGPT, the Claude website and the phone app can use the server version, but that is untested here | Use the command line and the local page, or try the connectors and report what happens: see [Connect your AI](connect-your-ai.md) and [Setup on your own server](setup-own-server.md) |
 | Reads only | It never edits notes | You or your agent change notes with your usual tools |
 
 ## Size and speed
