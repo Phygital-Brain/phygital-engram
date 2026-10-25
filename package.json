@@ -1,0 +1,29 @@
+{
+  "name": "phygital-engram",
+  "version": "0.2.0",
+  "description": "A fast, private, read-only search for your second brain or any folder of Markdown notes. An MCP server for your AI app. Needs Python 3.11 or newer.",
+  "bin": {
+    "phygital-engram": "bin/phygital-engram.mjs"
+  },
+  "files": [
+    "bin/",
+    "mcp/",
+    "app/",
+    "engram_lib/",
+    "engram.py",
+    "config.json",
+    "LICENSE",
+    "NOTICE"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "Apache-2.0",
+  "author": "Phygital-Brain",
+  "homepage": "https://github.com/Phygital-Brain/phygital-engram",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Phygital-Brain/phygital-engram.git"
+  },
+  "keywords": ["second-brain", "search", "mcp", "markdown", "notes", "sqlite", "fts5"]
+}
