@@ -42,21 +42,21 @@ INSTRUCTIONS = (
 READ_ONLY = {"readOnlyHint": True, "destructiveHint": False, "idempotentHint": True, "openWorldHint": False}
 TOOLS = [
     {"name": "search_notes", "title": "Search notes",
-     "description": "Search the person's Markdown notes. Returns a short ranked list. Each result has an id, the note, the heading, the date, a snippet and a line saying why it came back.",
+     "description": "Search the person's Markdown notes with plain words and get a short ranked list. Use it first, before you answer about their past work, projects, decisions, people or notes. Read-only. Each result has an id, the note path, the heading, the date, a snippet and a line saying why it came back (for example an exact match or a decision note). Results can include a private note marked LOCKED: tell the person it exists and let them open it. Pass an id to open_result for the full text. If nothing matches, the list is empty.",
      "inputSchema": {"type": "object", "properties": {
          "query": {"type": "string", "description": "The question, in plain words (up to 500 characters)"},
          "limit": {"type": "integer", "minimum": 1, "maximum": 20, "description": "How many results (default 8)"}},
          "required": ["query"], "additionalProperties": False}, "annotations": READ_ONLY},
     {"name": "open_result", "title": "Open a result",
-     "description": "Open one search result by its id and return the full section of the note, or the whole note if it is short.",
+     "description": "Open one result from search_notes by its id and return the full section of the note, or the whole note if it is short. Read-only. Use it after search_notes, when a snippet is not enough to answer. An id that no longer exists returns "not found": search again. A LOCKED private note is refused, and the person must open it themselves.",
      "inputSchema": {"type": "object", "properties": {"id": {"type": "string", "description": "A result id from search_notes"}},
                      "required": ["id"], "additionalProperties": False}, "annotations": READ_ONLY},
     {"name": "around_result", "title": "See what is around a result",
-     "description": "Show the sections before and after a result, and notes written the same day.",
+     "description": "Show the sections just before and after one result from search_notes, plus other notes written the same day. Read-only. Use it when a result looks right but you need the context around it, such as the step before a decision or the rest of a day. It does not search: it needs a result id.",
      "inputSchema": {"type": "object", "properties": {"id": {"type": "string", "description": "A result id from search_notes"}},
                      "required": ["id"], "additionalProperties": False}, "annotations": READ_ONLY},
     {"name": "check_index", "title": "Check the index",
-     "description": "Say if the index is fresh, if anything private slipped in and if searches are fast. Changes nothing.",
+     "description": "Report whether the search index is fresh, whether anything private slipped in, and whether searches are fast. Read-only: it changes nothing and needs no input. Use it when results look old or missing, or when the person asks if search is healthy.",
      "inputSchema": {"type": "object", "properties": {}, "additionalProperties": False}, "annotations": READ_ONLY},
 ]
 
