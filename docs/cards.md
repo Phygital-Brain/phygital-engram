@@ -35,13 +35,13 @@ Here is a made-up example. The section is a meeting note under the heading `Pict
 
 Search matches words. Say you ask *when does the artwork have to be ready?* and the note says "cover due on the 15th". The words do not overlap. The card holds "when is the cover due?", so the section is found.
 
-In the working version, cards are the main help for questions that use different words than the note. [Limits](limits.md) explains why there is no search by meaning.
+In version 0.1.0, cards are the main help for questions that use different words than the note. [Limits](limits.md) explains why there is no search by meaning.
 
 ## What leaves your computer
 
 If you turn cards on, this goes out for each section that needs a card:
 
-- The text of that section (secrets already blanked), its heading path, its note title and the first section of the same note. These go to your AI provider. In the working version that is Anthropic's API, using the model `claude-haiku-5-5`. For a saved AI chat, the first 16,000 characters go.
+- The text of that section (secrets already blanked), its heading path, its note title and the first section of the same note. These go to your AI provider. That is Anthropic's API, using the model `claude-haiku-5-5`. For a saved AI chat, the first 16,000 characters go.
 - The card comes back and is stored in your index.
 
 These never leave:
@@ -68,7 +68,7 @@ To see a price first, run the estimate. It makes no card and sends nothing.
 python3 engram.py cards --estimate
 ```
 
-You should see a line with how many sections need a card and about how many tokens that is. Command names may change before 0.1.0: see [settings](settings.md).
+You should see a line with how many sections need a card and about how many tokens that is.
 
 ## Turn cards on
 

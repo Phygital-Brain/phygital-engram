@@ -21,10 +21,11 @@ A brain grows. After a few months it holds hundreds of notes: daily notes, decis
 A Phygital Brain also gives the search what it looks for, and we checked it on the example brain from the Phygital Brain repository (2026-10-25, with an empty `CLAUDE.md` added):
 
 - The top `CLAUDE.md` is there. The search needs it before it indexes, and it counts more in the ranking.
-- Phygital Brain's `.claudeignore` lists `Memory/finances/`. The search skips everything listed there, and in our check a note in that folder never showed up.
+- Phygital Brain's `.claudeignore` lists `Memory/finances/`. The search skips everything listed there, and in our check a note in that folder never showed up. `Memory/finances/` is also private by default, so it is locked even without the ignore file.
+- A brain's `Memory/decisions/` folder matches the `*/decisions/*` rule. Notes there never fade, and the word "decision" in a question points at them.
 - Notes marked `done` or `archived`, and notes in an `archive` folder, count less.
 
-One thing differs. The default folder levels use the author's own folder names (`Context/`, `Intelligence/decisions/`). A brain calls those folders `About/` and `Memory/decisions/`, so they count as normal notes until you add them: see [Folder levels and hints](settings.md#folder-levels-and-hints). Try your own questions before and after, because a change can help one question and hurt another. In our small check, giving `About/` extra weight pushed a note about services above the decision we were looking for. See [How results are ranked](search-ranking.md).
+One thing is not set up for you. `About/` is not boosted by default, so those notes count as normal notes. To lift them, add a rule for `About/*` to `path_weights` (and to `evergreen_paths` if they should never fade): see [Folder levels and hints](settings.md#folder-levels-and-hints). Try your own questions before and after, because a change can help one question and hurt another. In our small check on the example brain, giving `About/` extra weight pushed a note about services above the decision we were looking for. See [How results are ranked](search-ranking.md).
 
 The matching guide inside Phygital Brain is [Fast search with Phygital Engram](https://github.com/Phygital-Brain/phygital-brain/blob/main/docs/search-with-phygital-engram.md).
 

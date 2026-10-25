@@ -1,7 +1,7 @@
 {
   "name": "phygital-engram",
   "version": "0.1.0",
-  "description": "Your notes, found in milliseconds. A fast, private, read-only search for your Markdown notes, for your AI agent.",
+  "description": "Your notes, found in milliseconds. Phygital Engram is a fast, private, read-only search for your second brain, or any folder of Markdown notes, for your AI agent.",
   "author": { "name": "Phygital-Brain", "url": "https://github.com/Phygital-Brain" },
   "homepage": "https://github.com/Phygital-Brain/phygital-engram",
   "repository": "https://github.com/Phygital-Brain/phygital-engram",

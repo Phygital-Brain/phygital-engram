@@ -20,7 +20,7 @@ Why one note comes first and another tenth: every signal that moves a result, an
 
 ## The short version
 
-A search finds sections that share your words. It lifts the ones you probably mean: rule files, current notes, and notes in the folder you hinted at. It pushes down likely old or noisy ones: archives, logs and finished work. Then it explains each result in one line.
+A search finds sections that share your words. It lifts the ones you probably mean: rule files, current notes, and notes in the folder you hinted at. It pushes down likely old or noisy ones: archive folders, logs and finished work. Then it explains each result in one line.
 
 ## An example, step by step
 
@@ -28,10 +28,10 @@ Made-up notes, made-up question. You ask: *what are our decisions about the Pict
 
 | Note | Folder | What happens |
 |---|---|---|
-| `Decisions/2026-09-12-cover-colours.md` | decisions | Has "decision", "cover" and "Picture-Book" in the heading. The word "decisions" in your question also points at the decisions folder (step 7). First |
+| `Projects/Picture-Book/decisions/2026-09-12-cover-colours.md` | decisions | Has "decision", "cover" and "Picture-Book" in the heading. The word "decisions" in your question also points at folders named `decisions` (step 7), and notes there never fade. First |
 | `Projects/Picture-Book/README.md` | normal | Has "cover" and "Picture-Book" many times, but no decision words. Second |
 | `Projects/Picture-Book/notes/cover-ideas.md` | normal | Matches "cover". Its status is `done`, so it counts 0.6x. Third |
-| `Archive/2025/old-cover-brief.md` | background | Matches "cover", but archive folders count 0.35x and come after the main notes. Last |
+| `archive/2025/old-cover-brief.md` | background | Matches "cover", but archive folders count 0.35x and come after the main notes. Last |
 
 Each result comes back with a why line, like "your words in the heading, decision, 12 days old".
 
@@ -67,23 +67,20 @@ These small signals only break ties.
 
 ### 7. Folder hints
 
-Words in your question can point at a folder. Notes in that folder count 2x for that search.
+Words in your question can point at a folder. Notes in that folder count 2x for that search. These are the three rules in `config.json`. You can add your own.
 
 | You say | Boosted folder |
 |---|---|
-| "decision", "decisions" | the decisions folder |
-| "daily", "journal" | the daily notes folder |
-| "client", "what did I do with", "worked with" | the clients folder |
-| "platform files", "server notes", "deploy steps" | the platform folder |
-| "repo", "repository" | README files |
-| "check my notes and what I should do next" (only when that is the whole question) | your rule files and context folder |
+| "decision", "decisions" | any folder named `decisions` (`*/decisions/*`) |
+| "daily", "journal" | `Daily/` |
+| "client", "clients", "worked with", "worked for" | any folder named `Clients` (`*/Clients/*`) |
 
 A hint only boosts. It never filters. If the hint is wrong, the right note is still found, a little lower. The words *check*, *show*, *tell*, *find* and *please* are ignored.
 
 ### 8. The shape of the answer
 
 - At most 2 sections per note, so one long note cannot fill the list.
-- Background folders (archives, copied code) come after the main notes, at most 3. If the main notes did not fill the list, more can follow.
+- Background folders (archive folders) come after the main notes, at most 3. If the main notes did not fill the list, more can follow.
 - AI chat notes you saved come after the notes, at most 3.
 - Private matches come last, locked, at most 2.
 - Every result has a short why line.
@@ -94,18 +91,16 @@ A question is cut to 500 characters and 20 words. At most 50 results come back. 
 
 ## Folder levels
 
-These are the levels in the working version. They fit one person's folder layout, so treat them as an example. You set your own in `path_weights` and `evergreen_paths`. See [settings](settings.md).
+These are the levels in the `config.json` that ships with version 0.1.0. They are general. If your folders have other names, set your own in `path_weights` and `evergreen_paths`. See [settings](settings.md). Capital letters do not matter in these rules.
 
-| Level | Example folders | Weight | Fades with age? |
+| Level | Folders | Weight | Fades with age? |
 |---|---|---|---|
-| Core | Every rule file (`CLAUDE.md`) | 2x | Never |
-| Core | A `Context/` folder with who you are | 1.6x | Never |
-| Core | Platform notes, skills, decisions | 1x | Never |
+| Core | Rule files (`*CLAUDE.md`, `*AGENTS.md`) | 2x | Never |
+| Core | `Context/` | 1.6x | Never |
+| Core | Any folder named `decisions` (`*/decisions/*`) | 1x | Never |
 | Normal | Everything else (projects, daily notes, resources) | 1x | Yes |
-| Lower | Automatic daily reports | 0.6x | Yes |
-| Outside material | A library of saved articles and transcripts | 0.6x | Never |
-| Background | Any `archive` folder | 0.35x | Yes |
-| Background | Copied code | 0.25x | Yes |
+| Outside material | `Library/` | 0.6x | Never |
+| Background | `archive/` at the top, or any `archive` folder below it | 0.35x | Yes |
 
 ## Status and type
 

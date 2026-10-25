@@ -3,7 +3,7 @@
 Search your own Markdown notes in about 10 minutes. By the end you have asked a question and opened the answer.
 
 > [!NOTE]
-> The program files are added to this repository with the first release. Until then this page shows the path with the working version, and the command names may change before 0.1.0.
+> This page matches version 0.1.0, the first release. The search program is in this repository.
 
 ## What you need
 

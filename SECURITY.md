@@ -25,7 +25,7 @@ There's no email contact. Use private reporting.
 
 ## What to include
 
-- The version and how you run it (command line or the local page).
+- The version and how you run it (command line, AI connector or server version).
 - Your operating system and your AI app, if it matters.
 - What you found, and which part of the code it's in, if you know.
 - The steps to reproduce it.
@@ -57,12 +57,12 @@ If you follow this policy, I won't take any action against you for your research
 
 ## In scope
 
-- Anything that could reveal a secret, a key or private contents to someone who shouldn't have them (search results, the local page, error messages, logs, files on disk). This includes a secret that the blanking step missed.
+- Anything that could reveal a secret, a key or private contents to someone who shouldn't have them (search results, error messages, logs, files on disk). This includes a secret that the blanking step missed.
 - Any way to make Phygital Engram write to, move or delete a note, or put its index inside your notes folder.
 - Any way to open a private (locked) result without being asked, including through the AI connector.
 - Any way to make the connector run anything other than its fixed search commands, or return text as instructions instead of note content.
 - Any way to use the server version (`mcp/serve.py`) without a login key, to get a key without the passphrase, to log in an app from an address that is not allowed, or to read a private note through it. See [docs/threat-model.md](docs/threat-model.md).
-- Any way to use the local page from another website, or from another computer on your network when it is not meant to be reachable.
+- Any way to use the server version from another website, or from another computer on your network when it is not meant to be reachable.
 - Any change that damages your data, or sends your notes to a service without you turning that on.
 
 ## Out of scope

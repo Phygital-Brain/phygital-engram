@@ -36,7 +36,7 @@ Reading a big folder is slow and costs a lot. In a test on the author's notes, a
 
 <details><summary><b>How fast is it?</b></summary>
 
-On the author's notes (about 4,800), a search took 9 to 37 milliseconds on a server and about 11 milliseconds on a laptop. A test copy of 500,000 notes still answered in 0.23 seconds. We measured this on 2026-10-25, before tuning, on one person's notes. Yours will differ. See [Benchmarks](benchmarks.md).
+On the author's notes (about 4,800), a search took 9 to 37 milliseconds on a server and about 11 milliseconds on a laptop. A test copy of 500,000 notes still answered in 0.23 seconds. We measured this on 2026-10-25, on one person's notes, with the author's own settings. Yours will differ. See [Benchmarks](benchmarks.md).
 
 </details>
 
@@ -98,7 +98,7 @@ No. No outside party has audited it. [Safety](safety.md) lists the rules it foll
 
 <details><summary><b>Does it track me?</b></summary>
 
-No. There is no account, no telemetry and no tracking. The local web page loads no outside images and cannot be shown inside other sites.
+No. There is no account, no telemetry and no tracking. The connector and the server version load no outside images.
 
 </details>
 
@@ -106,7 +106,7 @@ No. There is no account, no telemetry and no tracking. The local web page loads 
 
 <details><summary><b>Which AI apps work with it?</b></summary>
 
-The repository has an MCP connector (`mcp/server.py`) with four read-only tools. It worked in Claude Code on the sample notes. We have not tested it in Claude Desktop, Codex, Cursor, VS Code or Gemini CLI, so those are not listed as working yet. ChatGPT and the Claude website and phone app are supported through the server version (`mcp/serve.py`), set up with [Setup on your own server](setup-own-server.md). It is not tested on those apps with this repository yet. See [Connect your AI](connect-your-ai.md) and [Tools](tools.md). You can also run it in the terminal or on the local web page.
+The repository has an MCP connector (`mcp/server.py`) with four read-only tools. It worked in Claude Code on the sample notes. We have not tested it in Claude Desktop, Codex, Cursor, VS Code or Gemini CLI, so those are not listed as working yet. ChatGPT and the Claude website and phone app are supported through the server version (`mcp/serve.py`), set up with [Setup on your own server](setup-own-server.md). It is not tested on those apps with this repository yet. See [Connect your AI](connect-your-ai.md) and [Tools](tools.md). You can also run it in the terminal.
 
 </details>
 
@@ -130,7 +130,7 @@ Yes. It reads the same files Obsidian shows. It needs no Obsidian plugin and doe
 
 <details><summary><b>Does it work with Baalda, Logseq or plain files?</b></summary>
 
-It works on any folder of `.md` files. We tested it on one folder, the author's. Other apps that store notes as Markdown should work the same way, but we have not tested them.
+It works on any folder of `.md` files. We tested it on one folder, the author's, and on a small sample. Other apps that store notes as Markdown should work the same way, but we have not tested them.
 
 </details>
 
@@ -148,7 +148,7 @@ The docs are in English only for now. Search matches words in any language. Only
 
 <details><summary><b>Can I use it from my phone?</b></summary>
 
-Yes, through the server version. Phone apps reach a connector over HTTPS, so the computer version does not reach your phone. The server version runs on a server you own, behind a passphrase login. Set it up with [Setup on your own server](setup-own-server.md). It is not tested on a phone with this repository yet. The author uses the working version from a phone through their own server. See the [roadmap](roadmap.md).
+Yes, through the server version. Phone apps reach a connector over HTTPS, so the computer version does not reach your phone. The server version runs on a server you own, behind a passphrase login. Set it up with [Setup on your own server](setup-own-server.md). It is not tested on a phone with this repository yet. The author uses their own tuned version from a phone through their own server. See the [roadmap](roadmap.md).
 
 </details>
 
@@ -204,7 +204,7 @@ You can also skip whole folders in the settings. See [Settings](settings.md).
 
 <details><summary><b>Can I teach it which folders matter more?</b></summary>
 
-Yes. Folder weights are in `config.json`. Core folders count more and archive folders count less. The defaults are in [How results are ranked](search-ranking.md), and the options are in [Settings](settings.md).
+Yes. Folder weights are in `config.json`. Rule files and `Context/` count more, and archive folders and `Library/` count less. The defaults are in [How results are ranked](search-ranking.md), and the options are in [Settings](settings.md).
 
 </details>
 

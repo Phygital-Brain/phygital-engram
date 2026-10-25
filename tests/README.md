@@ -19,12 +19,12 @@ The notes are small on purpose, so you can read all of them in a few minutes and
 | `CLAUDE.md` | Rule notes count more and never fade |
 | `Context/` | Context notes count more |
 | `Projects/Picture-Book/archive/old-schedule.md` | An old archived note must not beat the new schedule |
-| `Intelligence/decisions/2026-08-30-harbour-press.md` | A note marked `superseded` is hidden |
+| `Memory/decisions/2026-08-30-harbour-press.md` | A note marked `superseded` is hidden |
 | `Daily/scratch.md` | A note with `engram: skip` is never indexed |
-| `Intelligence/finances/` | A private folder is findable but locked: you see only the file and heading |
-| `Platform/server.md` | Exact strings (a version number) match letter for letter. It also holds a made-up password line that must be blanked before it is stored |
+| `Memory/finances/` | A private folder is findable but locked: you see only the file and heading |
+| `Projects/Home-Server/server.md` | Exact strings (a version number) match letter for letter. It also holds a made-up password line that must be blanked before it is stored |
 | `Projects/Zine-Club/notes/log.md` | A log note ranks lower than a normal note |
-| `Resources/Library/` | Outside material counts less |
+| `Library/` | Outside material counts less |
 
 ## Run it
 
@@ -58,7 +58,7 @@ python3 engram.py health
 You should see a list of lines starting with `OK`.
 
 > [!NOTE]
-> Pre-release. The code is added with version 0.1.0, and the command and setting names may change before then. If a command here does not work, check [docs/settings.md](../docs/settings.md) and [docs/setup-computer.md](../docs/setup-computer.md).
+> Version 0.1.0 is the first release, so command and setting names may still change. If a command here does not work, check [docs/settings.md](../docs/settings.md) and [docs/setup-computer.md](../docs/setup-computer.md).
 
 ## The result we got
 

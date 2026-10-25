@@ -33,7 +33,7 @@ Phygital Engram has four pieces.
 
 Phygital Engram finds notes. It does not answer for you. Your agent writes the answer. The result is short, so your agent reads a few lines instead of dozens of notes.
 
-You can use it from the command line (typed commands) and from a small page on your own computer. An AI connector (MCP, a plug for AI apps) is in the repository too. It runs this command line for every call and gives your AI app four read-only tools. It worked in Claude Code and has not been tried in other apps yet. A server version (`mcp/serve.py`) gives the same tools over HTTPS behind a login, for your phone and the web: see [Setup on your own server](setup-own-server.md). See [Tools](tools.md).
+You can use it from the command line (typed commands). A small local web page is planned, but it is not in version 0.1.0. An AI connector (MCP, a plug for AI apps) is in the repository too. It runs this command line for every call and gives your AI app four read-only tools. It worked in Claude Code and has not been tried in other apps yet. A server version (`mcp/serve.py`) gives the same tools over HTTPS behind a login, for your phone and the web: see [Setup on your own server](setup-own-server.md). See [Tools](tools.md).
 
 ## Two rules it never breaks
 
@@ -69,7 +69,7 @@ Say you ask your agent: *when is the Picture-Book cover due?*
 7. **Your agent gets a short list.** Each result has the note's path, the heading, a short snippet with your words marked, the date, and the why line.
 8. **Your agent opens what it needs.** It asks for the full section of the one or two results that matter. See [how a result is opened](#how-a-result-is-opened).
 
-On the author's notes (about 4,800), the whole search takes 9 to 37 milliseconds. See [benchmarks](benchmarks.md) for what was measured and how.
+On the author's notes (about 4,800, with the author's own settings), the whole search takes 9 to 37 milliseconds. See [benchmarks](benchmarks.md) for what was measured and how.
 
 ## What's stored
 
@@ -112,4 +112,13 @@ If you add an AI key, Phygital Engram can write one short card for every section
 
 ## The code
 
-It is written in Python, and the search itself uses only the standard library. The AI connector (`mcp/server.py`, Python, standard library only) is in this repository, and so is the server version (`mcp/serve.py`, which needs the MCP SDK). The search code (`engram.py`) is not yet. It is being tuned first and arrives with release 0.1.0. This is a pre-release, and there is no download yet. See the [roadmap](roadmap.md). When the search code lands, a folder map goes here and in `AGENTS.md`.
+It is written in Python, and the search itself uses only the standard library. The AI connector (`mcp/server.py`, Python, standard library only) is in this repository, and so is the server version (`mcp/serve.py`, which needs the MCP SDK). The search is in this repository too, as of version 0.1.0, the first release.
+
+| Path | What it holds |
+|---|---|
+| `engram.py` | The command line: `ingest`, `search`, `get`, `around`, `cards`, `test`, `health`, `stats`, `usage` |
+| `engram_lib/` | The search code: reading notes, the index, ranking, cards, usage, the health check and the test score |
+| `config.json` | The default for every setting. See [settings](settings.md) |
+| `mcp/` | The AI connector (`server.py`) and the server version (`serve.py`) |
+
+See the [roadmap](roadmap.md) for what comes next.

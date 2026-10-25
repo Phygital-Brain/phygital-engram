@@ -3,7 +3,7 @@
 Put Phygital Engram on a server you own, so your phone, the Claude website and other AI apps can search your notes from anywhere. You end up with an address like `https://notes.example.com/mcp`, and you type a passphrase once.
 
 > [!IMPORTANT]
-> Pre-release. The server version is written and tested on a computer, but it has not been run in Docker, on a real server or from a phone with this repository. The search program (`engram.py`) joins the repository with version 0.1.0, and the Docker build needs it. Read [What we tested](#what-we-tested) before you rely on it.
+> First release, version 0.1.0. The server version is written and tested on a computer, but it has not been run in Docker, on a real server or from a phone with this repository. A Docker image is published with the release at `ghcr.io/phygital-brain/phygital-engram` (the Packages page). The Compose file below builds the image from this repository. Read [What we tested](#what-we-tested) before you rely on it.
 
 <details>
 <summary><b>Table of contents</b></summary>
@@ -35,8 +35,8 @@ Phygital Engram reads the notes where they are. It does not copy them in by itse
 
 | Way | How |
 |---|---|
-| A sync app | Install your cloud drive's sync app on the server (Nextcloud, Syncthing and Dropbox all have one) and let it fill a folder |
-| A scheduled copy | A tool like `rclone` copies from your drive to the server every few minutes |
+| A sync app | Install your cloud drive's sync app on the server (most cloud drives and Syncthing have one) and let it fill a folder |
+| A scheduled copy | A copy tool, run on a schedule, copies from your drive to the server every few minutes |
 | Git | Your notes are a Git repository and the server pulls it |
 
 The server mounts that folder **read-only**. Phygital Engram can read the notes and cannot change them. Every 10 minutes it updates its index from the folder. You can change that with `PHYGITAL_ENGRAM_REFRESH_MINUTES`.
@@ -144,7 +144,7 @@ Stop: `docker compose down`. Remove everything, including the index and keys: `d
 
 - **`/health` does not open.** The domain does not point at the server yet, or ports 80 and 443 are closed in the firewall. Check Caddy: `docker compose logs caddy`.
 - **The container stops at once.** Read why: `docker compose logs app`. It refuses to start with no passphrase, with a passphrase under 8 characters, or with a `PUBLIC_URL` that is not `https://`.
-- **"Nothing changed" in the logs.** The notes folder is empty, or it has no `CLAUDE.md` file at the top. The working version uses that file to check that your notes are fully copied. See [troubleshooting.md](troubleshooting.md).
+- **"Nothing changed" in the logs.** The notes folder is empty, or it has no `CLAUDE.md` file at the top. The search uses that file to check that your notes are fully copied. See [troubleshooting.md](troubleshooting.md).
 - **Your AI app says it cannot log in.** The app's address may not be allowed. Add its host to `ALLOWED_REDIRECT_HOSTS`.
 - **Too many wrong tries.** Five wrong passphrases from one address pause that address for 15 minutes.
 
@@ -160,4 +160,4 @@ Stop: `docker compose down`. Remove everything, including the index and keys: `d
 | Docker, Docker Compose, Caddy and the certificate | Not tested: Docker was not available where this was written |
 | A real server on the internet | Not tested |
 
-The author runs the working version of the search on their own server and uses it from a phone. That setup is separate from the files in this repository.
+The author runs their own tuned version of the search on their own server and uses it from a phone. That setup is separate from the files in this repository.

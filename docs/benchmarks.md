@@ -3,9 +3,9 @@
 These are the numbers behind the claims, how they were made, and what we did not test.
 
 > [!WARNING]
-> These numbers are a snapshot of the working version, measured before more tuning. They come from about 4,800 English notes by one person. They show what we saw, and your notes may differ. Every number will be measured again before version 0.1.0.
+> These numbers were measured on one person's private notes (about 4,800 English notes) with the author's own tuned settings, from before the defaults were made general. The settings shipped in `config.json` are more general, so your numbers will differ. They show what we saw, not what you will get. The small public test in [tests/](../tests/README.md) was run again with the shipped defaults and gave the same result as before.
 
-<p align="center"><img src="images/benchmark.png" alt="Benchmark. The right note is in the top 5 for 48 of 56 tuning questions and 42 of 48 hidden questions, against 40 of 56 for word match only. A search takes about 11 milliseconds, against about 495 for a search by meaning that we tried. 104 questions on one person's notes, measured 2026-10-25 before tuning." width="100%"></p>
+<p align="center"><img src="images/benchmark.png" alt="Benchmark. The right note is in the top 5 for 48 of 56 tuning questions and 42 of 48 hidden questions, against 40 of 56 for word match only. A search takes about 11 milliseconds, against about 495 for a search by meaning that we tried. 104 questions on one person's notes, measured 2026-10-25 with the author's own tuned settings." width="100%"></p>
 
 <details>
 <summary><b>Table of contents</b></summary>
@@ -28,8 +28,8 @@ These are the numbers behind the claims, how they were made, and what we did not
 | Date | 2026-10-25 |
 | Computer | A Mac, macOS, Python 3.15.0, SQLite 3.54.1 |
 | Notes | A copy of 4,971 Markdown notes from the author's notes folder. The private finance folder was left out of the copy |
-| Note cards | Off. The local test had none, so these numbers are lower than the live setup, which has cards |
-| Version | The working version, before tuning. Not a release |
+| Note cards | Off. The local test had none, so these numbers are lower than a setup with cards |
+| Settings | The author's own tuned settings, from before the defaults in `config.json` were made general. Not the settings that ship in 0.1.0 |
 
 ## Speed
 
@@ -72,7 +72,7 @@ The 8 misses were spread across kinds. They happened where a question used very 
 |---|---|
 | Notes | About 99 sample notes copied from the author's folder, no private or client notes |
 | Questions | 10, written by hand, each with a known note |
-| Phygital Engram | Without cards. The right note first on 9 of 10. One miss was a note that the author's own settings hide on purpose |
+| Phygital Engram | Without cards, with the author's own settings. The right note first on 9 of 10. One miss was a note that those settings hide on purpose |
 | GBrain | Word search plus meaning search, with a small local model. The right note first on 7 of 10, in the top 3 on 10 of 10 |
 | Time | About 2 ms against about 540 ms including start-up of its command line |
 
@@ -81,7 +81,7 @@ The 8 misses were spread across kinds. They happened where a question used very 
 
 ## Search by meaning: tried, left out
 
-We added search by meaning to a copy of the working version. A small local model turned each section into numbers, and the closest sections were blended with the normal results. We ran the same 104 questions.
+We added search by meaning to a copy of the author's version. A small local model turned each section into numbers, and the closest sections were blended with the normal results. We ran the same 104 questions.
 
 | Blend | Hidden set, top 5 | Hidden set, right note first | Time per search |
 |---|---|---|---|
@@ -104,7 +104,7 @@ On the 55 questions where the answer was already in the first 3 sections:
 | Text to read per question | About 1,000 characters instead of about 3,100 |
 | Facts that carry note, heading and date | All of them |
 
-This is a simple first version. It is not in the working release yet. See the [roadmap](roadmap.md).
+This is a simple first version. It is not in version 0.1.0. See the [roadmap](roadmap.md).
 
 ## What was not tested
 
@@ -140,4 +140,4 @@ You can score your own setup. Write a file of questions, each with the note that
 python3 engram.py test
 ```
 
-You should see how many questions had the right note first, in the top 5 and in the top 10, and the time per question. File names and command names may change before 0.1.0: see [settings](settings.md).
+You should see how many questions had the right note first, in the top 5 and in the top 10, and the time per question. The settings are in [settings](settings.md).

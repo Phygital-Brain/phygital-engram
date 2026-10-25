@@ -1,4 +1,4 @@
-"""Build the Claude Desktop extension: dist/phygital-engram.mcpb. Run from the repository root:
+"""Build the Claude Desktop extension: dist/phygital-engram-<version>.mcpb. Run from the repository root:
 
     python3 scripts/build_mcpb.py
 
@@ -36,7 +36,7 @@ manifest = {
     "name": "phygital-engram",
     "display_name": "Phygital Engram",
     "version": version,
-    "description": "Your notes, found in milliseconds. A fast, private, read-only search for your Markdown notes.",
+    "description": "Your notes, found in milliseconds. Phygital Engram is a fast, private, read-only search for your second brain, or any folder of Markdown notes.",
     "long_description": "Lets Claude search a folder of your Markdown notes and open the best result, with the note, heading and date as the source. Phygital Engram only reads your notes. It keeps its own files in a separate folder, collects nothing, and sends nothing anywhere. Private folders are findable but stay locked. Needs Python 3 on your computer.",
     "author": {"name": "Phygital-Brain", "url": "https://github.com/Phygital-Brain"},
     "homepage": "https://github.com/Phygital-Brain/phygital-engram",
@@ -64,7 +64,7 @@ manifest = {
 }
 
 os.makedirs("dist", exist_ok=True)
-out = "dist/phygital-engram.mcpb"
+out = f"dist/phygital-engram-{version}.mcpb"
 with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as z:
     z.writestr("manifest.json", json.dumps(manifest, indent=2, ensure_ascii=False) + "\n")
     z.write("mcp/server.py", "server/server.py")

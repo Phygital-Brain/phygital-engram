@@ -3,14 +3,14 @@
 Try Phygital Engram on your own notes, free, with nothing sent anywhere. It takes about 10 minutes, and you end up searching your notes from the terminal.
 
 > [!NOTE]
-> The program files are added to this repository with the first release. These steps are for the working version. Command names may change before 0.1.0, and this page will change with them.
+> These steps match version 0.1.0, the first release. The search program (`engram.py`) is in this repository.
 
 ## Before you start
 
 - **A folder of Markdown notes** on your computer. A copy is fine, and safer for a first try.
 - **A file named `CLAUDE.md` at the top of that folder.** It can be empty. The search checks for it before it indexes, so it never builds an index from a half-copied folder. Phygital Brain makes this file for you. If your folder has none, create an empty one. Without it, indexing stops and nothing changes.
 - **A second folder for the index, outside your notes.** It refuses to run if that folder is inside your notes.
-- **Python.** The working version runs on Python 3.14 (the server) and was tried on Python 3.15 (a Mac). Older versions are not tested. Check yours:
+- **Python.** It runs on Python 3.14 (a Linux server) and was tried on Python 3.15 (a Mac). Older versions are not tested. Check yours:
 
 ```bash
 python3 --version
@@ -23,7 +23,7 @@ You should see `Python 3.14` or newer. If the command is not found, install Pyth
 
 ## 1. Get the files
 
-Download this repository as a zip from the green **Code** button on GitHub, then unzip it. If you use Git, run this instead:
+Download the latest release from the [releases page](https://github.com/Phygital-Brain/phygital-engram/releases) and unzip it, or use the green **Code** button on GitHub. If you use Git, run this instead:
 
 ```bash
 git clone https://github.com/Phygital-Brain/phygital-engram.git
@@ -116,4 +116,4 @@ Delete the `phygital-engram` folder and the folder you set in `ENGRAM_DATA`. You
 | Linux on a desktop | Not tested |
 | Python older than 3.14 | Not tested |
 
-The numbers come from the author's own notes and were taken before tuning. See [Benchmarks](benchmarks.md).
+The numbers come from the author's own notes and were taken with the author's own settings. See [Benchmarks](benchmarks.md).

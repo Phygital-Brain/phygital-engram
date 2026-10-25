@@ -50,12 +50,12 @@
   "kind": "exact"
  },
  {
-  "q": "Nextcloud 31.0.4",
+  "q": "Postgres 16.4",
   "expect_files": [
-   "Platform/server.md"
+   "Projects/Home-Server/server.md"
   ],
   "expect": [
-   "Nextcloud 31.0.4"
+   "Postgres 16.4"
   ],
   "kind": "exact"
  },
@@ -72,7 +72,7 @@
  {
   "q": "what look did we pick for the print",
   "expect_files": [
-   "Intelligence/decisions/2026-10-02-riso-look.md"
+   "Memory/decisions/2026-10-02-riso-look.md"
   ],
   "expect": [
    "two colour risograph look"
@@ -102,7 +102,7 @@
  {
   "q": "when does the nightly backup happen",
   "expect_files": [
-   "Platform/server.md"
+   "Projects/Home-Server/server.md"
   ],
   "expect": [
    "nightly backup runs at 03:00"
@@ -112,7 +112,7 @@
  {
   "q": "which colour pairs make each other stand out",
   "expect_files": [
-   "Resources/Library/transcripts/2026-09-01-colour-theory-talk.md"
+   "Library/transcripts/2026-09-01-colour-theory-talk.md"
   ],
   "expect": [
    "Complementary colours"
@@ -122,7 +122,7 @@
  {
   "q": "why did we not host our own mail",
   "expect_files": [
-   "Intelligence/decisions/2026-09-12-no-own-mail-server.md"
+   "Memory/decisions/2026-09-12-no-own-mail-server.md"
   ],
   "expect": [
    "Do not run our own mail server"
@@ -132,7 +132,7 @@
  {
   "q": "which printer did we choose",
   "expect_files": [
-   "Intelligence/decisions/2026-10-04-nordic-print.md"
+   "Memory/decisions/2026-10-04-nordic-print.md"
   ],
   "expect": [
    "Print with Nordic Print"

@@ -3,7 +3,7 @@
 Where each setting lives, what it does, and the few you are likely to change.
 
 > [!NOTE]
-> This page describes the working version. Setting names may change before version 0.1.0, when the code lands in this repository. A test will then check these names against the code.
+> Every default on this page comes from `config.json` in version 0.1.0, the first release. The defaults are general. They are a starting point, so check them against your own folders.
 
 <details>
 <summary><b>Table of contents</b></summary>
@@ -36,7 +36,7 @@ There are two places, and the second wins.
 
 | Environment variable | Default | Effect |
 |---|---|---|
-| `ENGRAM_VAULT` | the `vault` path in `config.json` | The notes folder to read. Set this first |
+| `ENGRAM_VAULT` | `~/Notes`, the `vault` path in `config.json` | The notes folder to read. Set this first |
 | `ENGRAM_DATA` | the program's own folder | Where the index and other data files are kept. It must be outside the notes folder. If it is inside, the program refuses to run |
 | `ANTHROPIC_API_KEY` | none | Your own key for note cards. Without it, no cards are made and search still works. Never put it in a note or in `config.json` |
 
@@ -49,9 +49,9 @@ If you change only a few, look at these seven.
 | Setting | Why you would change it |
 |---|---|
 | `vault` (or `ENGRAM_VAULT`) | Point it at your own notes folder |
-| `exclude_paths` | Folders to leave out, such as a copy of a website or test files |
+| `exclude_paths` | Folders to leave out, such as a copy of a website or test files. It is empty by default |
 | `skip_dirs` | Hidden or tool folders to skip |
-| `path_weights` | Which of your folders count more or less. The default fits one person's layout |
+| `path_weights` | Which of your folders count more or less. The defaults are general: change them to fit your layout |
 | `evergreen_paths` | Folders whose notes never fade with age |
 | `status_weights` | If you use status words other than `done`, `paused` and `archived` |
 | `cards` | The AI model for cards, or leave cards off |
@@ -60,18 +60,15 @@ If you change only a few, look at these seven.
 
 | Name | Default | Effect |
 |---|---|---|
-| `vault` | an example path | The notes folder. Overridden by `ENGRAM_VAULT` |
+| `vault` | `~/Notes` | The notes folder. Overridden by `ENGRAM_VAULT` |
 | `db` | `data/engram.sqlite` | The index file. Moves with `ENGRAM_DATA` |
-| `session_archive` | `data/sessions` | Where saved AI chat sessions are kept, if `sessions` is on |
-| `sessions` | `false` | Saves your Claude Code chat sessions and makes them searchable. Off by default |
-| `sessions_dir` | `~/.claude/projects` | Where Claude Code keeps its sessions, read only when `sessions` is on |
 
 ## What gets read
 
 | Name | Default | Effect |
 |---|---|---|
 | `skip_dirs` | `.context`, `.obsidian`, `.git`, `.claude`, `node_modules`, `.trash` | Folders that are never read |
-| `exclude_paths` | one example path | Paths (with `*`) to leave out. The default is one person's test folder, so replace it |
+| `exclude_paths` | none | Paths (with `*`) to leave out. Add yours here |
 | `max_file_bytes` | 2,000,000 | Notes bigger than this are skipped |
 | `skip_markers` | `engram: skip`, `#engram-skip` | A note with one of these near the top is not indexed. Use it for notes you never want found |
 | `hide_status` | `superseded`, `deprecated`, `replaced` | Notes with these statuses are hidden from results |
@@ -94,15 +91,15 @@ How the signals work together is explained in [search ranking](search-ranking.md
 |---|---|---|
 | `recency.boost` | 0.5 | How much newer notes count. 0.5 means a note from today counts 1.5x |
 | `recency.half_life_days` | 180 | After this many days the extra boost is halved |
-| `evergreen_paths` | rule files, context, platform, skills, decisions, library | Notes here never fade with age |
-| `evergreen_exclude` | copied code | Exceptions to `evergreen_paths` |
+| `evergreen_paths` | `*CLAUDE.md`, `*AGENTS.md`, `Context/*`, `*/decisions/*`, `Library/*` | Notes here never fade with age |
+| `evergreen_exclude` | none | Exceptions to `evergreen_paths` |
 | `status_weights` | archived 0.4, closed 0.5, done 0.6, paused 0.7, legacy 0.3 | Multiplier for notes with this `status` |
 | `type_weights` | batch 0.4, queue 0.4, log 0.5 | Multiplier for notes with this `type` |
 | `exact_boost` | 0.15 | How much an exact match (a version, an ID, a "quoted" phrase) lifts a result |
 | `results_default` | 10 | How many results a search returns if you do not ask for a number |
 | `max_chunks_per_file_in_results` | 2 | The most sections one note may show in a list |
-| `shelves.enabled` | `true` | Puts archives and copied code on a separate "background" shelf |
-| `shelves.background_paths` | archives, copied code | What counts as background |
+| `shelves.enabled` | `true` | Puts archive folders on a separate "background" shelf |
+| `shelves.background_paths` | `*/archive/*`, `archive/*` | What counts as background |
 | `shelves.mode` | `after` | `after`: background results follow the main ones. `merge`: all results are ranked together |
 | `shelves.background_query` | `and` | `and`: background notes must match every word. This is fast and precise |
 | `shelves.max_in_results` | 3 | The most background results shown after the main ones |
@@ -114,9 +111,9 @@ How the signals work together is explained in [search ranking](search-ranking.md
 
 | Name | Default | Effect |
 |---|---|---|
-| `path_weights` | A list of `match` and `weight` pairs, for example rule files 2.0, context 1.6, archives 0.35, copied code 0.25, saved articles 0.6 | The weight for notes whose path matches. The first match wins. **These fit one person's folders, so replace them** |
+| `path_weights` | `*/archive/*` 0.35, `archive/*` 0.35, `Library/*` 0.6, `*CLAUDE.md` 2.0, `*AGENTS.md` 2.0, `Context/*` 1.6 | A list of `match` and `weight` pairs. The weight applies to notes whose path matches. The first match wins. Capital letters do not matter. Add rules for your own folders |
 | `folder_hints.boost` | 2.0 | How much a hint lifts notes in the folder it points at |
-| `folder_hints.rules` | A list of `when` (a pattern in the question) and `folders` | Words in the question that point at a folder, for example "decisions" |
+| `folder_hints.rules` | A list of `when` (a pattern in the question) and `folders`. Three rules: `decision` points to `*/decisions/*`, `daily` or `journal` to `Daily/*`, `client` or `clients` (and "worked with" or "worked for") to `*/Clients/*` | Words in the question that point at a folder. Add your own rules for your own folder names |
 
 ## Learning from use, links and callouts
 
@@ -140,11 +137,10 @@ These settings are for chats you save by hand as notes. Leave them alone if you 
 
 | Name | Default | Effect |
 |---|---|---|
-| `conversations.path` | an example folder | Where saved chats live |
+| `conversations.path` | `AI Conversations/` | Where saved chats live, inside the notes folder |
 | `conversations.age_steps` | half weight until 182 days, then a quarter | Older chats count less |
 | `conversations.expire_days` | 365 | After this many days, a chat leaves search. It is never deleted |
 | `conversations.max_in_results` | 3 | The most chat results after the notes |
-| `session_weight` | 0.8 | Weight for saved Claude Code sessions |
 | `conversations.value_factor` | high 1.5, medium 1.0, low 0.6 | How much a chat counts by its rated value |
 | `conversations.keep_weight` | 1.0 | A chat marked `keep: true` stops fading |
 | `conversations.decision_factor` | 1.3 | Chats that contain a decision count more |
@@ -157,7 +153,7 @@ These settings are for chats you save by hand as notes. Leave them alone if you 
 | Name | Default | Effect |
 |---|---|---|
 | `private.enabled` | `true` | Uses the locked index for the folders below |
-| `private.paths` | one example folder | Folders that are findable but locked. A match shows only the file and heading |
+| `private.paths` | `Finances/`, `Memory/finances/` | Folders that are findable but locked. They are matched from the top of the notes folder, and capital letters do not matter. A match shows only the file and heading |
 | `private.db` | `data/private.sqlite` | The separate index file for them |
 | `private.id_patterns` | tax IDs, bank numbers, card numbers | Patterns that are blanked before storing |
 
@@ -194,7 +190,6 @@ Cards need `ANTHROPIC_API_KEY`. Without it, no cards are made and nothing is sen
 |---|---|---|
 | `engram.sqlite` | The index | Yes. It rebuilds from your notes |
 | `private.sqlite` | The index for private folders | Yes. It rebuilds |
-| `sessions/` | Saved chat sessions, if you turned sessions on | Only if you do not need them |
 
 Deleting the index loses no notes. Cards live inside the index, so deleting it means paying for cards again.
 

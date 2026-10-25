@@ -7,7 +7,7 @@ if a[:1] == ["search"]:
     if "nothing" in a[1]:
         print("[]")
     elif "locked" in a[1]:
-        print(json.dumps([{"id": "p1", "path": "Intelligence/finances/q3.md", "heading": "Q3", "private": True, "snippet": "Private. Open only when asked."}]))
+        print(json.dumps([{"id": "p1", "path": "Memory/finances/q3.md", "heading": "Q3", "private": True, "snippet": "Private. Open only when asked."}]))
     else:
         print(json.dumps([{"id": 7, "path": "Projects/Picture-Book/notes/schedule.md", "heading": "schedule > Schedule", "snippet": "Marta moved the [cover] to the 15th.", "why": "your words in the heading"}]))
 elif a[:1] == ["get"]:

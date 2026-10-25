@@ -8,7 +8,7 @@ tags: [platform, server, backup]
 
 ## Home server
 
-Runs Ubuntu 24.04 and Nextcloud 31.0.4. The nightly backup runs at 03:00 and keeps the last 14 copies.
+Runs Ubuntu 24.04 and Postgres 16.4. The nightly backup runs at 03:00 and keeps the last 14 copies.
 
 ## Settings file
 

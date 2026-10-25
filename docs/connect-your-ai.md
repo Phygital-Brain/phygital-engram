@@ -3,7 +3,7 @@
 Once Phygital Engram works in your terminal, connect it to the AI app you use, so the app can search your notes for you.
 
 > [!IMPORTANT]
-> Pre-release. The computer version worked in Claude Code, loaded from a config file, and Claude Code also worked with the server version over HTTP. Every other app and install route below is untested, and there is no release to download. Those steps are written from each app's documentation. If one fails, please [open an issue](https://github.com/Phygital-Brain/phygital-engram/issues/new?template=bug_report.yml).
+> First release, version 0.1.0. The computer version worked in Claude Code, loaded from a config file, and Claude Code also worked with the server version over HTTP. Every other app and install route below is untested. Those steps are written from each app's documentation. If one fails, please [open an issue](https://github.com/Phygital-Brain/phygital-engram/issues/new?template=bug_report.yml).
 
 <details>
 <summary><b>Table of contents</b></summary>
@@ -38,15 +38,15 @@ You need:
 
 ## Claude Code
 
-The plugin route, once the repository is public. Inside Claude Code, type:
+The plugin route. Inside Claude Code, type:
 
 ```
 /plugin install phygital-engram --marketplace Phygital-Brain/phygital-engram
 ```
 
-The plugin starts the connector. It reads `ENGRAM_VAULT` and `ENGRAM_DATA` from your environment, so set them in your shell profile before you start Claude Code. Loading the plugin from a folder worked in our test (`claude --plugin-dir`). The install from the marketplace was not tested, because the repository is private.
+The plugin starts the connector. It reads `ENGRAM_VAULT` and `ENGRAM_DATA` from your environment, so set them in your shell profile before you start Claude Code. Loading the plugin from a folder worked in our test (`claude --plugin-dir`). The install from the marketplace was not tested yet.
 
-The manual route works today:
+The manual route:
 
 ```bash
 claude mcp add phygital-engram --env ENGRAM_VAULT=/path/to/notes --env ENGRAM_DATA=/path/to/index -- python3 /path/to/phygital-engram/mcp/server.py

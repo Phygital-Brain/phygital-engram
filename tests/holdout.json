@@ -32,7 +32,7 @@
  {
   "q": "how many backups do I keep",
   "expect_files": [
-   "Platform/server.md"
+   "Projects/Home-Server/server.md"
   ],
   "expect": [
    "last 14 copies"
@@ -42,7 +42,7 @@
  {
   "q": "which operating system does my server run",
   "expect_files": [
-   "Platform/server.md"
+   "Projects/Home-Server/server.md"
   ],
   "expect": [
    "Ubuntu 24.04"
@@ -82,7 +82,7 @@
  {
   "q": "why did we choose the risograph look",
   "expect_files": [
-   "Intelligence/decisions/2026-10-02-riso-look.md"
+   "Memory/decisions/2026-10-02-riso-look.md"
   ],
   "expect": [
    "costs less than full colour"

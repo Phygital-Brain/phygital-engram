@@ -104,7 +104,7 @@ You should see `REBUILT.` at the start of the line.
 
 ### Cards stop partway
 
-**Why:** a round has a limit (1,500 cards in the working version), or the AI service returned an error.
+**Why:** a round has a limit, or the AI service returned an error.
 **Fix:** run the cards command again. Cards already made are kept, and you do not pay for them twice.
 
 ## A private folder

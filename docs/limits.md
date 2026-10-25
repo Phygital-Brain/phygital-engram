@@ -11,7 +11,7 @@ What Phygital Engram cannot do, or does only to a point, so nothing surprises yo
 | Markdown only | Only `.md` files are read | Export other files to Markdown first. PDFs, images and Word files are not searched |
 | English-tuned word roots | "dashes" finds "dash" in English. Other languages match whole words and exact strings, but roots are not tuned | Use exact words in other languages, or add cards |
 | No sync, no phone app of its own | It runs against one folder | Keep your notes in a cloud drive. For a phone, use the server version: see [Setup on your own server](setup-own-server.md). It brings your own sync, and it is not tested on a phone with this repository |
-| The AI connector is tested in Claude Code only | The computer version worked in Claude Code on the sample notes. The server version connected to Claude Code over HTTP. ChatGPT, the Claude website and the phone app can use the server version, but that is untested here | Use the command line and the local page, or try the connectors and report what happens: see [Connect your AI](connect-your-ai.md) and [Setup on your own server](setup-own-server.md) |
+| The AI connector is tested in Claude Code only | The computer version worked in Claude Code on the sample notes. The server version connected to Claude Code over HTTP. ChatGPT, the Claude website and the phone app can use the server version, but that is untested here | Use the command line, or try the connectors and report what happens: see [Connect your AI](connect-your-ai.md) and [Setup on your own server](setup-own-server.md) |
 | Reads only | It never edits notes | You or your agent change notes with your usual tools |
 
 ## Size and speed
@@ -35,6 +35,6 @@ What Phygital Engram cannot do, or does only to a point, so nothing surprises yo
 
 ## Tuned on one person's notes
 
-The folder weights in the working version fit one folder layout. On a different layout the ranking still works, but results get better once you set your own folder levels: see [settings](settings.md). Defaults for other layouts are not ready yet.
+The 0.1.0 defaults are general, but the ranking was tuned on one person's notes. On your layout the ranking still works, and results get better once you set your own folder levels: see [settings](settings.md). The numbers in [benchmarks](benchmarks.md) came from the author's own tuned settings, so yours will differ.
 
 More in the [FAQ](faq.md) and the [roadmap](roadmap.md).

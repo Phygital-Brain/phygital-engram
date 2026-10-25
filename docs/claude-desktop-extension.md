@@ -3,17 +3,17 @@
 Install Phygital Engram in Claude Desktop with one click and no config file.
 
 > [!IMPORTANT]
-> Pre-release. The extension is built by a script and checked by a workflow when a release is published. No release exists yet, so there is no file to download. Nothing here has been tested inside Claude Desktop.
+> First release, version 0.1.0. The extension is built by a script and checked by a workflow when a release is published, and the file `phygital-engram.mcpb` is on the release. Nothing here has been tested inside Claude Desktop yet.
 
 ## What you need
 
 - Claude Desktop, the latest version, on Mac, Windows or Linux.
 - Python 3 on your computer.
-- Phygital Engram's search, with an index built. The extension bundles it from version 0.1.0.
+- Phygital Engram's search, with an index built. The extension bundles it.
 
 ## Install
 
-1. Download [phygital-engram.mcpb](https://github.com/Phygital-Brain/phygital-engram/releases/latest/download/phygital-engram.mcpb). It will work once the first release is published.
+1. Download [phygital-engram.mcpb](https://github.com/Phygital-Brain/phygital-engram/releases/latest/download/phygital-engram.mcpb).
 2. Open Claude Desktop, go to **Settings, Extensions**, and drag the file in.
 3. Pick **Your notes folder** and **Folder for the index**, then **Install**. The index folder must be outside your notes folder.
 
