@@ -1,0 +1,29 @@
+# For repos with no code to test (small and content profiles). Runs scripts/check.py on every push and pull request:
+# links, anchors, em dashes and matching version numbers. Saved as tests.yml in the new repo, so the badge works.
+name: Tests
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1   # v7.0.1, pinned
+        with:
+          persist-credentials: false
+      - run: python3 scripts/check.py
+
+  workflows:
+    name: workflows (zizmor)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1   # v7.0.1, pinned
+        with:
+          persist-credentials: false
+      # Unsafe patterns in GitHub Actions: leaked tokens, injection, broad permissions.
+      - run: pipx run zizmor==1.31.1 --offline .

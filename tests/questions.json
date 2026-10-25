@@ -1,0 +1,162 @@
+[
+ {
+  "q": "when is the cover due",
+  "expect_files": [
+   "Projects/Picture-Book/notes/schedule.md"
+  ],
+  "expect": [
+   "cover to the 15th of November"
+  ],
+  "kind": "fact"
+ },
+ {
+  "q": "who is my contact at Penguin Kids",
+  "expect_files": [
+   "Relationships/Clients/Penguin Kids.md"
+  ],
+  "expect": [
+   "Contact: Marta"
+  ],
+  "kind": "fact"
+ },
+ {
+  "q": "how many days does Penguin Kids have to pay",
+  "expect_files": [
+   "Relationships/Clients/Penguin Kids.md"
+  ],
+  "expect": [
+   "Payment terms are 30 days"
+  ],
+  "kind": "fact"
+ },
+ {
+  "q": "what do I charge per spread",
+  "expect_files": [
+   "Context/services.md"
+  ],
+  "expect": [
+   "120 EUR per spread"
+  ],
+  "kind": "fact"
+ },
+ {
+  "q": "invoice INV-2026-014",
+  "expect_files": [
+   "Relationships/Clients/Penguin Kids.md"
+  ],
+  "expect": [
+   "INV-2026-014"
+  ],
+  "kind": "exact"
+ },
+ {
+  "q": "Nextcloud 31.0.4",
+  "expect_files": [
+   "Platform/server.md"
+  ],
+  "expect": [
+   "Nextcloud 31.0.4"
+  ],
+  "kind": "exact"
+ },
+ {
+  "q": "Procreate brush pack v4.2.1",
+  "expect_files": [
+   "Daily/2026-03-02.md"
+  ],
+  "expect": [
+   "v4.2.1"
+  ],
+  "kind": "exact"
+ },
+ {
+  "q": "what look did we pick for the print",
+  "expect_files": [
+   "Intelligence/decisions/2026-10-02-riso-look.md"
+  ],
+  "expect": [
+   "two colour risograph look"
+  ],
+  "kind": "paraphrase"
+ },
+ {
+  "q": "which punctuation am I never allowed to use",
+  "expect_files": [
+   "CLAUDE.md"
+  ],
+  "expect": [
+   "Never use em dashes"
+  ],
+  "kind": "paraphrase"
+ },
+ {
+  "q": "should my short bio start with the city I live in",
+  "expect_files": [
+   "Context/me.md"
+  ],
+  "expect": [
+   "should not open with the city"
+  ],
+  "kind": "paraphrase"
+ },
+ {
+  "q": "when does the nightly backup happen",
+  "expect_files": [
+   "Platform/server.md"
+  ],
+  "expect": [
+   "nightly backup runs at 03:00"
+  ],
+  "kind": "paraphrase"
+ },
+ {
+  "q": "which colour pairs make each other stand out",
+  "expect_files": [
+   "Resources/Library/transcripts/2026-09-01-colour-theory-talk.md"
+  ],
+  "expect": [
+   "Complementary colours"
+  ],
+  "kind": "paraphrase"
+ },
+ {
+  "q": "why did we not host our own mail",
+  "expect_files": [
+   "Intelligence/decisions/2026-09-12-no-own-mail-server.md"
+  ],
+  "expect": [
+   "Do not run our own mail server"
+  ],
+  "kind": "decision"
+ },
+ {
+  "q": "which printer did we choose",
+  "expect_files": [
+   "Intelligence/decisions/2026-10-04-nordic-print.md"
+  ],
+  "expect": [
+   "Print with Nordic Print"
+  ],
+  "kind": "decision"
+ },
+ {
+  "q": "what are the rules for emails to clients",
+  "expect_files": [
+   "CLAUDE.md"
+  ],
+  "expect": [
+   "Always ask before sending"
+  ],
+  "kind": "evergreen"
+ },
+ {
+  "q": "what is the status of the zine club",
+  "expect_files": [
+   "Projects/Zine-Club/README.md"
+  ],
+  "expect": [
+   "Paused until spring"
+  ],
+  "kind": "fact"
+ }
+]

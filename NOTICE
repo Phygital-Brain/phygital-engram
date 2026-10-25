@@ -1,0 +1,57 @@
+Phygital Engram
+Copyright 2026 Phygital-Brain and Phygital Engram contributors
+Original project: https://github.com/Phygital-Brain/phygital-engram
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not
+use this project except in compliance with the License. You may obtain a copy
+of the License in the file LICENSE or at http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+License for the specific language governing permissions and limitations under
+the License.
+
+Phygital Engram is not related to other projects that happen to be called
+Engram. Those names belong to their own owners, and nothing here is made by or
+affiliated with them.
+
+
+In plain words
+--------------
+
+You may use, study, change and share this project, also for money, in your
+own products. In return, under the Apache License 2.0:
+
+  - Keep the LICENSE file, this NOTICE file and the copyright lines with every
+    copy you share, and with any changed version.
+  - Mark the files you changed as changed.
+  - The license gives you the authors' patent rights for this project, and ends
+    them for anyone who sues over a patent in it.
+  - The license gives no rights to the project's name (section 6), other than
+    to say truthfully where your version came from.
+
+This summary helps you read the license; it doesn't replace it.
+
+
+Credit
+------
+
+To cite the project, use GitHub's "Cite this repository" button, which reads
+CITATION.cff.
+
+
+Third-party software
+--------------------
+
+The search itself uses only the Python standard library, including SQLite,
+which is in the public domain. No package has to be installed for it.
+
+Files included in this repository (added with version 0.1.0):
+
+  - app/marked.min.js: marked, a Markdown renderer for the local page.
+    Source: https://github.com/markedjs/marked  License: MIT.
+    Its license text stays in the file header.
+
+The optional note cards call an AI service with your own key, through Python's
+standard library. No AI software is included.

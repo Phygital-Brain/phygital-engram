@@ -1,0 +1,102 @@
+[
+ {
+  "q": "what did Marta and I agree on the last call",
+  "expect_files": [
+   "Relationships/Clients/Penguin Kids calls.md"
+  ],
+  "expect": [
+   "print files follow a week"
+  ],
+  "kind": "fact"
+ },
+ {
+  "q": "what is the plan for the cover artwork",
+  "expect_files": [
+   "Projects/Picture-Book/notes/cover-ideas.md"
+  ],
+  "expect": [
+   "penguin on a red scooter"
+  ],
+  "kind": "paraphrase"
+ },
+ {
+  "q": "what is the story of the book about",
+  "expect_files": [
+   "Projects/Picture-Book/drafts/story-draft-v3.md"
+  ],
+  "expect": [
+   "scarf was on the washing line"
+  ],
+  "kind": "fact"
+ },
+ {
+  "q": "how many backups do I keep",
+  "expect_files": [
+   "Platform/server.md"
+  ],
+  "expect": [
+   "last 14 copies"
+  ],
+  "kind": "fact"
+ },
+ {
+  "q": "which operating system does my server run",
+  "expect_files": [
+   "Platform/server.md"
+  ],
+  "expect": [
+   "Ubuntu 24.04"
+  ],
+  "kind": "exact"
+ },
+ {
+  "q": "do I do logo design",
+  "expect_files": [
+   "Context/services.md"
+  ],
+  "expect": [
+   "do not do logo design"
+  ],
+  "kind": "fact"
+ },
+ {
+  "q": "which days does Marta read email",
+  "expect_files": [
+   "Relationships/Clients/Penguin Kids.md"
+  ],
+  "expect": [
+   "email on Tuesdays"
+  ],
+  "kind": "fact"
+ },
+ {
+  "q": "what is my working schedule",
+  "expect_files": [
+   "Context/me.md"
+  ],
+  "expect": [
+   "9 to 17"
+  ],
+  "kind": "paraphrase"
+ },
+ {
+  "q": "why did we choose the risograph look",
+  "expect_files": [
+   "Intelligence/decisions/2026-10-02-riso-look.md"
+  ],
+  "expect": [
+   "costs less than full colour"
+  ],
+  "kind": "decision"
+ },
+ {
+  "q": "what happened with the colour proof",
+  "expect_files": [
+   "Daily/2026-10-19.md"
+  ],
+  "expect": [
+   "too dark"
+  ],
+  "kind": "fact"
+ }
+]

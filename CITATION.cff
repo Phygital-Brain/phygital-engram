@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "If you use or build on this project, please credit it like this."
+title: "Phygital Engram"
+type: software
+authors:
+  - name: "Phygital-Brain"
+repository-code: "https://github.com/Phygital-Brain/phygital-engram"
+license: Apache-2.0
+version: 0.1.0
+date-released: "2026-10-25"
+abstract: "A fast, private search for a folder of Markdown notes. Your agent finds the right note and the exact line, with the note, heading and date as the source. Read-only, local, no telemetry."
+keywords: [search, markdown, notes, second-brain, sqlite, local-first]
