@@ -33,6 +33,10 @@ Each form asks for what's needed to help you, such as how you run it and which A
    python3 scripts/check.py
    ```
 
+   ```bash
+   python3 -m unittest discover -s tests -p "test_*.py"
+   ```
+
    The docs check fails on a broken link, a missing heading, a leftover placeholder or an em dash. If you change ranking, say in your pull request how the test scores moved.
 5. If people will notice the change, update the matching page in `docs/` and add a line to [CHANGELOG.md](CHANGELOG.md).
 6. Open a pull request saying what changed and why.

@@ -22,6 +22,7 @@ This page is for anyone who wants to change how Phygital Engram finds and ranks 
 - [Note cards](#note-cards)
 - [Speed and housekeeping](#speed-and-housekeeping)
 - [Files in your data folder](#files-in-your-data-folder)
+- [The connector](#the-connector)
 
 </details>
 
@@ -195,3 +196,11 @@ Cards need `ANTHROPIC_API_KEY`. Without it, no cards are made and nothing is sen
 | `sessions/` | Saved chat sessions, if you turned sessions on | Only if you do not need them |
 
 Deleting the index loses no notes. Cards live inside the index, so deleting it means paying for cards again.
+
+## The connector
+
+The connector for AI apps (`mcp/server.py`, see [tools.md](tools.md)) has one setting of its own. It also passes `ENGRAM_VAULT` and `ENGRAM_DATA` on to the search.
+
+| Name | Default | What it does |
+|---|---|---|
+| `PHYGITAL_ENGRAM_CLI` | The `engram.py` next to the `mcp` folder | The path to the search program the connector runs. Change it only if you keep the program somewhere else |

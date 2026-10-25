@@ -11,6 +11,7 @@
 <a href="docs/how-it-works.md"><img src="https://img.shields.io/badge/notes-Markdown-0B0D12?logo=markdown&labelColor=FFD60A" alt="Notes: plain Markdown"></a>
 <a href="docs/safety.md"><img src="https://img.shields.io/badge/notes-read--only-0B0D12?labelColor=9B8CFF" alt="Your notes are read-only"></a>
 <a href="docs/privacy.md"><img src="https://img.shields.io/badge/telemetry-none-0B0D12?labelColor=FFD60A" alt="No telemetry"></a>
+<a href="docs/tools.md"><img src="https://img.shields.io/badge/MCP-connector-black" alt="Includes an MCP connector for AI apps"></a>
 <a href="docs/benchmarks.md"><img src="https://img.shields.io/badge/search-about%2011%20ms-0B0D12?labelColor=9B8CFF" alt="About 11 ms per search on the author's notes"></a>
 </p>
 <p align="center">
@@ -28,6 +29,7 @@
 <a href="#what-it-is">What it is</a> ·
 <a href="#how-fast-is-it">How fast</a> ·
 <a href="#quick-start-about-5-minutes">Quick start</a> ·
+<a href="docs/connect-your-ai.md">Connect your AI app</a> ·
 <a href="#safety-and-privacy">Safety and privacy</a> ·
 <a href="docs/examples.md">Things to ask</a> ·
 <a href="#works-with-phygital-brain">Phygital Brain</a> ·
@@ -136,7 +138,7 @@ More in [docs/how-it-works.md](docs/how-it-works.md) and [docs/search-ranking.md
 | **Card** | An optional summary an AI writes for each section, to help when you use different words from the note. |
 | **Private folder** | A folder that is findable but locked until you ask to open it. |
 | **Agent** | The AI app you talk to: Claude, ChatGPT, Codex or another. |
-| **MCP** | A plug for AI apps. It is how an agent will call Phygital Engram directly. Coming next. |
+| **MCP** | A plug for AI apps. Phygital Engram includes one, so your agent can search your notes directly. |
 
 ## What you get
 
@@ -148,6 +150,7 @@ More in [docs/how-it-works.md](docs/how-it-works.md) and [docs/search-ranking.md
 - **Folder hints.** Say "decisions" or "daily" in your question and that folder counts double. It is a boost, never a filter.
 - **A reason with every result.** A short line says why it came back: "exact match", "decision", "3 months old".
 - **Open and look around.** Open one section, or the sections before and after it.
+- **A connector for AI apps.** Four read-only tools (`search_notes`, `open_result`, `around_result`, `check_index`) let your agent do all of this itself. A locked private note can be found but never opened by the agent.
 - **A health check.** One command says if the index is fresh, if anything private slipped in, and if searches are slow.
 - **A test you can run on your own notes.** Write your own questions and score the search.
 - **Optional note cards.** An AI writes a card for each section once, using your own key. About $6 for 4,800 notes, then cents a month. See [docs/cards.md](docs/cards.md).
@@ -172,7 +175,8 @@ These are the author's numbers on one set of private notes, so you cannot rerun 
 | Way | Where it runs | Cost | Guide |
 |---|---|---|---|
 | **1. Your computer, from the command line** | Mac, Windows or Linux with Python | Free | [setup-computer.md](docs/setup-computer.md) |
-| MCP connector for your AI app | Your computer | Free | Coming next, see [roadmap](docs/roadmap.md) |
+| **2. Your AI app, through the MCP connector** | Your computer, in Claude Code, Claude Desktop, Codex and others | Free | [connect-your-ai.md](docs/connect-your-ai.md) |
+| Claude Desktop extension | Your computer, one click, no config file | Free | [claude-desktop-extension.md](docs/claude-desktop-extension.md) |
 | On your own server | A server you run | A few dollars a month | Not written yet |
 
 > [!TIP]
@@ -209,7 +213,9 @@ These are the author's numbers on one set of private notes, so you cannot rerun 
 
    You should see a list of checks with no problems.
 
-5. Ask your agent: *"Search my notes for the Picture-Book schedule and tell me where you found it."*
+5. Connect your AI app. See [docs/connect-your-ai.md](docs/connect-your-ai.md).
+
+6. Ask your agent: *"Search my notes for the Picture-Book schedule and tell me where you found it."*
 
 More in [docs/getting-started.md](docs/getting-started.md).
 
@@ -264,7 +270,7 @@ For a small folder you can. For thousands of notes, reading everything is slow a
 <details>
 <summary><b>Can I use it from my phone?</b></summary>
 
-Not yet. The MCP connector comes next, and that is how phone apps will reach it.
+Not yet. The connector runs on your computer, and phone apps can only reach one that runs on a server. A server version is on the [roadmap](docs/roadmap.md).
 </details>
 
 More in [docs/faq.md](docs/faq.md).
@@ -275,6 +281,9 @@ More in [docs/faq.md](docs/faq.md).
 |---|---|
 | [Getting started](docs/getting-started.md) | You want the shortest path to your first search |
 | [Setup on your computer](docs/setup-computer.md) | You want to install and run it, free |
+| [Connect your AI app](docs/connect-your-ai.md) | You want your agent to search your notes |
+| [Claude Desktop extension](docs/claude-desktop-extension.md) | You use Claude Desktop and want one click |
+| [The four tools](docs/tools.md) | You want to know what your agent can do with it |
 | [Things to ask](docs/examples.md) | You want ideas for what to ask your agent |
 | [The idea behind it](docs/the-idea.md) | You want to know why plain search works for notes |
 | [How it works](docs/how-it-works.md) | You want to know what happens inside |
@@ -304,7 +313,8 @@ More in [docs/faq.md](docs/faq.md).
 
 ## Not supported yet
 
-- **MCP connector.** Your AI app cannot call Phygital Engram directly yet. It comes next, and the guides will be updated.
+- **The Claude website and phone app, and ChatGPT.** They need a connector that runs on a server over HTTPS. This one runs on your computer.
+- **Tested inside AI apps.** The connector was tested by running its four tools against the sample notes. It has not been tested inside Claude Code, Claude Desktop, Codex, Cursor, VS Code or Gemini CLI yet.
 - **Meaning search.** Matching by meaning needs an AI model at search time. In our test it made searches about 45 times slower for a small gain.
 - **Other languages.** Word roots are tuned for English. Other languages work for plain word matches only.
 - **Windows and Linux checks.** It was tested on macOS only so far.
@@ -325,14 +335,16 @@ Issues are public, so leave out passwords, keys and private notes.
 
 | Path | What is in it |
 |---|---|
+| `mcp/` | The connector that lets an AI app search your notes. Four read-only tools |
+| `.claude-plugin/`, `glama.json` | The Claude Code plugin and the MCP directory listing |
 | `docs/` | Every guide, and the images they use |
 | `tests/` | A made-up sample of 24 notes and 26 questions, so you can run the benchmark yourself |
 | `.github/` | Issue forms, the pull request checklist and the automatic checks |
-| `scripts/` | `check.py`, which checks links, headings and style before every change |
+| `scripts/` | `check.py`, which checks links, headings and style before every change, and `build_mcpb.py`, which builds the Claude Desktop extension |
 | `AGENTS.md` | A guide for AI coding agents that change this repository |
 | `NOTICE`, `LICENSE`, `TRADEMARKS.md` | The license, the credits and the name and logo rules |
 
-The code arrives with version 0.1.0.
+The search code (`engram.py` and `engram_lib/`) arrives with version 0.1.0, after tuning.
 
 ## Contributors
 

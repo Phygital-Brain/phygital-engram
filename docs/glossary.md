@@ -13,7 +13,7 @@ For when a word on another page is new to you. Every term here is used in these 
 | Index | The small database file that makes search fast. It is built from your notes and can be deleted and rebuilt at any time |
 | Info block | The lines at the very top of a note between two `---` lines (also called frontmatter). They hold `date`, `status`, `tags` and more |
 | Learning from use | A light ranking step that notices which results you open. It starts after 50 opens and keeps counts, not questions |
-| MCP | A plug for AI apps: a standard way for an AI app to use a tool. The MCP connector for Phygital Engram is coming next |
+| MCP | Short for Model Context Protocol. A standard plug that lets an AI app use a tool. Phygital Engram includes a connector (`mcp/server.py`) that gives an AI app four read-only tools. See [tools](tools.md) |
 | Notes folder | The folder of Markdown files that Phygital Engram reads. It never changes it |
 | Private folder | A folder whose notes can be found but not read until you ask. A match shows only the file and heading |
 | Ranking | The order of results, best first |

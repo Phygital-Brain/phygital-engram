@@ -1,0 +1,12 @@
+{
+  "name": "phygital-engram",
+  "owner": { "name": "Phygital-Brain", "url": "https://github.com/Phygital-Brain" },
+  "plugins": [
+    {
+      "name": "phygital-engram",
+      "source": "./",
+      "description": "Your notes, found in milliseconds. A fast, private, read-only search for your Markdown notes.",
+      "version": "0.1.0"
+    }
+  ]
+}

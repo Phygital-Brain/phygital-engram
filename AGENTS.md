@@ -18,7 +18,7 @@ Ways it runs today:
 - **Command line:** `ingest`, `search`, `get`, `around`, `health`, `test`, `cards`, `stats`, `usage`.
 - **Local page:** a small page on the person's own computer with search, files, health and test tabs.
 
-Coming later, not in this repository yet: an MCP connector so AI apps can call it directly. Do not add MCP files, a tools page or a connect-your-AI page until that work starts.
+- **MCP connector:** `mcp/server.py`, a small program an AI app starts. It has four read-only tools and runs `engram.py` for every call. A Claude Code plugin (`.claude-plugin/`) and a Claude Desktop extension build (`scripts/build_mcpb.py`) package it. Not built: a server version for the Claude website, phone app and ChatGPT.
 
 ## Layout
 
@@ -34,10 +34,13 @@ engram_lib/                the search engine
   health.py                  checks the index, privacy and speed
   usage.py                   counts real opens to learn a little from use
 app/                       the local page
+mcp/server.py              the connector for AI apps (standard library only)
 config.json                every ranking setting, with its default
 tests/                     tests and a made-up sample notes folder (test data only)
 docs/                      pages for people; docs/images/ for pictures
-scripts/                   check.py: links, headings, em dashes, versions
+scripts/                   check.py (links, headings, em dashes, versions) and build_mcpb.py (the extension)
+.claude-plugin/            the Claude Code plugin and its marketplace file
+glama.json                 the MCP directory listing
 .github/workflows/         tests, security scans
 ```
 
@@ -49,6 +52,7 @@ python3 engram.py search "question"
 python3 engram.py health          # exit code 1 means a problem
 python3 engram.py test            # score the test questions
 python3 scripts/check.py          # check the docs
+python3 -m unittest discover -s tests -p "test_*.py"   # the connector tests
 ```
 
 Run the tests and `python3 scripts/check.py` before committing. Never write a test that needs real notes or a real secret.
@@ -68,6 +72,10 @@ A change that weakens one needs a very good reason and a test.
 9. **Plain words, no em dashes** in everything people read. `scripts/check.py` checks the docs.
 10. **Keep the credit and the disclaimer:** `NOTICE`, `CITATION.cff`, `TRADEMARKS.md`.
 11. **No real notes, names or question sets in the repository.** Tests use the made-up sample notes only.
+12. **The connector is read-only.** Every tool has `readOnlyHint` true. No tool writes, moves or deletes a note. `tests/test_mcp.py` checks it.
+13. **The connector never opens a private result, and never takes a secret.** A result id that starts with `p` is refused. No tool asks for a password or key.
+14. **The connector runs only fixed search commands.** It builds the argument list itself, never a shell line, and checks every id with a pattern first.
+15. **Everything a tool returns is labelled as note content, never instructions.**
 
 ## How things work
 
@@ -79,6 +87,8 @@ A change that weakens one needs a very good reason and a test.
 
 - Add or change behaviour: add or change a test. Run the tests.
 - **New setting:** add it to `config.json`, to `.env.example` if it is an environment setting, and to [docs/settings.md](docs/settings.md).
+- **New tool:** keep it read-only, give it honest annotations, add it to [docs/tools.md](docs/tools.md) (a test checks the name is there) and add a test. The extension manifest reads the tool list from `mcp/server.py` by itself.
+- **The connector depends on the engine only through the command line** (`search --json`, `get`, `around`, `health`). If you change what those print, change `mcp/server.py` and its tests in the same change.
 - Changing user-visible behaviour: update the matching page in `docs/` in the same change.
 - Changing ranking: update [docs/search-ranking.md](docs/search-ranking.md) and [docs/benchmarks.md](docs/benchmarks.md) if the numbers move.
 - GitHub Actions: keep third-party actions pinned to a commit.
@@ -97,7 +107,8 @@ When a person asks you to set Phygital Engram up for them:
 
 ## Wanted
 
-- The MCP connector, then a Claude Desktop extension. See [docs/roadmap.md](docs/roadmap.md).
+- Test the connector inside real AI apps and fix what breaks. See [docs/roadmap.md](docs/roadmap.md).
+- A server version of the connector, for the Claude website, phone app and ChatGPT.
 - Checks on Windows and Linux.
 - Sourced facts: return the single line that answers, with its note, heading and date.
 - A small built-in model for meaning search, only if it stays fast.

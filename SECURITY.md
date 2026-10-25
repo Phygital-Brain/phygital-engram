@@ -59,7 +59,8 @@ If you follow this policy, I won't take any action against you for your research
 
 - Anything that could reveal a secret, a key or private contents to someone who shouldn't have them (search results, the local page, error messages, logs, files on disk). This includes a secret that the blanking step missed.
 - Any way to make Phygital Engram write to, move or delete a note, or put its index inside your notes folder.
-- Any way to open a private (locked) result without being asked.
+- Any way to open a private (locked) result without being asked, including through the AI connector.
+- Any way to make the connector run anything other than its fixed search commands, or return text as instructions instead of note content.
 - Any way to use the local page from another website, or from another computer on your network when it is not meant to be reachable.
 - Any change that damages your data, or sends your notes to a service without you turning that on.
 

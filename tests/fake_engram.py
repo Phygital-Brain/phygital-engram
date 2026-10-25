@@ -1,0 +1,20 @@
+"""A stand-in for engram.py, so the connector tests do not need the real search. Prints made-up answers."""
+import json
+import sys
+
+a = sys.argv[1:]
+if a[:1] == ["search"]:
+    if "nothing" in a[1]:
+        print("[]")
+    elif "locked" in a[1]:
+        print(json.dumps([{"id": "p1", "path": "Intelligence/finances/q3.md", "heading": "Q3", "private": True, "snippet": "Private. Open only when asked."}]))
+    else:
+        print(json.dumps([{"id": 7, "path": "Projects/Picture-Book/notes/schedule.md", "heading": "schedule > Schedule", "snippet": "Marta moved the [cover] to the 15th.", "why": "your words in the heading"}]))
+elif a[:1] == ["get"]:
+    print("PRIVATE OPENED" if "--private" in a else json.dumps({"id": a[1], "text": "full section"}))
+elif a[:1] == ["around"]:
+    print(json.dumps({"id": a[1], "before": [], "after": []}))
+elif a[:1] == ["health"]:
+    print("OK    Index: last update 0 min ago")
+else:
+    sys.exit(2)

@@ -6,16 +6,20 @@ This page shows where Phygital Engram may go. At the end you know what is wanted
 
 ## Wanted
 
-- **MCP connector.** MCP is a plug for AI apps. With it, your AI app can search your notes directly: search, open a result, see what is around it. This comes first and is the biggest missing piece. Until it exists you use the command line and the local page.
-- **Claude Desktop extension.** One-click install of the connector in the Claude desktop app, once the connector exists.
-- **Package install.** Install with one command instead of downloading the files.
-- **Sourced facts.** Return the single line that answers, with its note, heading and date, instead of a whole section. In a small test on the author's notes it cut the reading from about 3,100 to about 1,000 characters per question. It matches words only and needs more work.
-- **Windows and Linux checks.** Test on more systems and write down what works.
-- **More languages.** Docs and word-root matching for languages other than English.
+In this order:
+
+1. **Test the connector inside AI apps.** The connector is built (see [Tools](tools.md)). It has only been run over stdio against the sample notes. Next is trying it in Claude Code, Claude Desktop, Codex, Cursor, VS Code and Gemini CLI, and writing down what works.
+2. **Publish the extension with release 0.1.0.** The Claude Desktop extension build exists (see [Claude Desktop extension](claude-desktop-extension.md)). It ships with the search code, which is not in the repository yet. There is no release or download yet.
+3. **A server version for phone and ChatGPT.** ChatGPT and the Claude website and phone app need a connector that runs on a server over HTTPS. That version is not built.
+4. **Sourced facts.** Return the single line that answers, with its note, heading and date, instead of a whole section. In a small test on the author's notes it cut the reading from about 3,100 to about 1,000 characters per question. It matches words only and needs more work.
+5. **A small built-in meaning model.** A small model inside the program, with no separate AI server, to match meaning as well as words. Only if it stays fast, with almost no added time to a search.
+6. **Windows and Linux checks.** Test on more systems and write down what works.
+7. **More languages.** Docs and word-root matching for languages other than English.
+
+Also wanted, no order: **package install**, one command instead of downloading the files.
 
 ## Maybe
 
-- **A tiny built-in meaning model.** A small model inside the program, with no separate AI server, to match meaning as well as words. Only worth it if it adds almost no time to a search.
 - **An updater.** Update by itself every week.
 
 ## Not planned

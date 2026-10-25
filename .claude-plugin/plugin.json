@@ -1,0 +1,16 @@
+{
+  "name": "phygital-engram",
+  "version": "0.1.0",
+  "description": "Your notes, found in milliseconds. A fast, private, read-only search for your Markdown notes, for your AI agent.",
+  "author": { "name": "Phygital-Brain", "url": "https://github.com/Phygital-Brain" },
+  "homepage": "https://github.com/Phygital-Brain/phygital-engram",
+  "repository": "https://github.com/Phygital-Brain/phygital-engram",
+  "license": "Apache-2.0",
+  "keywords": ["search", "markdown", "notes", "second-brain", "mcp"],
+  "mcpServers": {
+    "phygital-engram": {
+      "command": "python3",
+      "args": ["${CLAUDE_PLUGIN_ROOT}/mcp/server.py"]
+    }
+  }
+}

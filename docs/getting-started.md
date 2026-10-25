@@ -77,5 +77,5 @@ You should see a list of checks, each marked OK. A problem is written in plain w
 
 - Learn what to ask in [Examples](examples.md).
 - See what decides the order of results in [How results are ranked](search-ranking.md).
-- Use it from your AI agent. The connector for AI apps is not here yet. See the [roadmap](roadmap.md).
+- Use it from your AI agent. The repository has a connector, not yet tried inside AI apps. See [Connect your AI](connect-your-ai.md) and [Tools](tools.md).
 - Something unclear? Look in the [FAQ](faq.md) or the [glossary](glossary.md).

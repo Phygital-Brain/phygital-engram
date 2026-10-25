@@ -12,7 +12,7 @@ Ask the way you would ask a person who has read all your notes. Full questions w
 - *What did we decide about the printer?*
 - *"print-ready PDF"*
 
-On the command line, type `python3 engram.py search "your question"`. Once an AI app is connected, the app asks for you. The connector is not here yet. See the [roadmap](roadmap.md).
+On the command line, type `python3 engram.py search "your question"`. Once an AI app is connected, the app asks for you. The repository has a connector for this, but it has not been tried inside AI apps yet. See [Connect your AI](connect-your-ai.md).
 
 ## Find a fact
 

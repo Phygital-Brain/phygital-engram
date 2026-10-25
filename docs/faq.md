@@ -106,13 +106,13 @@ No. There is no account, no telemetry and no tracking. The local web page loads 
 
 <details><summary><b>Which AI apps work with it?</b></summary>
 
-None are listed yet. The connector for AI apps (an MCP connector) is not here. It is first on the [roadmap](roadmap.md). For now you run it in the terminal or on the local web page. An agent that can run terminal commands could call it, but we have not tested that with any app.
+The repository has an MCP connector (`mcp/server.py`) with four read-only tools. We ran it over stdio against the sample notes, but we have not tested it inside Claude Code, Claude Desktop, Codex, Cursor, VS Code or Gemini CLI, so none is listed as working yet. ChatGPT and the Claude website and phone app are not supported, because they need a version that runs on a server. See [Connect your AI](connect-your-ai.md) and [Tools](tools.md). You can also run it in the terminal or on the local web page.
 
 </details>
 
 <details><summary><b>What does "MCP" mean?</b></summary>
 
-It is short for Model Context Protocol. Think of it as a plug that lets AI apps use a tool. The [glossary](glossary.md) explains the other words you will see.
+It is short for Model Context Protocol. Think of it as a plug that lets AI apps use a tool. Phygital Engram includes a connector built on it. The [glossary](glossary.md) explains the other words you will see.
 
 </details>
 
@@ -148,7 +148,7 @@ The docs are in English only for now. Search matches words in any language. Only
 
 <details><summary><b>Can I use it from my phone?</b></summary>
 
-Not by itself, because it runs on a computer. The planned route is an AI app on your phone that connects to it. That needs the connector, which is not here yet. See the [roadmap](roadmap.md).
+Not by itself, because it runs on a computer. The connector we built runs on your computer, so phone apps cannot reach it. A phone needs a version that runs on a server over HTTPS. That is not built. See the [roadmap](roadmap.md).
 
 </details>
 
