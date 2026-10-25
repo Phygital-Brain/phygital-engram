@@ -111,7 +111,7 @@ This is a simple first version. It is not in version 0.1.0. See the [roadmap](ro
 - Other people's notes, in other folder layouts.
 - Other languages. All the test notes are in English.
 - Phones, Windows and Linux. The tests ran on one Mac.
-- The server version (`mcp/serve.py`). 11 automated tests pass and Claude Code connected to it over HTTP. The login page also worked in a browser, on a desktop and a phone-sized screen. Docker, Compose, Caddy, a real server, a real phone, the Claude website and ChatGPT were not tested with this repository. No audit has been done.
+- The server version (`mcp/serve.py`). 11 automated tests pass and Claude Code connected to it over HTTP. The login page also worked in a browser, on a desktop and a phone-sized screen. The Docker image builds on GitHub. Running it with Compose and Caddy, a real server, a real phone, the Claude website and ChatGPT were not tested with this repository. No audit has been done.
 - A big comparison with other tools. Only the small one above.
 - The AI connector (MCP) in most apps. It worked in Claude Code on the sample notes. It was not tried in Claude Desktop, Codex, Cursor, VS Code or Gemini CLI.
 - Long-term use: what happens after months of "learning from use".

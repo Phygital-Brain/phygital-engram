@@ -17,7 +17,7 @@ Ways it runs today:
 
 - **Command line:** `ingest`, `search`, `get`, `around`, `health`, `test`, `cards`, `stats`, `usage`.
 - **MCP connector:** `mcp/server.py`, a small program an AI app starts. It has four read-only tools and runs `engram.py` for every call. A Claude Code plugin (`.claude-plugin/`) and a Claude Desktop extension build (`scripts/build_mcpb.py`) package it. 
-- **Server version:** `mcp/serve.py`, the same four tools at `https://your-domain/mcp` behind a passphrase login (OAuth), for phones, the Claude website, ChatGPT and any computer. It needs the MCP SDK (`requirements-server.txt`). `Dockerfile`, `docker-compose.yml`, `Caddyfile` and `docker-entrypoint.sh` run it. Setup is in [docs/setup-own-server.md](docs/setup-own-server.md) and the risks in [docs/threat-model.md](docs/threat-model.md). Not tested: Docker, Compose, Caddy, a real server, a phone, the Claude website, ChatGPT.
+- **Server version:** `mcp/serve.py`, the same four tools at `https://your-domain/mcp` behind a passphrase login (OAuth), for phones, the Claude website, ChatGPT and any computer. It needs the MCP SDK (`requirements-server.txt`). `Dockerfile`, `docker-compose.yml`, `Caddyfile` and `docker-entrypoint.sh` run it. Setup is in [docs/setup-own-server.md](docs/setup-own-server.md) and the risks in [docs/threat-model.md](docs/threat-model.md). The image builds on GitHub. Not tested: running it with Compose and Caddy, a real server, a phone, the Claude website, ChatGPT.
 
 ## Layout
 

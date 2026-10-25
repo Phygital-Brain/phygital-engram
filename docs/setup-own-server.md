@@ -3,7 +3,7 @@
 Put Phygital Engram on a server you own, so your phone, the Claude website and other AI apps can search your notes from anywhere. You end up with an address like `https://notes.example.com/mcp`, and you type a passphrase once.
 
 > [!IMPORTANT]
-> First release, version 0.1.0. The server version is written and tested on a computer, but it has not been run in Docker, on a real server or from a phone with this repository. A Docker image is published with the release at `ghcr.io/phygital-brain/phygital-engram` (the Packages page). The Compose file below builds the image from this repository. Read [What we tested](#what-we-tested) before you rely on it.
+> First release, version 0.1.0. The server version is written and tested on a computer, but it has not been run on a real server or from a phone with this repository. A Docker image is published with the release at `ghcr.io/phygital-brain/phygital-engram` (the Packages page). It builds on GitHub for amd64 and arm64. The Compose file below builds the image from this repository. Read [What we tested](#what-we-tested) before you rely on it.
 
 <details>
 <summary><b>Table of contents</b></summary>
@@ -157,7 +157,8 @@ Stop: `docker compose down`. Remove everything, including the index and keys: `d
 | The login page in a real browser, on a desktop and a phone-sized screen, 2026-10-25 | Worked. A wrong passphrase showed an error, the right one sent the browser back to the app, and the page fits a phone screen |
 | The server building its own index when it starts on an empty data folder, 2026-10-25 | Worked. The index was there within seconds |
 | A real phone, the Claude website or ChatGPT connecting to this repository's server | Not tested |
-| Docker, Docker Compose, Caddy and the certificate | Not tested: Docker was not available where this was written |
+| The Docker image build on GitHub, for amd64 and arm64, 2026-10-25 | Built and published with the release |
+| Starting that image, Docker Compose, Caddy and the certificate on a real server | Not tested |
 | A real server on the internet | Not tested |
 
 The author runs their own tuned version of the search on their own server and uses it from a phone. That setup is separate from the files in this repository.
