@@ -1,6 +1,6 @@
 # Getting started
 
-For anyone with a folder of Markdown notes who wants an AI agent to search it fast. About 10 minutes the first time. At the end you have asked a question and opened the answer.
+Search your own Markdown notes in about 10 minutes. By the end you have asked a question and opened the answer.
 
 > [!NOTE]
 > The program files are added to this repository with the first release. Until then this page shows the path with the working version, and the command names may change before 0.1.0.

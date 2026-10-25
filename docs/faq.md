@@ -1,6 +1,6 @@
 # FAQ
 
-For people who have never used a terminal. At the end you have an answer, or you know where to ask. If your question is not here, ask in [Help and feedback](../README.md#help-and-feedback) and we will add it.
+Short answers, in plain words. If your question is not here, ask in [Help and feedback](../README.md#help-and-feedback) and we will add it.
 
 ## The basics
 

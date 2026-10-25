@@ -1,6 +1,6 @@
 # Glossary
 
-For when a word on another page is new to you. Every term here is used in these docs.
+Every term used in these docs, in plain words.
 
 | Word | What it means here |
 |---|---|

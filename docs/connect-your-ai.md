@@ -1,6 +1,6 @@
 # Connect your AI app
 
-For when Phygital Engram works in your terminal and you want your AI app to search your notes for you. You will leave with one app connected and a first question answered.
+Once Phygital Engram works in your terminal, connect it to the AI app you use, so the app can search your notes for you.
 
 > [!IMPORTANT]
 > Pre-release. The computer version worked in Claude Code, loaded from a config file, and Claude Code also worked with the server version over HTTP. Every other app and install route below is untested, and there is no release to download. Those steps are written from each app's documentation. If one fails, please [open an issue](https://github.com/Phygital-Brain/phygital-engram/issues/new?template=bug_report.yml).

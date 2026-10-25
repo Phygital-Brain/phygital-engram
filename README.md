@@ -91,7 +91,7 @@ Once your notes grow past a few hundred files, your agent has bad choices. It ca
 
 Pasting everything in does not work either. The AI treats an old note and a new one as equally true, and the more text it reads, the worse and slower its answers get.
 
-Phygital Engram adds a better one: a search that knows your notes. It ranks by your words, and also by where a note lives (a rules file counts more than an old archive), how new it is, and whether it is marked done. The right note comes up first more often, and the answer is short to read.
+Phygital Engram adds a better choice, a search that knows your notes. It ranks by your words, and also by where a note lives (a rules file counts more than an old archive), how new it is, and whether it is marked done. The right note comes up first more often, and the answer is short to read.
 
 | Without it | With Phygital Engram |
 |---|---|
@@ -108,14 +108,14 @@ Phygital Engram adds a better one: a search that knows your notes. It ranks by y
 
 <p align="center"><img src="docs/images/ownership.png" alt="Two separate places. Your notes folder is read-only and is never changed, moved or deleted. Phygital Engram keeps its own index in its own folder, and you can delete it at any time because it rebuilds." width="640"></p>
 
-- **Your notes are read-only.** It never writes, moves or deletes a note. It refuses to start if its own folder would sit inside your notes folder.
-- **Secrets are blanked before storing.** Lines like `PASSWORD=`, `TOKEN=` and API keys become `[REDACTED]`. Labelled tax IDs, IBANs and card numbers are blanked too.
-- **Password files are never read.** `.env` files, key files and `credentials.json` are skipped.
-- **Private folders are locked.** A finance folder can be findable but locked: a match shows only the file name and heading, and the text opens only when you ask.
-- **Results are labelled as information.** The text your agent receives is marked as note content, never as instructions.
-- **Nothing is collected.** No account, no tracking, no calls to us. The only outside call is the optional note cards, which use your own AI key and only if you turn them on.
-- **You can delete the index any time.** It rebuilds from your notes in about 15 seconds for 5,000 notes.
-- **Hidden means hidden.** Notes marked `engram: skip`, notes in `.claudeignore` and hidden folders like `.obsidian` and `.git` are never indexed.
+- Your notes are read-only. It never writes, moves or deletes a note. It refuses to start if its own folder would sit inside your notes folder.
+- Secrets are blanked before storing. Lines like `PASSWORD=`, `TOKEN=` and API keys become `[REDACTED]`. Labelled tax IDs, IBANs and card numbers are blanked too.
+- Password files are never read. `.env` files, key files and `credentials.json` are skipped.
+- Private folders are locked. A finance folder can be findable but locked: a match shows only the file name and heading, and the text opens only when you ask.
+- Results are labelled as information. The text your agent receives is marked as note content, never as instructions.
+- Nothing is collected. No account, no tracking, no calls to us. The only outside call is the optional note cards, which use your own AI key and only if you turn them on.
+- You can delete the index any time. It rebuilds from your notes in about 15 seconds for 5,000 notes.
+- Hidden means hidden. Notes marked `engram: skip`, notes in `.claudeignore` and hidden folders like `.obsidian` and `.git` are never indexed.
 
 More in [docs/safety.md](docs/safety.md) and [docs/privacy.md](docs/privacy.md).
 
@@ -145,16 +145,16 @@ More in [docs/how-it-works.md](docs/how-it-works.md) and [docs/search-ranking.md
 
 <p align="center"><img src="docs/images/ranking.png" alt="Six steps that decide the order of results: your words, exact things like versions and file paths, where the note lives, whether it is done or old, how new it is, and a tidy list with at most 2 sections per note." width="640"></p>
 
-- **A ranking tuned for notes.** Rare words count more, word roots match ("dashes" finds "dash"), and exact things like versions, IDs and paths match letter for letter.
-- **Folder levels.** Rules and context notes count more. Archives and copied code count less.
-- **Age and status.** Newer notes count more, halving every 180 days. Done, closed and archived notes sink. Rules never fade.
-- **Folder hints.** Say "decisions" or "daily" in your question and that folder counts double. It is a boost, never a filter.
-- **A reason with every result.** A short line says why it came back: "exact match", "decision", "3 months old".
-- **Open and look around.** Open one section, or the sections before and after it.
-- **A connector for AI apps.** Four read-only tools (`search_notes`, `open_result`, `around_result`, `check_index`) let your agent do all of this itself, from your computer or from your own server. A locked private note can be found but never opened by the agent.
-- **A health check.** One command says if the index is fresh, if anything private slipped in, and if searches are slow.
-- **A test you can run on your own notes.** Write your own questions and score the search.
-- **Optional note cards.** An AI writes a card for each section once, using your own key. About $6 for 4,800 notes, then cents a month. See [docs/cards.md](docs/cards.md).
+- A ranking tuned for notes. Rare words count more, word roots match ("dashes" finds "dash"), and exact things like versions, IDs and paths match letter for letter.
+- Folder levels. Rules and context notes count more. Archives and copied code count less.
+- Age and status. Newer notes count more, halving every 180 days. Done, closed and archived notes sink. Rules never fade.
+- Folder hints. Say "decisions" or "daily" in your question and that folder counts double. It is a boost, never a filter.
+- A reason with every result. A short line says why it came back: "exact match", "decision", "3 months old".
+- Open and look around. Open one section, or the sections before and after it.
+- A connector for AI apps. Four read-only tools (`search_notes`, `open_result`, `around_result`, `check_index`) let your agent do all of this itself, from your computer or from your own server. A locked private note can be found but never opened by the agent.
+- A health check. One command says if the index is fresh, if anything private slipped in, and if searches are slow.
+- A test you can run on your own notes. Write your own questions and score the search.
+- Optional note cards. An AI writes a card for each section once, using your own key. About $6 for 4,800 notes, then cents a month. See [docs/cards.md](docs/cards.md).
 
 ## How fast is it?
 
@@ -248,11 +248,11 @@ More in [docs/with-phygital-brain.md](docs/with-phygital-brain.md).
 
 ## What it does not do
 
-- **It does not answer.** It finds notes. Your agent reads the result and writes the answer.
-- **It does not search by meaning.** It matches words, word roots and exact strings, and uses the folder and age of a note. Optional cards help when you use different words than the note. We tried meaning search: it was about 45 times slower for a small gain. See [docs/limits.md](docs/limits.md).
-- **It does not run in the cloud.** It runs on your computer, and there is nothing to sign up for.
-- **It does not sync or back up your notes.**
-- **It does not read PDFs, images or Word files.** Markdown notes only.
+- It does not answer. It finds notes. Your agent reads the result and writes the answer.
+- It does not search by meaning. It matches words, word roots and exact strings, and uses the folder and age of a note. Optional cards help when you use different words than the note. We tried meaning search: it was about 45 times slower for a small gain. See [docs/limits.md](docs/limits.md).
+- It does not run in the cloud. It runs on your computer, and there is nothing to sign up for.
+- It does not sync or back up your notes.
+- It does not read PDFs, images or Word files. Markdown notes only.
 
 ## Questions people ask
 
@@ -334,12 +334,12 @@ More in [docs/faq.md](docs/faq.md).
 
 ## Not supported yet
 
-- **Proof that the server version works everywhere.** The server version (`mcp/serve.py`) is built. 11 automated tests pass, and Claude Code connected to it over HTTP. The login page worked in a browser, on a desktop and a phone-sized screen. Docker, Compose, Caddy, a real server, a real phone, the Claude website and ChatGPT are not tested with this repository. Nothing has been audited. See [setup-own-server.md](docs/setup-own-server.md).
-- **Tested in more AI apps.** The connector worked in Claude Code (loaded from a config file). It has not been tested in Claude Desktop, Codex, Cursor, VS Code or Gemini CLI, and the plugin and `claude mcp add` routes are untried.
-- **Meaning search.** Matching by meaning needs an AI model at search time. In our test it made searches about 45 times slower for a small gain.
-- **Other languages.** Word roots are tuned for English. Other languages work for plain word matches only.
-- **Windows and Linux checks.** It was tested on macOS only so far.
-- **Files other than Markdown.** PDFs, images and Word files are not read.
+- Proof that the server version works everywhere. The server version (`mcp/serve.py`) is built. 11 automated tests pass, and Claude Code connected to it over HTTP. The login page worked in a browser, on a desktop and a phone-sized screen. Docker, Compose, Caddy, a real server, a real phone, the Claude website and ChatGPT are not tested with this repository. Nothing has been audited. See [setup-own-server.md](docs/setup-own-server.md).
+- Tested in more AI apps. The connector worked in Claude Code (loaded from a config file). It has not been tested in Claude Desktop, Codex, Cursor, VS Code or Gemini CLI, and the plugin and `claude mcp add` routes are untried.
+- Meaning search. Matching by meaning needs an AI model at search time. In our test it made searches about 45 times slower for a small gain.
+- Other languages. Word roots are tuned for English. Other languages work for plain word matches only.
+- Windows and Linux checks. It was tested on macOS only so far.
+- Files other than Markdown. PDFs, images and Word files are not read.
 
 ## Help and feedback
 

@@ -1,6 +1,6 @@
 # The idea behind it
 
-For anyone who wants to know why a plain search can work better than a bigger setup. You will leave knowing the four ideas Phygital Engram is built on.
+Why a plain search can work better than a bigger setup, in four ideas.
 
 <details>
 <summary><b>Table of contents</b></summary>
@@ -39,7 +39,7 @@ This is what keeps the old price from beating the new one. See [search-ranking.m
 
 ## Idea 2: your notes are the intake
 
-A search is only as good as what goes in. The work is not in the search. It is in the habit of saving things as dated, named notes with clear headings.
+A search is only as good as the notes you save. The habit of saving things as dated, named notes with clear headings matters more than the search itself.
 
 Phygital Engram reads the notes you already have. It does not fetch your email or your chats. If you want an email thread or an AI chat to be findable, save it as a Markdown note in your folder. [Phygital Brain](https://github.com/Phygital-Brain/phygital-brain) sets up that habit for you: it builds the folders and keeps each note's date, status and tags in order. See [with-phygital-brain.md](with-phygital-brain.md).
 

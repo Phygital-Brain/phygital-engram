@@ -1,6 +1,6 @@
 # How it works
 
-This page is for anyone curious about what happens inside. You will learn what Phygital Engram reads, what it keeps, and why a search takes milliseconds.
+What happens inside: what Phygital Engram reads, what it keeps, and why a search takes milliseconds.
 
 <details>
 <summary><b>Table of contents</b></summary>

@@ -1,6 +1,6 @@
 # Threat model
 
-For anyone who runs the server version, or who wants to know what Phygital Engram protects and what it cannot. You will leave knowing who it keeps out, who it cannot, and what is not checked yet.
+Who Phygital Engram keeps out, who it cannot, and what nobody has checked yet. Read it if you run the server version.
 
 > [!WARNING]
 > Not audited. No outside person has reviewed this code for security. The server version holds the text of your notes, and it is reachable from the internet. Treat it as you would any server that holds private files.

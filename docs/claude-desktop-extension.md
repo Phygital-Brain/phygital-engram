@@ -1,6 +1,6 @@
 # Claude Desktop extension
 
-For when you use Claude Desktop and want one click, no config file. You will leave with Claude able to search your notes.
+Install Phygital Engram in Claude Desktop with one click and no config file.
 
 > [!IMPORTANT]
 > Pre-release. The extension is built by a script and checked by a workflow when a release is published. No release exists yet, so there is no file to download. Nothing here has been tested inside Claude Desktop.

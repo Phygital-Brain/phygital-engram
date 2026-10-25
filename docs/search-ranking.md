@@ -1,6 +1,6 @@
 # Search ranking
 
-This page is for anyone who wonders why one note came first and another came tenth. You will learn every signal that moves a result up or down, and which ones you can change.
+Why one note comes first and another tenth: every signal that moves a result, and which ones you can change.
 
 <details>
 <summary><b>Table of contents</b></summary>

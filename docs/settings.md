@@ -1,6 +1,6 @@
 # Settings
 
-This page is for anyone who wants to change how Phygital Engram finds and ranks notes. You will learn where each setting lives, what it does, and which few you are likely to change.
+Where each setting lives, what it does, and the few you are likely to change.
 
 > [!NOTE]
 > This page describes the working version. Setting names may change before version 0.1.0, when the code lands in this repository. A test will then check these names against the code.

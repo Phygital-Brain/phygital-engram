@@ -1,6 +1,6 @@
 # Check the test yourself
 
-For anyone who wants to run the benchmark and see the numbers on their own computer. You will leave knowing what is in this folder, how to run it, and what result to expect.
+Run the benchmark yourself on made-up notes, and compare it with the result we got.
 
 ## What is here
 

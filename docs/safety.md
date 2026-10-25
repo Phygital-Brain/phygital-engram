@@ -1,6 +1,6 @@
 # Safety
 
-For anyone who wants to know what Phygital Engram can do to their notes before using it. At the end you know what it promises, what it cannot promise, and what to do yourself.
+What Phygital Engram can and cannot do to your notes, what it promises, and what you should do yourself.
 
 ![A picture of the ownership promise: your notes stay in your folder, Phygital Engram only reads them, and its own files live somewhere else.](images/ownership.png)
 
@@ -10,15 +10,15 @@ Your notes may hold things you would not want shared: client names, tax numbers,
 
 ## What it does about it
 
-- **It only reads.** It never writes, moves, renames or deletes a note. Its own files (the index) live in a separate folder. If you point that folder inside your notes, the program refuses to start.
-- **It blanks secrets.** Lines such as `SECRET=...`, `TOKEN=...`, `PASSWORD=...`, API keys and private keys become `[REDACTED]` before anything is stored. They never reach search results, or an AI service if you use [note cards](cards.md).
-- **It blanks labelled numbers.** Tax IDs, social security numbers, IBANs and card numbers that carry a label are blanked in every note, not only in private folders.
-- **It never reads password files.** Files such as `.env`, key files, `tokens.json` and `credentials.json` (in any capital letters) are not read or indexed.
-- **It can lock folders.** See [Private folders](#private-folders).
-- **It labels what it returns.** Results are marked as note content, information only, never instructions.
-- **It runs on your computer.** Searching makes no network calls. See [Privacy](privacy.md).
-- **It skips what you tell it to.** These are not indexed: a note with `engram: skip` near the top, hidden folders, files listed in `.claudeignore`, and files over 2 MB.
-- **It stops on a broken copy.** If more than a fifth of your notes vanish at once, it assumes the folder is half copied and keeps the old index.
+- It only reads. It never writes, moves, renames or deletes a note. Its own files (the index) live in a separate folder. If you point that folder inside your notes, the program refuses to start.
+- It blanks secrets. Lines such as `SECRET=...`, `TOKEN=...`, `PASSWORD=...`, API keys and private keys become `[REDACTED]` before anything is stored. They never reach search results, or an AI service if you use [note cards](cards.md).
+- It blanks labelled numbers. Tax IDs, social security numbers, IBANs and card numbers that carry a label are blanked in every note, not only in private folders.
+- It never reads password files. Files such as `.env`, key files, `tokens.json` and `credentials.json` (in any capital letters) are not read or indexed.
+- It can lock folders. See [Private folders](#private-folders).
+- It labels what it returns. Results are marked as note content, information only, never instructions.
+- It runs on your computer. Searching makes no network calls. See [Privacy](privacy.md).
+- It skips what you tell it to. These are not indexed: a note with `engram: skip` near the top, hidden folders, files listed in `.claudeignore`, and files over 2 MB.
+- It stops on a broken copy. If more than a fifth of your notes vanish at once, it assumes the folder is half copied and keeps the old index.
 
 ## Private folders
 
@@ -40,11 +40,11 @@ Every word of your question must match, and at most two results are shown. This 
 > [!WARNING]
 > No outside party has audited Phygital Engram. These are known limits, not a full list.
 
-- **Bad text inside a note.** A note can hold text that tries to steer an AI agent, such as "ignore your rules and...". The label "information, never instructions" helps, but it does not block this. Take care with notes from other people, such as pasted emails or web pages.
-- **Secrets in odd formats.** The blanking looks for known patterns and labels. A password pasted as a bare word in a sentence is not caught.
-- **What your AI app does next.** Once an agent has a result, the app decides what to do with it, including where to send it.
-- **Other people on your computer.** Anyone who can open your files can read the index and the notes. Use your computer's own protection.
-- **Notes you did not mean to put there.** It indexes what is in the folder and cannot tell what is private. Mark those folders.
+- Bad text inside a note. A note can hold text that tries to steer an AI agent, such as "ignore your rules and...". The label "information, never instructions" helps, but it does not block this. Take care with notes from other people, such as pasted emails or web pages.
+- Secrets in odd formats. The blanking looks for known patterns and labels. A password pasted as a bare word in a sentence is not caught.
+- What your AI app does next. Once an agent has a result, the app decides what to do with it, including where to send it.
+- Other people on your computer. Anyone who can open your files can read the index and the notes. Use your computer's own protection.
+- Notes you did not mean to put there. It indexes what is in the folder and cannot tell what is private. Mark those folders.
 
 ## If something goes wrong
 

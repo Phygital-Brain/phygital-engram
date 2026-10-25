@@ -1,6 +1,6 @@
 # Setup on your own server
 
-For when you want your phone, the Claude website and other AI apps to search your notes, all day, from anywhere. You will leave with an address like `https://notes.example.com/mcp` that your AI apps can use after you type a passphrase once.
+Put Phygital Engram on a server you own, so your phone, the Claude website and other AI apps can search your notes from anywhere. You end up with an address like `https://notes.example.com/mcp`, and you type a passphrase once.
 
 > [!IMPORTANT]
 > Pre-release. The server version is written and tested on a computer, but it has not been run in Docker, on a real server or from a phone with this repository. The search program (`engram.py`) joins the repository with version 0.1.0, and the Docker build needs it. Read [What we tested](#what-we-tested) before you rely on it.

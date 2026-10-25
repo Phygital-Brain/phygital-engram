@@ -1,6 +1,6 @@
 # Updates
 
-For when a new version comes out. At the end you are on the latest version and you know how to go back.
+How to get a new version, and how to go back.
 
 ## Know when there's an update
 

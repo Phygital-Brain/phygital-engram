@@ -1,6 +1,6 @@
 # What we tested
 
-For when you want to see the numbers. At the end you know what was measured, how, and what was not tested.
+These are the numbers behind the claims, how they were made, and what we did not test.
 
 > [!WARNING]
 > These numbers are a snapshot of the working version, measured before more tuning. They come from about 4,800 English notes by one person. They show what we saw, and your notes may differ. Every number will be measured again before version 0.1.0.

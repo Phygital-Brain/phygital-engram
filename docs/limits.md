@@ -1,6 +1,6 @@
 # Limits
 
-For when you want to know what Phygital Engram cannot do, or does only to a point. At the end you know what to expect before you start.
+What Phygital Engram cannot do, or does only to a point, so nothing surprises you.
 
 ## What it does not do
 

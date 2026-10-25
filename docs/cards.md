@@ -1,6 +1,6 @@
 # Note cards
 
-For when you want to know what the optional note cards are, what they cost, and what leaves your computer if you turn them on. At the end you can decide yes or no.
+Note cards are optional summaries an AI writes for each section of your notes. This page says what they cost and what leaves your computer if you turn them on.
 
 > [!IMPORTANT]
 > Cards are off until you give Phygital Engram your own AI key. With no key, nothing is sent anywhere and search works fully. The rest of this page is about what happens after you turn cards on.

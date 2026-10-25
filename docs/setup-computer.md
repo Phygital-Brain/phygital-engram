@@ -1,6 +1,6 @@
 # Set up on your computer
 
-For when you want to try Phygital Engram on your own notes, free, with nothing sent anywhere. About 10 minutes. At the end you can search your notes from the terminal.
+Try Phygital Engram on your own notes, free, with nothing sent anywhere. It takes about 10 minutes, and you end up searching your notes from the terminal.
 
 > [!NOTE]
 > The program files are added to this repository with the first release. These steps are for the working version. Command names may change before 0.1.0, and this page will change with them.

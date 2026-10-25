@@ -1,6 +1,6 @@
 # Tools the AI can use
 
-For anyone who wants to know what an AI app can do with Phygital Engram. You will leave knowing the four tools, what each one returns, and what none of them can do.
+The four tools an AI app can use, what each one returns, and what none of them can do.
 
 ## The 4 tools
 

@@ -1,6 +1,6 @@
 # Examples
 
-For when you are not sure what to ask. At the end you have a list of questions that work well.
+Not sure what to ask? These questions work well.
 
 The notes in these examples are made up: a picture book called *Penguin Kids*, a publisher contact named Marta, and a project folder called `Picture-Book`. Yours will have other names. The questions work the same way.
 

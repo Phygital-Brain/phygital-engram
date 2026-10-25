@@ -1,6 +1,6 @@
 # With Phygital Brain
 
-For people who use [Phygital Brain](https://github.com/Phygital-Brain/phygital-brain) and want its notes found faster. At the end you know how the two fit together and what rule to give your agent.
+How Phygital Engram fits beside Phygital Brain, and the rule to give your agent.
 
 ## How they fit
 

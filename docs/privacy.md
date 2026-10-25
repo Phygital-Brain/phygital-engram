@@ -1,6 +1,6 @@
 # Privacy
 
-For anyone asking where their notes go. At the end you know what leaves your computer, what is kept and where, and how to delete all of it.
+Where your notes go, what is kept and where, and how to delete all of it.
 
 > [!NOTE]
 > Nothing collected. No account, no tracking.
