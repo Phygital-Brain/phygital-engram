@@ -53,7 +53,7 @@
 - [What it does not do](#what-it-does-not-do)
 - [Questions people ask](#questions-people-ask)
 - [All the guides](#all-the-guides)
-- [Not supported yet](#not-supported-yet)
+- [What is next](#what-is-next)
 - [Help and feedback](#help-and-feedback)
 - [This repository](#this-repository)
 - [Contributors](#contributors)
@@ -332,14 +332,24 @@ More in [docs/faq.md](docs/faq.md).
 | [TRADEMARKS.md](TRADEMARKS.md) | You want to use the name or logo |
 | [.env.example](.env.example) | You want every setting in one file |
 
-## Not supported yet
+## What is next
 
-- Proof that the server version works everywhere. The server version (`mcp/serve.py`) is built. 11 automated tests pass, and Claude Code connected to it over HTTP. The login page worked in a browser, on a desktop and a phone-sized screen. Docker, Compose, Caddy, a real server, a real phone, the Claude website and ChatGPT are not tested with this repository. Nothing has been audited. See [setup-own-server.md](docs/setup-own-server.md).
-- Tested in more AI apps. The connector worked in Claude Code (loaded from a config file). It has not been tested in Claude Desktop, Codex, Cursor, VS Code or Gemini CLI, and the plugin and `claude mcp add` routes are untried.
-- Meaning search. Matching by meaning needs an AI model at search time. In our test it made searches about 45 times slower for a small gain.
-- Other languages. Word roots are tuned for English. Other languages work for plain word matches only.
-- Windows and Linux checks. It was tested on macOS only so far.
-- Files other than Markdown. PDFs, images and Word files are not read.
+Phygital Engram is a pre-release. Here is where it stands.
+
+**What works today.** The search runs on the author's own notes. The AI connector works in Claude Code, on your computer and through the server version. The server's login works in a browser, on a desktop and a phone-sized screen. 11 automated tests pass.
+
+**What we would like help trying.** Tell us how it goes, whether it works or not: [open an issue](https://github.com/Phygital-Brain/phygital-engram/issues/new?template=question.yml).
+
+- The connector in Claude Desktop, Codex, Cursor, VS Code and Gemini CLI.
+- The server version in Docker, on a real server, and from your phone, the Claude website and ChatGPT. The steps are in [setup-own-server.md](docs/setup-own-server.md).
+- Windows and Linux. So far it has been tried on a Mac.
+
+**Not included, on purpose.**
+- Search by meaning. We tried it, and it made searches about 45 times slower for a small gain.
+- Other languages. Word roots are tuned for English, and other languages match plain words.
+- PDFs, images and Word files. Only Markdown notes are read.
+
+**Security.** Phygital Engram has not had an outside security review yet. [docs/threat-model.md](docs/threat-model.md) says how it protects your notes, and [SECURITY.md](SECURITY.md) is where to report a problem.
 
 ## Help and feedback
 
