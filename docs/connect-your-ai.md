@@ -58,6 +58,12 @@ The terminal installer does the same for Claude Code, and prints the lines for o
 curl -fsSL https://raw.githubusercontent.com/Phygital-Brain/phygital-engram/main/install.sh | sh -s -- "$HOME/Notes"
 ```
 
+With npm, if you have Node.js (`npx` fetches the newest version each time you start Claude Code):
+
+```bash
+claude mcp add phygital-engram --env ENGRAM_VAULT="$HOME/Notes" --env ENGRAM_DATA="$HOME/.phygital-engram/data" -- npx -y @phygital-brain/engram
+```
+
 The manual route, if you downloaded the files yourself:
 
 ```bash
