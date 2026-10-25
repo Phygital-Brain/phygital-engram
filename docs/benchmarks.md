@@ -29,7 +29,7 @@ These are the numbers behind the claims, how they were made, and what we did not
 | Computer | A Mac, macOS, Python 3.15.0, SQLite 3.54.1 |
 | Notes | A copy of 4,971 Markdown notes from the author's notes folder. The private finance folder was left out of the copy |
 | Note cards | Off. The local test had none, so these numbers are lower than a setup with cards |
-| Settings | The author's own tuned settings, from before the defaults in `config.json` were made general. Not the settings that ship in 0.1.0 |
+| Settings | The author's own tuned settings, from before the defaults in `config.json` were made general. Not the settings that ship in `config.json` |
 
 ## Speed
 
@@ -104,7 +104,7 @@ On the 55 questions where the answer was already in the first 3 sections:
 | Text to read per question | About 1,000 characters instead of about 3,100 |
 | Facts that carry note, heading and date | All of them |
 
-This is a simple first version. It is not in version 0.1.0. See the [roadmap](roadmap.md).
+This is a simple first version. It is not in a release yet. See the [roadmap](roadmap.md).
 
 ## What was not tested
 

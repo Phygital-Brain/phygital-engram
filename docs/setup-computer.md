@@ -3,7 +3,7 @@
 Try Phygital Engram on your own notes, free, with nothing sent anywhere. It takes about 10 minutes, and you end up searching your notes from the terminal.
 
 > [!NOTE]
-> These steps match version 0.1.0, the first release. The search program (`engram.py`) is in this repository. Want it in one line instead? See [Install in one line](../README.md#install-in-one-line).
+> These steps match version 0.1.1. The search program (`engram.py`) is in this repository. Want it in one line instead? See [Install in one line](../README.md#install-in-one-line).
 
 ## Before you start
 

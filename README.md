@@ -18,7 +18,7 @@
 <a href="https://github.com/Phygital-Brain/phygital-engram/actions/workflows/tests.yml"><img src="https://github.com/Phygital-Brain/phygital-engram/actions/workflows/tests.yml/badge.svg" alt="Tests"></a>
 <a href="https://github.com/Phygital-Brain/phygital-engram/releases/latest"><img src="https://img.shields.io/github/v/release/Phygital-Brain/phygital-engram?include_prereleases" alt="Latest release"></a>
 <a href="https://github.com/Phygital-Brain/phygital-engram/commits/main"><img src="https://img.shields.io/github/last-commit/Phygital-Brain/phygital-engram" alt="Last commit"></a>
-<a href="docs/roadmap.md"><img src="https://img.shields.io/badge/status-first%20release-0B0D12?labelColor=FFD60A" alt="Status: first release, version 0.1.0"></a>
+<a href="docs/roadmap.md"><img src="https://img.shields.io/badge/status-early%20release-0B0D12?labelColor=FFD60A" alt="Status: early release, version 0.1.1"></a>
 <a href="https://github.com/Phygital-Brain/phygital-brain"><img src="https://img.shields.io/badge/made%20for-Phygital%20Brain-F05AB8" alt="Made to work with Phygital Brain"></a>
 <a href="CONTRIBUTING.md"><img src="https://img.shields.io/badge/PRs-welcome-5AC8FA" alt="Pull requests welcome"></a>
 </p>
@@ -230,7 +230,7 @@ You don't need an account with us. There is none.
 ## Quick start (about 5 minutes)
 
 > [!NOTE]
-> Version 0.1.0 is the first release. Command and setting names may still change.
+> Version 0.1.1 is an early release. Command and setting names may still change.
 
 1. Download the [latest release](https://github.com/Phygital-Brain/phygital-engram/releases/latest) and open a terminal in its folder. More in [docs/setup-computer.md](docs/setup-computer.md).
 
@@ -370,7 +370,7 @@ More in [docs/faq.md](docs/faq.md).
 
 ## What is next
 
-Phygital Engram is at its first release, 0.1.0. Here is where it stands.
+Phygital Engram is an early release, 0.1.1. Here is where it stands.
 
 **What works today.** The search runs on the author's own notes. The AI connector works in Claude Code, on your computer and through the server version. The server's login works in a browser, on a desktop and a phone-sized screen. 11 automated tests pass.
 

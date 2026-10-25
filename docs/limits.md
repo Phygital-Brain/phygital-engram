@@ -35,6 +35,6 @@ What Phygital Engram cannot do, or does only to a point, so nothing surprises yo
 
 ## Tuned on one person's notes
 
-The 0.1.0 defaults are general, but the ranking was tuned on one person's notes. On your layout the ranking still works, and results get better once you set your own folder levels: see [settings](settings.md). The numbers in [benchmarks](benchmarks.md) came from the author's own tuned settings, so yours will differ.
+The 0.1.1 defaults are general, but the ranking was tuned on one person's notes. On your layout the ranking still works, and results get better once you set your own folder levels: see [settings](settings.md). The numbers in [benchmarks](benchmarks.md) came from the author's own tuned settings, so yours will differ.
 
 More in the [FAQ](faq.md) and the [roadmap](roadmap.md).

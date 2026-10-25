@@ -23,7 +23,7 @@ import threading
 import time
 from pathlib import Path
 
-VERSION = "0.1.0"
+VERSION = "0.1.1"
 PROTOCOLS = ("2025-06-18", "2025-03-26", "2024-11-05")
 CLI = Path(os.environ.get("PHYGITAL_ENGRAM_CLI") or Path(__file__).resolve().parent.parent / "engram.py")
 TIMEOUT = 30

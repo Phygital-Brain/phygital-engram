@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.1 (2026-10-25)
+
+- One-line install. `install.sh` (Mac and Linux) downloads the program, builds the index and connects Claude Code. The Claude Code plugin now asks for your notes folder when you install it.
+- The AI connector on your computer builds the index when it starts and updates it every 10 minutes, so there is no separate step.
+- A `~` in the index folder path is now expanded.
+- Python 3.11 or newer is the tested minimum. The sample test gives the same result on 3.11, 3.13 and 3.15.
+- The README starts with the install lines, and the guides say what was tested.
+
 ## 0.1.0 (2026-10-25)
 
 - First release: the search itself (`engram.py`, `engram_lib/`, `config.json`), the documentation, a sample test with made-up notes, and a Docker image on the Packages page.

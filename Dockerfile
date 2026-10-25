@@ -1,6 +1,6 @@
 # Phygital Engram, server version. Works on amd64 and arm64.
 # Build context: the whole repository (see .dockerignore). The search program (engram.py, engram_lib/, config.json)
-# must be in it: it arrives with version 0.1.0.
+# must be in it.
 FROM python:3.14-slim-trixie
 
 WORKDIR /app
