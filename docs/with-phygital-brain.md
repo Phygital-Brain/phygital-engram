@@ -18,7 +18,15 @@ Phygital Brain works without search, and Phygital Engram works on any folder of 
 
 A brain grows. After a few months it holds hundreds of notes: daily notes, decisions, people, projects. An agent that reads folder by folder wastes time and memory. With Phygital Engram it asks for the best few sections and opens only those. Each result names the note, heading and date, so the agent can say where an answer came from.
 
-The layout of a Phygital Brain also helps the search. Rules files (`CLAUDE.md`), the context pages and the decisions folder count more by default. Archive folders count less. See [How results are ranked](search-ranking.md).
+A Phygital Brain also gives the search what it looks for, and we checked it on the example brain from the Phygital Brain repository (2026-10-25, with an empty `CLAUDE.md` added):
+
+- The top `CLAUDE.md` is there. The search needs it before it indexes, and it counts more in the ranking.
+- Phygital Brain's `.claudeignore` lists `Memory/finances/`. The search skips everything listed there, and in our check a note in that folder never showed up.
+- Notes marked `done` or `archived`, and notes in an `archive` folder, count less.
+
+One thing differs. The default folder levels use the author's own folder names (`Context/`, `Intelligence/decisions/`). A brain calls those folders `About/` and `Memory/decisions/`, so they count as normal notes until you add them: see [Folder levels and hints](settings.md#folder-levels-and-hints). Try your own questions before and after, because a change can help one question and hurt another. In our small check, giving `About/` extra weight pushed a note about services above the decision we were looking for. See [How results are ranked](search-ranking.md).
+
+The matching guide inside Phygital Brain is [Fast search with Phygital Engram](https://github.com/Phygital-Brain/phygital-brain/blob/main/docs/search-with-phygital-engram.md).
 
 ## The rule for your agent
 
