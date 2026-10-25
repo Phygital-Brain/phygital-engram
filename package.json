@@ -1,6 +1,6 @@
 {
   "name": "@phygital-brain/engram",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A fast, private, read-only search for your second brain or any folder of Markdown notes. An MCP server for your AI app. Needs Python 3.11 or newer.",
   "bin": {
     "phygital-engram": "bin/phygital-engram.mjs"

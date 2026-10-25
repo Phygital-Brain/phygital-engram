@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.1 (2026-10-25)
+
+- Install from npm: `npm install -g @phygital-brain/engram`, or let your AI app run it with `npx -y @phygital-brain/engram`. The README shows the lines for Claude Code and for any other agent.
+- Every new version is published to npm automatically from GitHub.
+- The four tool descriptions now say when to use each tool, that it only reads, and what comes back.
+
 ## 0.2.0 (2026-10-25)
 
 - The search page: `python3 engram.py page` opens a small page on your own computer, in the Phygital Engram look (dark, and light that follows your system), with search, a read-only view of your notes, the health check and the test score. It listens on `127.0.0.1` only and loads nothing from the internet. A link like `/?q=your+question` opens it with a question already asked.

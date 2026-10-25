@@ -58,7 +58,7 @@ python3 engram.py health
 You should see a list of lines starting with `OK`.
 
 > [!NOTE]
-> Version 0.2.0 is an early release, so command and setting names may still change. If a command here does not work, check [docs/settings.md](../docs/settings.md) and [docs/setup-computer.md](../docs/setup-computer.md).
+> Version 0.2.1 is an early release, so command and setting names may still change. If a command here does not work, check [docs/settings.md](../docs/settings.md) and [docs/setup-computer.md](../docs/setup-computer.md).
 
 ## The result we got
 

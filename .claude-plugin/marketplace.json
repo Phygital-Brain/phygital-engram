@@ -6,7 +6,7 @@
       "name": "phygital-engram",
       "source": "./",
       "description": "Your notes, found in milliseconds. Phygital Engram is a fast, private, read-only search for your second brain, or any folder of Markdown notes.",
-      "version": "0.2.0"
+      "version": "0.2.1"
     }
   ]
 }

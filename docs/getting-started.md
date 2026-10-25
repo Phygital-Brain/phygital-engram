@@ -3,7 +3,7 @@
 Search your own Markdown notes in about 10 minutes. By the end you have asked a question and opened the answer.
 
 > [!NOTE]
-> This page matches version 0.2.0. The search program is in this repository.
+> This page matches version 0.2.1. The search program is in this repository.
 
 ## What you need
 
