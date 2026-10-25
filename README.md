@@ -216,13 +216,19 @@ Or, inside Claude Code, type this and answer the question about your notes folde
 curl -fsSL https://raw.githubusercontent.com/Phygital-Brain/phygital-engram/main/install.sh | sh -s -- "$HOME/Notes"
 ```
 
-**With npm, in any AI app.** If you have Node.js, install it once:
+**npm.** If you have Node.js, install it once:
 
 ```bash
 npm install -g @phygital-brain/engram
 ```
 
-Then add this to your AI app's list of MCP servers (the settings file is usually called `mcp.json` or `claude_desktop_config.json`). Change the two folders: the index folder must be outside your notes.
+**Claude Code.** Change `$HOME/Notes` to your notes folder. The index folder must be outside your notes:
+
+```bash
+claude mcp add phygital-engram --env ENGRAM_VAULT="$HOME/Notes" --env ENGRAM_DATA="$HOME/.phygital-engram/data" -- npx -y @phygital-brain/engram
+```
+
+**Any other agent.** Add this to your AI app's list of MCP servers (the settings file is usually called `mcp.json` or `claude_desktop_config.json`), with your two folders:
 
 ```json
 {
@@ -237,12 +243,6 @@ Then add this to your AI app's list of MCP servers (the settings file is usually
     }
   }
 }
-```
-
-For Claude Code, the same thing in one line:
-
-```bash
-claude mcp add phygital-engram --env ENGRAM_VAULT="$HOME/Notes" --env ENGRAM_DATA="$HOME/.phygital-engram/data" -- npx -y @phygital-brain/engram
 ```
 
 Then ask your agent: *"Search my notes for the Picture-Book schedule and tell me where you found it."* The index builds itself when your agent starts, and it never writes to your notes. For your phone, see [setup-own-server.md](docs/setup-own-server.md). More ways: [docs/connect-your-ai.md](docs/connect-your-ai.md).
