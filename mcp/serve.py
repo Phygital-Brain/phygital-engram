@@ -331,8 +331,9 @@ def build_server(public: str):
     async def search_notes(
         query: Annotated[str, Field(description="The question, in plain words (up to 500 characters)")],
         limit: Annotated[int, Field(ge=1, le=20, description="How many results (default 8)")] = 8,
+        folder: Annotated[str, Field(description="Optional: only search inside this folder of the notes, like \"Projects/decisions\"")] = "",
     ) -> str:
-        return await run("search_notes", {"query": query, "limit": limit})
+        return await run("search_notes", {"query": query, "limit": limit, "folder": folder})
 
     @server.tool(name="open_result", title="Open a result", description=descriptions["open_result"], annotations=read)
     async def open_result(id: Annotated[str, Field(description="A result id from search_notes")]) -> str:

@@ -9,6 +9,8 @@ if os.environ.get("FAKE_ENGRAM_LOG"):
 if a[:1] == ["search"]:
     if "nothing" in a[1]:
         print("[]")
+    elif "--folder" in a:
+        print(json.dumps([{"id": 9, "path": a[a.index("--folder") + 1] + "/note.md", "heading": "note", "snippet": "in the folder", "why": ""}]))
     elif "locked" in a[1]:
         print(json.dumps([{"id": "p1", "path": "Memory/finances/q3.md", "heading": "Q3", "private": True, "snippet": "Private. Open only when asked."}]))
     else:

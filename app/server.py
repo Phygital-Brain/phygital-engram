@@ -257,7 +257,8 @@ class Handler(BaseHTTPRequestHandler):
                 t = time.time()
                 rows = search(cfg, q, n, recency=smart, weights=smart,
                               exact=smart, use_cards=smart, source=p.get("source") or None,
-                              log=smart and p.get("log", "0") == "1", private=p.get("showprivate", "1") == "1")
+                              log=smart and p.get("log", "0") == "1", private=p.get("showprivate", "1") == "1",
+                              folder=p.get("folder", "")[:200] or None)
                 return self.send({"rows": rows, "ms": round((time.time() - t) * 1000)})
             if u.path == "/api/get":
                 r = get(cfg, p.get("id", "0"), p.get("note") == "1", allow_private=p.get("private") == "1",

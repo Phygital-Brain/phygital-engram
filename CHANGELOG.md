@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- `search_notes` takes an optional `folder`, and `engram.py search` takes `--folder`: only notes inside that folder come back. A filter, unlike folder hints, which only rank a folder higher. Test scores are unchanged.
+
 ## 0.2.1 (2026-10-25)
 
 - Install from npm: `npm install -g @phygital-brain/engram`, or let your AI app run it with `npx -y @phygital-brain/engram`. The README shows the lines for Claude Code and for any other agent.

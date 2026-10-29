@@ -45,7 +45,8 @@ TOOLS = [
      "description": "Search the person's Markdown notes with plain words and get a short ranked list. Use it first, before you answer about their past work, projects, decisions, people or notes. Read-only. Each result has an id, the note path, the heading, the date, a snippet and a line saying why it came back (for example an exact match or a decision note). Results can include a private note marked LOCKED: tell the person it exists and let them open it. Pass an id to open_result for the full text. If nothing matches, the list is empty.",
      "inputSchema": {"type": "object", "properties": {
          "query": {"type": "string", "description": "The question, in plain words (up to 500 characters)"},
-         "limit": {"type": "integer", "minimum": 1, "maximum": 20, "description": "How many results (default 8)"}},
+         "limit": {"type": "integer", "minimum": 1, "maximum": 20, "description": "How many results (default 8)"},
+         "folder": {"type": "string", "description": "Optional: only search inside this folder of the notes, like \"Projects/decisions\""}},
          "required": ["query"], "additionalProperties": False}, "annotations": READ_ONLY},
     {"name": "open_result", "title": "Open a result",
      "description": "Open one result from search_notes by its id and return the full section of the note, or the whole note if it is short. Read-only. Use it after search_notes, when a snippet is not enough to answer. An id that no longer exists returns a not-found message: search again. A LOCKED private note is refused, and the person must open it themselves.",
@@ -105,7 +106,8 @@ def call(name, args):
             return False, "Give a question to search for."
         n = args.get("limit", 8)
         n = n if isinstance(n, int) and 1 <= n <= 20 else 8
-        ok, out = run_cli("search", q, "--json", "-n", str(n))
+        folder = str(args.get("folder") or "").strip()[:200]
+        ok, out = run_cli("search", q, "--json", "-n", str(n), *(["--folder", folder] if folder else []))
         if not ok:
             return ok, out
         try:

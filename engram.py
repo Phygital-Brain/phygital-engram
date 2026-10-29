@@ -3,6 +3,7 @@
 
   python3 engram.py ingest [--rebuild]       build or update the index
   python3 engram.py search "question"        short ranked results [-n 10] [--json] [--source vault|chat] [--plain]
+                                             [--folder Projects/decisions]
   python3 engram.py get ID [--note]          full section (or whole note) for a result ID
   python3 engram.py get pID --private        open a private (finances) result, only when the person asked
   python3 engram.py around ID                the sections before and after a result, and notes from the same day
@@ -28,6 +29,7 @@ def main():
     p = sub.add_parser("search"); p.add_argument("question"); p.add_argument("-n", type=int)
     p.add_argument("--json", action="store_true"); p.add_argument("--source")
     p.add_argument("--plain", action="store_true", help="words only: no recency, weights, exact or cards")
+    p.add_argument("--folder", help="only notes inside this folder, like Projects/decisions")
     p = sub.add_parser("get"); p.add_argument("id"); p.add_argument("--note", action="store_true")
     p.add_argument("--private", action="store_true", help="open a private (p...) result; only when the person asked")
     p = sub.add_parser("cards"); p.add_argument("--limit", type=int); p.add_argument("--fake", action="store_true")
@@ -49,7 +51,7 @@ def main():
     elif a.cmd == "search":
         t = time.time()
         opts = dict(recency=False, weights=False, exact=False, use_cards=False) if a.plain else {}
-        rows = search(cfg, a.question, a.n, source=a.source, log=not a.plain, **opts)
+        rows = search(cfg, a.question, a.n, source=a.source, log=not a.plain, folder=a.folder, **opts)
         for r in rows:
             r["snippet"] = r["snippet"].replace("\x02", "[").replace("\x03", "]")
         if a.json:

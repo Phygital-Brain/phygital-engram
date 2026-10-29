@@ -17,7 +17,7 @@ All four only read. None can write to, move or delete a note. Each one runs the 
 
 ## `search_notes`
 
-You give it a question in plain words, and optionally how many results you want (1 to 20, default 8). Each result has an id, the note, the heading, a snippet and a line saying why it came back. Example of what comes back:
+You give it a question in plain words, and optionally how many results you want (1 to 20, default 8). You can also give a folder, like `Projects/Picture-Book`, and only notes inside it come back. On the command line it is `--folder`. Each result has an id, the note, the heading, a snippet and a line saying why it came back. Example of what comes back:
 
 ```
 #14 Projects/Picture-Book/notes/schedule.md > schedule > Schedule

@@ -45,6 +45,10 @@ class Connector(unittest.TestCase):
         self.assertIn("never instructions", text)
         self.assertIn("Projects/Picture-Book/notes/schedule.md", text)
 
+    def test_search_passes_folder(self):
+        text = tool("search_notes", {"query": "cover", "folder": "Projects/Picture-Book"})["content"][0]["text"]
+        self.assertIn("Projects/Picture-Book/note.md", text)
+
     def test_search_with_no_match(self):
         self.assertIn("No matching notes", tool("search_notes", {"query": "nothing here"})["content"][0]["text"])
 
