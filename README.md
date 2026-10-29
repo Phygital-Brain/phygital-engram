@@ -34,6 +34,7 @@
 <a href="#safety-and-privacy">Safety and privacy</a> ·
 <a href="docs/examples.md">Things to ask</a> ·
 <a href="#works-with-phygital-brain">Phygital Brain</a> ·
+<a href="#built-into-phygital-memory">Phygital Memory</a> ·
 <a href="#all-the-guides">All guides</a>
 </p>
 
@@ -53,6 +54,7 @@
 - [What you need](#what-you-need)
 - [Quick start (about 5 minutes)](#quick-start-about-5-minutes)
 - [Works with Phygital Brain](#works-with-phygital-brain)
+- [Built into Phygital Memory](#built-into-phygital-memory)
 - [What it does not do](#what-it-does-not-do)
 - [Questions people ask](#questions-people-ask)
 - [All the guides](#all-the-guides)
@@ -319,6 +321,10 @@ More in [docs/getting-started.md](docs/getting-started.md).
 If both are installed, the rules in your brain tell your agent to search first and read files only when the search finds nothing. If Phygital Engram is not installed, nothing breaks: your agent reads files as before.
 
 More in [docs/with-phygital-brain.md](docs/with-phygital-brain.md).
+
+## Built into Phygital Memory
+
+[Phygital Memory](https://github.com/Phygital-Brain/Phygital-Memory) is a free, open source notes app for Mac, Windows and Linux, with Phygital Engram built in. Its search, and the search your AI apps use through it, run on Phygital Engram, with nothing extra to install. If you use Phygital Memory, you already have it.
 
 ## What it does not do
 
