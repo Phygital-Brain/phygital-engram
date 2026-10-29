@@ -35,7 +35,7 @@ Here is a made-up example. The section is a meeting note under the heading `Pict
 
 Search matches words. Say you ask *when does the artwork have to be ready?* and the note says "cover due on the 15th". The words do not overlap. The card holds "when is the cover due?", so the section is found.
 
-In version 0.2.1, cards are the main help for questions that use different words than the note. [Limits](limits.md) explains why there is no search by meaning.
+In version 0.3.0, cards are the main help for questions that use different words than the note. [Limits](limits.md) explains why there is no search by meaning.
 
 ## What leaves your computer
 
