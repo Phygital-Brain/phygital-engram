@@ -255,7 +255,7 @@ Here is everything Phygital Engram needs, and nothing more.
 
 | You need | Why | For |
 |---|---|---|
-| **A folder of Markdown notes** (`.md` files) | That is what it searches. Obsidian, Baalda and Phygital Brain folders all work | Everything |
+| **A folder of Markdown notes** (`.md` files) | That is what it searches. Obsidian, Phygital Memory and Phygital Brain folders all work | Everything |
 | **A file named `CLAUDE.md` at the top of that folder.** It can be empty | The search checks it before it indexes, so it never builds an index from a half-copied folder. [Phygital Brain](docs/with-phygital-brain.md) makes this file for you. Without it, indexing stops and nothing changes | Everything |
 | **A second folder for the index, outside your notes** | It keeps its own files there, and refuses to run if that folder is inside your notes | Everything |
 | **Python 3.11 or newer** | The search uses only what comes with Python, so nothing else to install. Tried on Python 3.11, 3.13 and 3.15 | Everything |

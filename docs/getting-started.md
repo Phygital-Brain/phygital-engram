@@ -7,7 +7,7 @@ Search your own Markdown notes in about 10 minutes. By the end you have asked a 
 
 ## What you need
 
-- **A folder of Markdown notes.** Plain `.md` files, in subfolders if you like. Obsidian vaults, Baalda folders and [Phygital Brain](with-phygital-brain.md) brains all work.
+- **A folder of Markdown notes.** Plain `.md` files, in subfolders if you like. Obsidian vaults, Phygital Memory folders and [Phygital Brain](with-phygital-brain.md) brains all work.
 - **A file named `CLAUDE.md` at the top of that folder.** It can be empty. The search checks for it before it indexes, so it never builds an index from a half-copied folder. Phygital Brain makes this file for you. If your folder has none, create an empty one. Without it, indexing stops and nothing changes.
 - **A second folder for the index**, outside your notes. It keeps its own files there.
 - **Python** on your computer. [Set up on your computer](setup-computer.md) shows how to install it.

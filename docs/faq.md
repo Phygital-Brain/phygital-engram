@@ -128,9 +128,9 @@ Yes. It reads the same files Obsidian shows. It needs no Obsidian plugin and doe
 
 </details>
 
-<details><summary><b>Does it work with Baalda, Logseq or plain files?</b></summary>
+<details><summary><b>Does it work with Phygital Memory, Logseq or plain files?</b></summary>
 
-It works on any folder of `.md` files. We tested it on one folder, the author's, and on a small sample. Other apps that store notes as Markdown should work the same way, but we have not tested them.
+It works on any folder of `.md` files, and [Phygital Memory](https://github.com/Phygital-Brain/Phygital-Memory) has it built in. We tested it on one folder, the author's, and on a small sample. Other apps that store notes as Markdown should work the same way, but we have not tested them.
 
 </details>
 
