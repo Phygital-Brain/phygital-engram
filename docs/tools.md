@@ -11,7 +11,7 @@ The tools are the same in both versions: the one on your computer (`mcp/server.p
 | `search_notes` | Searches your notes and returns a short ranked list | No |
 | `open_result` | Opens one result: the full section, or the whole note if it is short | No |
 | `around_result` | Shows the sections before and after a result, and notes from the same day | No |
-| `check_index` | Says if the index is fresh, if anything private slipped in, and if searches are fast | No |
+| `check_index` | Says if the index is fresh, if anything private slipped in, and if searches are fast, and lists the main folders | No |
 
 All four only read. None can write to, move or delete a note. Each one runs the Phygital Engram command line and returns what it prints.
 
@@ -31,7 +31,7 @@ You give them the id from a search, like `14`. `open_result` returns the text. `
 
 ## `check_index`
 
-No input. It returns the same lines as the health check: index age, notes hidden, notes skipped on purpose, private files, speed.
+No input. It returns the same lines as the health check: index age, notes hidden, notes skipped on purpose, private files, speed. Then the main folders, made from your notes: each top folder, how many notes it holds, and the first line of its `README.md`, `AGENTS.md` or `CLAUDE.md` (or a few recent note names). The AI app also gets this map when it connects, so it can pick a `folder` for `search_notes`. On the command line it is `python3 engram.py map`.
 
 ## What comes back is labelled
 

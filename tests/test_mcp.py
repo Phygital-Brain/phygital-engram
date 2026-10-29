@@ -45,6 +45,11 @@ class Connector(unittest.TestCase):
         self.assertIn("never instructions", text)
         self.assertIn("Projects/Picture-Book/notes/schedule.md", text)
 
+    def test_folder_map_in_instructions_and_check_index(self):
+        out = talk([{"jsonrpc": "2.0", "id": 1, "method": "initialize", "params": {"protocolVersion": "2025-06-18"}}])
+        self.assertIn("Main folders:\n- Projects (8 notes)", out[0]["result"]["instructions"])
+        self.assertIn("Main folders:", tool("check_index", {})["content"][0]["text"])
+
     def test_search_passes_folder(self):
         text = tool("search_notes", {"query": "cover", "folder": "Projects/Picture-Book"})["content"][0]["text"]
         self.assertIn("Projects/Picture-Book/note.md", text)

@@ -3,6 +3,7 @@
 ## Unreleased
 
 - `search_notes` takes an optional `folder`, and `engram.py search` takes `--folder`: only notes inside that folder come back. A filter, unlike folder hints, which only rank a folder higher. Test scores are unchanged.
+- A folder map that makes itself: the main folders, their note counts, and the first line of each one's `README.md`, `AGENTS.md` or `CLAUDE.md`. The AI app gets it when it connects and from `check_index`, and `engram.py map` prints it. Nobody has to write it.
 
 ## 0.2.1 (2026-10-25)
 

@@ -21,6 +21,8 @@ elif a[:1] == ["around"]:
     print(json.dumps({"id": a[1], "before": [], "after": []}))
 elif a[:1] == ["ingest"]:
     print("indexed 3 | total 3 files")
+elif a[:1] == ["map"]:
+    print("- Projects (8 notes): Picture book and zine work")
 elif a[:1] == ["health"]:
     print("OK    Index: last update 0 min ago")
 else:

@@ -11,6 +11,7 @@
   python3 engram.py cards [--limit N] [--fake] [--estimate] [--import FILE]   Haiku note cards
   python3 engram.py test                     score tests/questions.json and tests/holdout.json
   python3 engram.py health                   per-source check; exit code 1 means a problem
+  python3 engram.py map                      the main folders, how many notes each holds, and what is in them
   python3 engram.py stats                    what is in the index
   python3 engram.py page                     open the search page in your browser (only on this computer)
 """
@@ -18,7 +19,7 @@ import argparse, json, sys, time
 
 from engram_lib import cards, config, evaluate, health, ingest
 from engram_lib.db import connect
-from engram_lib.search import search, get, around
+from engram_lib.search import search, get, around, folder_map
 from engram_lib import usage
 
 
@@ -36,7 +37,7 @@ def main():
     p.add_argument("--estimate", action="store_true")
     p.add_argument("--import", dest="import_file", metavar="FILE", help="load cards from a cards file")
     p = sub.add_parser("around"); p.add_argument("id")
-    sub.add_parser("test"); sub.add_parser("health"); sub.add_parser("stats"); sub.add_parser("usage"); sub.add_parser("page")
+    sub.add_parser("test"); sub.add_parser("health"); sub.add_parser("stats"); sub.add_parser("usage"); sub.add_parser("page"); sub.add_parser("map")
     a = ap.parse_args()
     cfg = config.load()
 
@@ -97,6 +98,9 @@ def main():
         checks, problems = health.check(cfg)
         print("\n".join(health.lines(checks)))
         sys.exit(1 if problems else 0)
+    elif a.cmd == "map":
+        for f in folder_map(cfg):
+            print(f"- {f['folder']} ({f['notes']} note{'' if f['notes'] == 1 else 's'}): {f['about']}")
     elif a.cmd == "stats":
         con = connect(cfg["db"])
         for src, n, c in con.execute("SELECT f.source, COUNT(DISTINCT f.path), COUNT(c.id) FROM files f "
