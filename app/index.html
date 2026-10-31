@@ -770,6 +770,11 @@ const slug = t => String(t).toLowerCase().replace(/<[^>]+>/g, "").replace(/[^\p{
 if (window.marked) {
   marked.use({
     gfm: true, breaks: true, mangle: false, headerIds: false,
+    // Raw HTML is shown as text (renderer.html below). Never let a <code>/<pre> tag switch marked
+    // into "raw block" mode, which would stop it escaping the text after it.
+    tokenizer: {
+      tag(src) { const m = this.rules.inline.tag.exec(src); if (m) return { type: "html", raw: m[0], inLink: false, inRawBlock: false, text: m[0] }; },
+    },
     extensions: [
       { name: "embed", level: "inline", start: src => src.indexOf("![["),
         tokenizer(src) { const m = /^!\[\[([^\]]+)\]\]/.exec(src); if (m) return { type: "embed", raw: m[0], target: m[1] }; },
