@@ -51,6 +51,45 @@ def folder_hints(cfg, q):
     return out, h.get("boost", 1.0)
 
 
+MONTHS = {m: i for i, m in enumerate(["january", "february", "march", "april", "may", "june", "july", "august",
+                                      "september", "october", "november", "december"], 1)}
+
+
+def date_range(q, today=None):
+    """A time phrase in the question ("last week", "yesterday", "in September", "last 10 days") becomes a
+    (start, end) pair of timestamps, plus the question without that phrase. (None, q) when there is none.
+    Used as a boost for notes dated inside the range, never a filter."""
+    import datetime as dt
+    d = today or dt.date.today()
+    low = q.lower()
+    day = lambda x: dt.datetime.combine(x, dt.time.min).timestamp()
+    span = lambda a, b: (day(a), day(b + dt.timedelta(days=1)))
+    mon = d - dt.timedelta(days=d.weekday())
+    rules = [
+        (r"\btoday\b", lambda m: span(d, d)),
+        (r"\byesterday\b", lambda m: span(d - dt.timedelta(days=1), d - dt.timedelta(days=1))),
+        (r"\bthis week\b", lambda m: span(mon, d)),
+        (r"\blast week\b", lambda m: span(mon - dt.timedelta(days=7), mon - dt.timedelta(days=1))),
+        (r"\bthis month\b", lambda m: span(d.replace(day=1), d)),
+        (r"\blast month\b", lambda m: span((d.replace(day=1) - dt.timedelta(days=1)).replace(day=1),
+                                               d.replace(day=1) - dt.timedelta(days=1))),
+        (r"\b(?:last|past) (\d{1,3}) (day|week|month)s?\b",
+         lambda m: span(d - dt.timedelta(days=int(m.group(1)) * {"day": 1, "week": 7, "month": 30}[m.group(2)]), d)),
+    ]
+    for pat, f in rules:
+        m = re.search(pat, low)
+        if m:
+            return f(m), (q[:m.start()] + " " + q[m.end():]).strip()
+    m = re.search(r"\b(?:in|during|from|on)? ?(" + "|".join(MONTHS) + r")(?: (\d{4}))?\b", low)
+    if m and (m.group(2) or re.search(r"\b(in|during|from|on) " + m.group(1), low)):
+        mo = MONTHS[m.group(1)]
+        y = int(m.group(2)) if m.group(2) else (d.year if mo <= d.month else d.year - 1)
+        a = dt.date(y, mo, 1)
+        b = (dt.date(y + (mo == 12), mo % 12 + 1, 1)) - dt.timedelta(days=1)
+        return span(a, b), (q[:m.start()] + " " + q[m.end():]).strip()
+    return None, q
+
+
 def build_query(q, use_cards=True, mode="or", common=None, con=None):
     """mode 'or': any word (best ranking). mode 'and': every word (fast and precise, used for the background
     shelf). Common words (only listed once the index is big) are left out, unless that would leave nothing."""
@@ -314,6 +353,10 @@ def _search(cfg, q, n, recency, weights, source, use_cards, exact, include_hidde
     frm = (f"FROM {table} JOIN chunks c ON c.id = {table}.rowid JOIN files f ON f.path = c.file_path "
            f"WHERE {table} MATCH ?")
     boost, now = cfg["recency"]["boost"], time.time()
+    rng, q_words = date_range(q) if (weights and cfg.get("date_search", {}).get("enabled")) else (None, q)
+    if rng and not words(q_words):
+        q_words = q  # nothing left but the time phrase: keep it as plain words
+    date_boost = cfg.get("date_search", {}).get("boost", 3.0)
     info, newest = chat_info
     hint_folders, hint_boost = folder_hints(cfg, q) if weights else ([], 1.0)
     if hint_folders:
@@ -341,12 +384,14 @@ def _search(cfg, q, n, recency, weights, source, use_cards, exact, include_hidde
             m *= back_f.get(path, 1.0)
         if hint_folders and not is_chat and matches_any(path, hint_folders):
             m *= hint_boost
+        if rng and not is_chat and not ev and rng[0] <= date < rng[1]:
+            m *= date_boost
         return m
 
     cand = {}  # id -> [facts row, score, exact hits, exact term]
 
     # 1. ranked keyword search, on small facts only
-    query = build_query(q, use_cards, qmode, common, con)
+    query = build_query(q_words, use_cards, qmode, common, con)
     if query:
         for r in con.execute(f"SELECT {cols}, bm25({table}, 4.0, 3.0, 2.0, 1.0, 2.0) {frm}{where} ORDER BY 10 LIMIT 300",
                              [query] + src):

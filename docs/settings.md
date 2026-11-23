@@ -98,6 +98,8 @@ How the signals work together is explained in [search ranking](search-ranking.md
 |---|---|---|
 | `recency.boost` | 0.5 | How much newer notes count. 0.5 means a note from today counts 1.5x |
 | `recency.half_life_days` | 180 | After this many days the extra boost is halved |
+| `date_search.enabled` | `true` | A time phrase in the question ("last week", "in September") lifts notes dated inside that time. See [search ranking](search-ranking.md#newer-counts-more) |
+| `date_search.boost` | 3.0 | How much a note dated inside that time counts |
 | `evergreen_paths` | `*CLAUDE.md`, `*AGENTS.md`, `Context/*`, `*/decisions/*`, `Library/*` | Notes here never fade with age |
 | `evergreen_exclude` | none | Exceptions to `evergreen_paths` |
 | `status_weights` | archived 0.4, closed 0.5, done 0.6, paused 0.7, legacy 0.3 | Multiplier for notes with this `status` |

@@ -126,6 +126,8 @@ A note with `valid_until: 2026-12-31` hides itself the day after that date. A no
 
 A note from today is multiplied by 1.5. The extra half halves every 180 days. A note from six months ago gets about 1.25x, and one from two years ago about 1.03x. Core notes, such as your rules and context, never fade.
 
+A time phrase in the question works the other way. In "pitch drafts last week", notes dated last week count 3x, and only "pitch drafts" is searched as words. It knows today, yesterday, this or last week, this or last month, "last 10 days" (or weeks, or months) and month names. A month name alone counts only with a year or after "in", "during", "from" or "on", so "I may need" is not May. Only the first month name in a question is checked. AI chat notes and core notes are not lifted. It only boosts, never filters.
+
 ## What nothing ever does
 
 - Nothing hides a note on a guess. Folder hints, links and learning from use only change the order.

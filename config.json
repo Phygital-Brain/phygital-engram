@@ -202,5 +202,9 @@
         ]
       }
     ]
+  },
+  "date_search": {
+    "enabled": true,
+    "boost": 3.0
   }
 }
