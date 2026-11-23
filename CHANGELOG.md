@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.3.1 (2026-11-23)
 
 - Date search: a time phrase in the question lifts notes dated inside that time 3x. It knows "today", "yesterday", "this week", "last week", "this month", "last month", "last 10 days" (days, weeks or months) and month names like "in September" or "May 2026". It only boosts, never filters, and the phrase itself is not searched as words. Turn it off with `date_search.enabled` in `config.json`.
 - The search page no longer lets a note run script, and it hides JSON keys, `X-API-Key` values and PGP key blocks.
